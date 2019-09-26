@@ -1,0 +1,17 @@
+'use strict';
+
+var _modules = _interopRequireDefault(require("./../../modules"));
+
+var _LibMfw = _interopRequireDefault(require("./LibMfw"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(async () => {
+  const pg = await _modules.default.PgSQL.pool('localhost');
+  await _modules.default.Utils.call(`整理数据`, async () => {
+    await _modules.default.Utils.call(`映射 mfw 海外数据`, _LibMfw.default.mapForeignData.bind(_LibMfw.default), [pg]);
+    await _modules.default.Utils.call(`映射 mfw 中国数据`, _LibMfw.default.mapChinaCountryData.bind(_LibMfw.default), [pg]);
+    await _modules.default.Utils.call(`映射 mfw 中国各省数据`, _LibMfw.default.mapChinaProvincesData.bind(_LibMfw.default), [pg]);
+  });
+})();
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy90YXNrcy8wMi1ncHMvMDEtbWZ3LmpzIl0sIm5hbWVzIjpbInBnIiwiJCIsIlBnU1FMIiwicG9vbCIsIlV0aWxzIiwiY2FsbCIsIkxpYk1mdyIsIm1hcEZvcmVpZ25EYXRhIiwiYmluZCIsIm1hcENoaW5hQ291bnRyeURhdGEiLCJtYXBDaGluYVByb3ZpbmNlc0RhdGEiXSwibWFwcGluZ3MiOiJBQUFBOztBQUdBOztBQUVBOzs7O0FBR0EsQ0FBQyxZQUFZO0FBQ1gsUUFBTUEsRUFBRSxHQUFHLE1BQU1DLGlCQUFFQyxLQUFGLENBQVFDLElBQVIsQ0FBYSxXQUFiLENBQWpCO0FBQ0EsUUFBTUYsaUJBQUVHLEtBQUYsQ0FBUUMsSUFBUixDQUFjLE1BQWQsRUFBcUIsWUFBWTtBQUNyQyxVQUFNSixpQkFBRUcsS0FBRixDQUFRQyxJQUFSLENBQWMsYUFBZCxFQUE0QkMsZ0JBQU9DLGNBQVAsQ0FBc0JDLElBQXRCLENBQTJCRixlQUEzQixDQUE1QixFQUFnRSxDQUFDTixFQUFELENBQWhFLENBQU47QUFDQSxVQUFNQyxpQkFBRUcsS0FBRixDQUFRQyxJQUFSLENBQWMsYUFBZCxFQUE0QkMsZ0JBQU9HLG1CQUFQLENBQTJCRCxJQUEzQixDQUFnQ0YsZUFBaEMsQ0FBNUIsRUFBcUUsQ0FBQ04sRUFBRCxDQUFyRSxDQUFOO0FBQ0EsVUFBTUMsaUJBQUVHLEtBQUYsQ0FBUUMsSUFBUixDQUFjLGVBQWQsRUFBOEJDLGdCQUFPSSxxQkFBUCxDQUE2QkYsSUFBN0IsQ0FBa0NGLGVBQWxDLENBQTlCLEVBQXlFLENBQUNOLEVBQUQsQ0FBekUsQ0FBTjtBQUNELEdBSkssQ0FBTjtBQUtELENBUEQiLCJzb3VyY2VzQ29udGVudCI6WyIndXNlIHN0cmljdCc7XG5cblxuaW1wb3J0ICQgZnJvbSAnLi8uLi8uLi9tb2R1bGVzJztcblxuaW1wb3J0IExpYk1mdyBmcm9tICcuL0xpYk1mdyc7XG5cblxuKGFzeW5jICgpID0+IHtcbiAgY29uc3QgcGcgPSBhd2FpdCAkLlBnU1FMLnBvb2woJ2xvY2FsaG9zdCcpO1xuICBhd2FpdCAkLlV0aWxzLmNhbGwoYOaVtOeQhuaVsOaNrmAsIGFzeW5jICgpID0+IHtcbiAgICBhd2FpdCAkLlV0aWxzLmNhbGwoYOaYoOWwhCBtZncg5rW35aSW5pWw5o2uYCwgTGliTWZ3Lm1hcEZvcmVpZ25EYXRhLmJpbmQoTGliTWZ3KSwgW3BnXSk7XG4gICAgYXdhaXQgJC5VdGlscy5jYWxsKGDmmKDlsIQgbWZ3IOS4reWbveaVsOaNrmAsIExpYk1mdy5tYXBDaGluYUNvdW50cnlEYXRhLmJpbmQoTGliTWZ3KSwgW3BnXSk7XG4gICAgYXdhaXQgJC5VdGlscy5jYWxsKGDmmKDlsIQgbWZ3IOS4reWbveWQhOecgeaVsOaNrmAsIExpYk1mdy5tYXBDaGluYVByb3ZpbmNlc0RhdGEuYmluZChMaWJNZncpLCBbcGddKTtcbiAgfSk7XG59KSgpOyJdfQ==

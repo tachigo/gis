@@ -3,8 +3,6 @@
 
 import $ from './../../modules';
 
-import OSMTree from './country_osm';
-
 (async () => {
   await $.Utils.call(`遍历OSM 国家树`, async () => {
     const pg = await $.PgSQL.pool('localhost');
@@ -24,7 +22,7 @@ import OSMTree from './country_osm';
     id = excluded.id, role = excluded.role, geom = excluded.geom`;
     const fromId = 0;
     const toId = 0;
-    await OSMTree.each(async (index, v, level, parentId, desc) => {
+    await $.OSM.getCountryTree().each(async (index, v, level, parentId, desc) => {
       const id = index + 900000;
       desc.unshift(' <= ');
       desc.unshift(id);

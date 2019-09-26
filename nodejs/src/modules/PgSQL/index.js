@@ -2,8 +2,8 @@
 
 import { Pool } from 'pg';
 import merge from 'merge';
-
-import globalConfig from './../../config/pgsql';
+import Utils from './../Utils';
+import PostGis from './PostGis';
 
 class PgSQL {
 
@@ -11,7 +11,8 @@ class PgSQL {
 
   static async pool(key, config = {}) {
     if (!this.pools[key]) {
-      const tmpConfig = merge(true, globalConfig[key]);
+      const configuration = await Utils.getConfiguration('pgsql');
+      const tmpConfig = merge(true, configuration[key]);
       config = merge(tmpConfig, config);
       if (Object.keys(config).length === 0) {
         throw new Error(`PgSQL 连接参数错误`);
@@ -24,6 +25,11 @@ class PgSQL {
       this.pools[key] = pool;
     }
     return this.pools[key];
+  }
+
+
+  static getPostGis() {
+    return PostGis;
   }
 }
 

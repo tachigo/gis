@@ -3,8 +3,6 @@
 
 import $ from './../../modules';
 
-import OSMTree from './country_osm';
-
 const aggregateRelation = async (pg, ids, fromId, toId) => {
   const osmRelationAggrTable = `osm.relation_aggregate`;
   const osmRelationDumpTable = 'osm.relation_dump';
@@ -78,7 +76,7 @@ const aggregateRelation = async (pg, ids, fromId, toId) => {
         }
         await $.Utils.log(`#${id}`, '聚合数据');
       }
-      await OSMTree.each(async (index, v, level, parentId) => {
+      await $.OSM.getCountryTree().each(async (index, v, level, parentId) => {
         const key = index + 900000;
         if (key === id) {
           const sql = `update ${osmRelationAggrTable} set 

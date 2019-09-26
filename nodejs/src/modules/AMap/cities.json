@@ -1,0 +1,2760 @@
+[
+  {
+    "cityCode": "010",
+    "adCode": "110100",
+    "name": "北京城区",
+    "parentId": 11,
+    "id": 51
+  },
+  {
+    "cityCode": "020",
+    "adCode": "440100",
+    "name": "广州市",
+    "parentId": 29,
+    "id": 52
+  },
+  {
+    "cityCode": "021",
+    "adCode": "310100",
+    "name": "上海城区",
+    "parentId": 19,
+    "id": 53
+  },
+  {
+    "cityCode": "022",
+    "adCode": "120100",
+    "name": "天津城区",
+    "parentId": 12,
+    "id": 54
+  },
+  {
+    "cityCode": "023",
+    "adCode": "500100",
+    "name": "重庆城区",
+    "parentId": 32,
+    "id": 55
+  },
+  {
+    "cityCode": "023",
+    "adCode": "500200",
+    "name": "重庆郊县",
+    "parentId": 32,
+    "id": 56
+  },
+  {
+    "cityCode": "024",
+    "adCode": "210100",
+    "name": "沈阳市",
+    "parentId": 16,
+    "id": 57
+  },
+  {
+    "cityCode": "025",
+    "adCode": "320100",
+    "name": "南京市",
+    "parentId": 20,
+    "id": 58
+  },
+  {
+    "cityCode": "027",
+    "adCode": "420100",
+    "name": "武汉市",
+    "parentId": 27,
+    "id": 59
+  },
+  {
+    "cityCode": "028",
+    "adCode": "510100",
+    "name": "成都市",
+    "parentId": 33,
+    "id": 60
+  },
+  {
+    "cityCode": "029",
+    "adCode": "610100",
+    "name": "西安市",
+    "parentId": 37,
+    "id": 61
+  },
+  {
+    "cityCode": "0310",
+    "adCode": "130400",
+    "name": "邯郸市",
+    "parentId": 13,
+    "id": 62
+  },
+  {
+    "cityCode": "0311",
+    "adCode": "130100",
+    "name": "石家庄市",
+    "parentId": 13,
+    "id": 63
+  },
+  {
+    "cityCode": "0312",
+    "adCode": "130600",
+    "name": "保定市",
+    "parentId": 13,
+    "id": 64
+  },
+  {
+    "cityCode": "0313",
+    "adCode": "130700",
+    "name": "张家口市",
+    "parentId": 13,
+    "id": 65
+  },
+  {
+    "cityCode": "0314",
+    "adCode": "130800",
+    "name": "承德市",
+    "parentId": 13,
+    "id": 66
+  },
+  {
+    "cityCode": "0315",
+    "adCode": "130200",
+    "name": "唐山市",
+    "parentId": 13,
+    "id": 67
+  },
+  {
+    "cityCode": "0316",
+    "adCode": "131000",
+    "name": "廊坊市",
+    "parentId": 13,
+    "id": 68
+  },
+  {
+    "cityCode": "0317",
+    "adCode": "130900",
+    "name": "沧州市",
+    "parentId": 13,
+    "id": 69
+  },
+  {
+    "cityCode": "0318",
+    "adCode": "131100",
+    "name": "衡水市",
+    "parentId": 13,
+    "id": 70
+  },
+  {
+    "cityCode": "0319",
+    "adCode": "130500",
+    "name": "邢台市",
+    "parentId": 13,
+    "id": 71
+  },
+  {
+    "cityCode": "0335",
+    "adCode": "130300",
+    "name": "秦皇岛市",
+    "parentId": 13,
+    "id": 72
+  },
+  {
+    "cityCode": "0349",
+    "adCode": "140600",
+    "name": "朔州市",
+    "parentId": 14,
+    "id": 73
+  },
+  {
+    "cityCode": "0350",
+    "adCode": "140900",
+    "name": "忻州市",
+    "parentId": 14,
+    "id": 74
+  },
+  {
+    "cityCode": "0351",
+    "adCode": "140100",
+    "name": "太原市",
+    "parentId": 14,
+    "id": 75
+  },
+  {
+    "cityCode": "0352",
+    "adCode": "140200",
+    "name": "大同市",
+    "parentId": 14,
+    "id": 76
+  },
+  {
+    "cityCode": "0353",
+    "adCode": "140300",
+    "name": "阳泉市",
+    "parentId": 14,
+    "id": 77
+  },
+  {
+    "cityCode": "0354",
+    "adCode": "140700",
+    "name": "晋中市",
+    "parentId": 14,
+    "id": 78
+  },
+  {
+    "cityCode": "0355",
+    "adCode": "140400",
+    "name": "长治市",
+    "parentId": 14,
+    "id": 79
+  },
+  {
+    "cityCode": "0356",
+    "adCode": "140500",
+    "name": "晋城市",
+    "parentId": 14,
+    "id": 80
+  },
+  {
+    "cityCode": "0357",
+    "adCode": "141000",
+    "name": "临汾市",
+    "parentId": 14,
+    "id": 81
+  },
+  {
+    "cityCode": "0358",
+    "adCode": "141100",
+    "name": "吕梁市",
+    "parentId": 14,
+    "id": 82
+  },
+  {
+    "cityCode": "0359",
+    "adCode": "140800",
+    "name": "运城市",
+    "parentId": 14,
+    "id": 83
+  },
+  {
+    "cityCode": "0370",
+    "adCode": "411400",
+    "name": "商丘市",
+    "parentId": 26,
+    "id": 84
+  },
+  {
+    "cityCode": "0371",
+    "adCode": "410100",
+    "name": "郑州市",
+    "parentId": 26,
+    "id": 85
+  },
+  {
+    "cityCode": "0372",
+    "adCode": "410500",
+    "name": "安阳市",
+    "parentId": 26,
+    "id": 86
+  },
+  {
+    "cityCode": "0373",
+    "adCode": "410700",
+    "name": "新乡市",
+    "parentId": 26,
+    "id": 87
+  },
+  {
+    "cityCode": "0374",
+    "adCode": "411000",
+    "name": "许昌市",
+    "parentId": 26,
+    "id": 88
+  },
+  {
+    "cityCode": "0375",
+    "adCode": "410400",
+    "name": "平顶山市",
+    "parentId": 26,
+    "id": 89
+  },
+  {
+    "cityCode": "0376",
+    "adCode": "411500",
+    "name": "信阳市",
+    "parentId": 26,
+    "id": 90
+  },
+  {
+    "cityCode": "0377",
+    "adCode": "411300",
+    "name": "南阳市",
+    "parentId": 26,
+    "id": 91
+  },
+  {
+    "cityCode": "0378",
+    "adCode": "410200",
+    "name": "开封市",
+    "parentId": 26,
+    "id": 92
+  },
+  {
+    "cityCode": "0379",
+    "adCode": "410300",
+    "name": "洛阳市",
+    "parentId": 26,
+    "id": 93
+  },
+  {
+    "cityCode": "0391",
+    "adCode": "410800",
+    "name": "焦作市",
+    "parentId": 26,
+    "id": 94
+  },
+  {
+    "cityCode": "0392",
+    "adCode": "410600",
+    "name": "鹤壁市",
+    "parentId": 26,
+    "id": 95
+  },
+  {
+    "cityCode": "0393",
+    "adCode": "410900",
+    "name": "濮阳市",
+    "parentId": 26,
+    "id": 96
+  },
+  {
+    "cityCode": "0394",
+    "adCode": "411600",
+    "name": "周口市",
+    "parentId": 26,
+    "id": 97
+  },
+  {
+    "cityCode": "0395",
+    "adCode": "411100",
+    "name": "漯河市",
+    "parentId": 26,
+    "id": 98
+  },
+  {
+    "cityCode": "0396",
+    "adCode": "411700",
+    "name": "驻马店市",
+    "parentId": 26,
+    "id": 99
+  },
+  {
+    "cityCode": "0398",
+    "adCode": "411200",
+    "name": "三门峡市",
+    "parentId": 26,
+    "id": 100
+  },
+  {
+    "cityCode": "0410",
+    "adCode": "211200",
+    "name": "铁岭市",
+    "parentId": 16,
+    "id": 101
+  },
+  {
+    "cityCode": "0411",
+    "adCode": "210200",
+    "name": "大连市",
+    "parentId": 16,
+    "id": 102
+  },
+  {
+    "cityCode": "0412",
+    "adCode": "210300",
+    "name": "鞍山市",
+    "parentId": 16,
+    "id": 103
+  },
+  {
+    "cityCode": "0413",
+    "adCode": "210400",
+    "name": "抚顺市",
+    "parentId": 16,
+    "id": 104
+  },
+  {
+    "cityCode": "0414",
+    "adCode": "210500",
+    "name": "本溪市",
+    "parentId": 16,
+    "id": 105
+  },
+  {
+    "cityCode": "0415",
+    "adCode": "210600",
+    "name": "丹东市",
+    "parentId": 16,
+    "id": 106
+  },
+  {
+    "cityCode": "0416",
+    "adCode": "210700",
+    "name": "锦州市",
+    "parentId": 16,
+    "id": 107
+  },
+  {
+    "cityCode": "0417",
+    "adCode": "210800",
+    "name": "营口市",
+    "parentId": 16,
+    "id": 108
+  },
+  {
+    "cityCode": "0418",
+    "adCode": "210900",
+    "name": "阜新市",
+    "parentId": 16,
+    "id": 109
+  },
+  {
+    "cityCode": "0419",
+    "adCode": "211000",
+    "name": "辽阳市",
+    "parentId": 16,
+    "id": 110
+  },
+  {
+    "cityCode": "0421",
+    "adCode": "211300",
+    "name": "朝阳市",
+    "parentId": 16,
+    "id": 111
+  },
+  {
+    "cityCode": "0427",
+    "adCode": "211100",
+    "name": "盘锦市",
+    "parentId": 16,
+    "id": 112
+  },
+  {
+    "cityCode": "0429",
+    "adCode": "211400",
+    "name": "葫芦岛市",
+    "parentId": 16,
+    "id": 113
+  },
+  {
+    "cityCode": "0431",
+    "adCode": "220100",
+    "name": "长春市",
+    "parentId": 17,
+    "id": 114
+  },
+  {
+    "cityCode": "0432",
+    "adCode": "220200",
+    "name": "吉林市",
+    "parentId": 17,
+    "id": 115
+  },
+  {
+    "cityCode": "0434",
+    "adCode": "220300",
+    "name": "四平市",
+    "parentId": 17,
+    "id": 116
+  },
+  {
+    "cityCode": "0435",
+    "adCode": "220500",
+    "name": "通化市",
+    "parentId": 17,
+    "id": 117
+  },
+  {
+    "cityCode": "0436",
+    "adCode": "220800",
+    "name": "白城市",
+    "parentId": 17,
+    "id": 118
+  },
+  {
+    "cityCode": "0437",
+    "adCode": "220400",
+    "name": "辽源市",
+    "parentId": 17,
+    "id": 119
+  },
+  {
+    "cityCode": "0438",
+    "adCode": "220700",
+    "name": "松原市",
+    "parentId": 17,
+    "id": 120
+  },
+  {
+    "cityCode": "0439",
+    "adCode": "220600",
+    "name": "白山市",
+    "parentId": 17,
+    "id": 121
+  },
+  {
+    "cityCode": "0451",
+    "adCode": "230100",
+    "name": "哈尔滨市",
+    "parentId": 18,
+    "id": 122
+  },
+  {
+    "cityCode": "0452",
+    "adCode": "230200",
+    "name": "齐齐哈尔市",
+    "parentId": 18,
+    "id": 123
+  },
+  {
+    "cityCode": "0453",
+    "adCode": "231000",
+    "name": "牡丹江市",
+    "parentId": 18,
+    "id": 124
+  },
+  {
+    "cityCode": "0454",
+    "adCode": "230800",
+    "name": "佳木斯市",
+    "parentId": 18,
+    "id": 125
+  },
+  {
+    "cityCode": "0455",
+    "adCode": "231200",
+    "name": "绥化市",
+    "parentId": 18,
+    "id": 126
+  },
+  {
+    "cityCode": "0456",
+    "adCode": "231100",
+    "name": "黑河市",
+    "parentId": 18,
+    "id": 127
+  },
+  {
+    "cityCode": "0457",
+    "adCode": "232700",
+    "name": "大兴安岭地区",
+    "parentId": 18,
+    "id": 128
+  },
+  {
+    "cityCode": "0458",
+    "adCode": "230700",
+    "name": "伊春市",
+    "parentId": 18,
+    "id": 129
+  },
+  {
+    "cityCode": "0459",
+    "adCode": "230600",
+    "name": "大庆市",
+    "parentId": 18,
+    "id": 130
+  },
+  {
+    "cityCode": "0464",
+    "adCode": "230900",
+    "name": "七台河市",
+    "parentId": 18,
+    "id": 131
+  },
+  {
+    "cityCode": "0467",
+    "adCode": "230300",
+    "name": "鸡西市",
+    "parentId": 18,
+    "id": 132
+  },
+  {
+    "cityCode": "0468",
+    "adCode": "230400",
+    "name": "鹤岗市",
+    "parentId": 18,
+    "id": 133
+  },
+  {
+    "cityCode": "0469",
+    "adCode": "230500",
+    "name": "双鸭山市",
+    "parentId": 18,
+    "id": 134
+  },
+  {
+    "cityCode": "0470",
+    "adCode": "150700",
+    "name": "呼伦贝尔市",
+    "parentId": 15,
+    "id": 135
+  },
+  {
+    "cityCode": "0471",
+    "adCode": "150100",
+    "name": "呼和浩特市",
+    "parentId": 15,
+    "id": 136
+  },
+  {
+    "cityCode": "0472",
+    "adCode": "150200",
+    "name": "包头市",
+    "parentId": 15,
+    "id": 137
+  },
+  {
+    "cityCode": "0473",
+    "adCode": "150300",
+    "name": "乌海市",
+    "parentId": 15,
+    "id": 138
+  },
+  {
+    "cityCode": "0474",
+    "adCode": "150900",
+    "name": "乌兰察布市",
+    "parentId": 15,
+    "id": 139
+  },
+  {
+    "cityCode": "0475",
+    "adCode": "150500",
+    "name": "通辽市",
+    "parentId": 15,
+    "id": 140
+  },
+  {
+    "cityCode": "0476",
+    "adCode": "150400",
+    "name": "赤峰市",
+    "parentId": 15,
+    "id": 141
+  },
+  {
+    "cityCode": "0477",
+    "adCode": "150600",
+    "name": "鄂尔多斯市",
+    "parentId": 15,
+    "id": 142
+  },
+  {
+    "cityCode": "0478",
+    "adCode": "150800",
+    "name": "巴彦淖尔市",
+    "parentId": 15,
+    "id": 143
+  },
+  {
+    "cityCode": "0479",
+    "adCode": "152500",
+    "name": "锡林郭勒盟",
+    "parentId": 15,
+    "id": 144
+  },
+  {
+    "cityCode": "0482",
+    "adCode": "152200",
+    "name": "兴安盟",
+    "parentId": 15,
+    "id": 145
+  },
+  {
+    "cityCode": "0483",
+    "adCode": "152900",
+    "name": "阿拉善盟",
+    "parentId": 15,
+    "id": 146
+  },
+  {
+    "cityCode": "0510",
+    "adCode": "320200",
+    "name": "无锡市",
+    "parentId": 20,
+    "id": 147
+  },
+  {
+    "cityCode": "0511",
+    "adCode": "321100",
+    "name": "镇江市",
+    "parentId": 20,
+    "id": 148
+  },
+  {
+    "cityCode": "0512",
+    "adCode": "320500",
+    "name": "苏州市",
+    "parentId": 20,
+    "id": 149
+  },
+  {
+    "cityCode": "0513",
+    "adCode": "320600",
+    "name": "南通市",
+    "parentId": 20,
+    "id": 150
+  },
+  {
+    "cityCode": "0514",
+    "adCode": "321000",
+    "name": "扬州市",
+    "parentId": 20,
+    "id": 151
+  },
+  {
+    "cityCode": "0515",
+    "adCode": "320900",
+    "name": "盐城市",
+    "parentId": 20,
+    "id": 152
+  },
+  {
+    "cityCode": "0516",
+    "adCode": "320300",
+    "name": "徐州市",
+    "parentId": 20,
+    "id": 153
+  },
+  {
+    "cityCode": "0517",
+    "adCode": "320800",
+    "name": "淮安市",
+    "parentId": 20,
+    "id": 154
+  },
+  {
+    "cityCode": "0518",
+    "adCode": "320700",
+    "name": "连云港市",
+    "parentId": 20,
+    "id": 155
+  },
+  {
+    "cityCode": "0519",
+    "adCode": "320400",
+    "name": "常州市",
+    "parentId": 20,
+    "id": 156
+  },
+  {
+    "cityCode": "0523",
+    "adCode": "321200",
+    "name": "泰州市",
+    "parentId": 20,
+    "id": 157
+  },
+  {
+    "cityCode": "0527",
+    "adCode": "321300",
+    "name": "宿迁市",
+    "parentId": 20,
+    "id": 158
+  },
+  {
+    "cityCode": "0530",
+    "adCode": "371700",
+    "name": "菏泽市",
+    "parentId": 25,
+    "id": 159
+  },
+  {
+    "cityCode": "0531",
+    "adCode": "370100",
+    "name": "济南市",
+    "parentId": 25,
+    "id": 160
+  },
+  {
+    "cityCode": "0532",
+    "adCode": "370200",
+    "name": "青岛市",
+    "parentId": 25,
+    "id": 161
+  },
+  {
+    "cityCode": "0533",
+    "adCode": "370300",
+    "name": "淄博市",
+    "parentId": 25,
+    "id": 162
+  },
+  {
+    "cityCode": "0534",
+    "adCode": "371400",
+    "name": "德州市",
+    "parentId": 25,
+    "id": 163
+  },
+  {
+    "cityCode": "0535",
+    "adCode": "370600",
+    "name": "烟台市",
+    "parentId": 25,
+    "id": 164
+  },
+  {
+    "cityCode": "0536",
+    "adCode": "370700",
+    "name": "潍坊市",
+    "parentId": 25,
+    "id": 165
+  },
+  {
+    "cityCode": "0537",
+    "adCode": "370800",
+    "name": "济宁市",
+    "parentId": 25,
+    "id": 166
+  },
+  {
+    "cityCode": "0538",
+    "adCode": "370900",
+    "name": "泰安市",
+    "parentId": 25,
+    "id": 167
+  },
+  {
+    "cityCode": "0539",
+    "adCode": "371300",
+    "name": "临沂市",
+    "parentId": 25,
+    "id": 168
+  },
+  {
+    "cityCode": "0543",
+    "adCode": "371600",
+    "name": "滨州市",
+    "parentId": 25,
+    "id": 169
+  },
+  {
+    "cityCode": "0546",
+    "adCode": "370500",
+    "name": "东营市",
+    "parentId": 25,
+    "id": 170
+  },
+  {
+    "cityCode": "0550",
+    "adCode": "341100",
+    "name": "滁州市",
+    "parentId": 22,
+    "id": 171
+  },
+  {
+    "cityCode": "0551",
+    "adCode": "340100",
+    "name": "合肥市",
+    "parentId": 22,
+    "id": 172
+  },
+  {
+    "cityCode": "0552",
+    "adCode": "340300",
+    "name": "蚌埠市",
+    "parentId": 22,
+    "id": 173
+  },
+  {
+    "cityCode": "0553",
+    "adCode": "340200",
+    "name": "芜湖市",
+    "parentId": 22,
+    "id": 174
+  },
+  {
+    "cityCode": "0554",
+    "adCode": "340400",
+    "name": "淮南市",
+    "parentId": 22,
+    "id": 175
+  },
+  {
+    "cityCode": "0555",
+    "adCode": "340500",
+    "name": "马鞍山市",
+    "parentId": 22,
+    "id": 176
+  },
+  {
+    "cityCode": "0556",
+    "adCode": "340800",
+    "name": "安庆市",
+    "parentId": 22,
+    "id": 177
+  },
+  {
+    "cityCode": "0557",
+    "adCode": "341300",
+    "name": "宿州市",
+    "parentId": 22,
+    "id": 178
+  },
+  {
+    "cityCode": "0558",
+    "adCode": "341600",
+    "name": "亳州市",
+    "parentId": 22,
+    "id": 179
+  },
+  {
+    "cityCode": "0559",
+    "adCode": "341000",
+    "name": "黄山市",
+    "parentId": 22,
+    "id": 180
+  },
+  {
+    "cityCode": "0561",
+    "adCode": "340600",
+    "name": "淮北市",
+    "parentId": 22,
+    "id": 181
+  },
+  {
+    "cityCode": "0562",
+    "adCode": "340700",
+    "name": "铜陵市",
+    "parentId": 22,
+    "id": 182
+  },
+  {
+    "cityCode": "0563",
+    "adCode": "341800",
+    "name": "宣城市",
+    "parentId": 22,
+    "id": 183
+  },
+  {
+    "cityCode": "0564",
+    "adCode": "341500",
+    "name": "六安市",
+    "parentId": 22,
+    "id": 184
+  },
+  {
+    "cityCode": "0566",
+    "adCode": "341700",
+    "name": "池州市",
+    "parentId": 22,
+    "id": 185
+  },
+  {
+    "cityCode": "0570",
+    "adCode": "330800",
+    "name": "衢州市",
+    "parentId": 21,
+    "id": 186
+  },
+  {
+    "cityCode": "0571",
+    "adCode": "330100",
+    "name": "杭州市",
+    "parentId": 21,
+    "id": 187
+  },
+  {
+    "cityCode": "0572",
+    "adCode": "330500",
+    "name": "湖州市",
+    "parentId": 21,
+    "id": 188
+  },
+  {
+    "cityCode": "0573",
+    "adCode": "330400",
+    "name": "嘉兴市",
+    "parentId": 21,
+    "id": 189
+  },
+  {
+    "cityCode": "0574",
+    "adCode": "330200",
+    "name": "宁波市",
+    "parentId": 21,
+    "id": 190
+  },
+  {
+    "cityCode": "0575",
+    "adCode": "330600",
+    "name": "绍兴市",
+    "parentId": 21,
+    "id": 191
+  },
+  {
+    "cityCode": "0576",
+    "adCode": "331000",
+    "name": "台州市",
+    "parentId": 21,
+    "id": 192
+  },
+  {
+    "cityCode": "0577",
+    "adCode": "330300",
+    "name": "温州市",
+    "parentId": 21,
+    "id": 193
+  },
+  {
+    "cityCode": "0578",
+    "adCode": "331100",
+    "name": "丽水市",
+    "parentId": 21,
+    "id": 194
+  },
+  {
+    "cityCode": "0579",
+    "adCode": "330700",
+    "name": "金华市",
+    "parentId": 21,
+    "id": 195
+  },
+  {
+    "cityCode": "0580",
+    "adCode": "330900",
+    "name": "舟山市",
+    "parentId": 21,
+    "id": 196
+  },
+  {
+    "cityCode": "0591",
+    "adCode": "350100",
+    "name": "福州市",
+    "parentId": 23,
+    "id": 197
+  },
+  {
+    "cityCode": "0592",
+    "adCode": "350200",
+    "name": "厦门市",
+    "parentId": 23,
+    "id": 198
+  },
+  {
+    "cityCode": "0593",
+    "adCode": "350900",
+    "name": "宁德市",
+    "parentId": 23,
+    "id": 199
+  },
+  {
+    "cityCode": "0594",
+    "adCode": "350300",
+    "name": "莆田市",
+    "parentId": 23,
+    "id": 200
+  },
+  {
+    "cityCode": "0595",
+    "adCode": "350500",
+    "name": "泉州市",
+    "parentId": 23,
+    "id": 201
+  },
+  {
+    "cityCode": "0596",
+    "adCode": "350600",
+    "name": "漳州市",
+    "parentId": 23,
+    "id": 202
+  },
+  {
+    "cityCode": "0597",
+    "adCode": "350800",
+    "name": "龙岩市",
+    "parentId": 23,
+    "id": 203
+  },
+  {
+    "cityCode": "0598",
+    "adCode": "350400",
+    "name": "三明市",
+    "parentId": 23,
+    "id": 204
+  },
+  {
+    "cityCode": "0599",
+    "adCode": "350700",
+    "name": "南平市",
+    "parentId": 23,
+    "id": 205
+  },
+  {
+    "cityCode": "0631",
+    "adCode": "371000",
+    "name": "威海市",
+    "parentId": 25,
+    "id": 206
+  },
+  {
+    "cityCode": "0632",
+    "adCode": "370400",
+    "name": "枣庄市",
+    "parentId": 25,
+    "id": 207
+  },
+  {
+    "cityCode": "0633",
+    "adCode": "371100",
+    "name": "日照市",
+    "parentId": 25,
+    "id": 208
+  },
+  {
+    "cityCode": "0635",
+    "adCode": "371500",
+    "name": "聊城市",
+    "parentId": 25,
+    "id": 209
+  },
+  {
+    "cityCode": "0660",
+    "adCode": "441500",
+    "name": "汕尾市",
+    "parentId": 29,
+    "id": 210
+  },
+  {
+    "cityCode": "0662",
+    "adCode": "441700",
+    "name": "阳江市",
+    "parentId": 29,
+    "id": 211
+  },
+  {
+    "cityCode": "0663",
+    "adCode": "445200",
+    "name": "揭阳市",
+    "parentId": 29,
+    "id": 212
+  },
+  {
+    "cityCode": "0668",
+    "adCode": "440900",
+    "name": "茂名市",
+    "parentId": 29,
+    "id": 213
+  },
+  {
+    "cityCode": "0691",
+    "adCode": "532800",
+    "name": "西双版纳傣族自治州",
+    "parentId": 35,
+    "id": 214
+  },
+  {
+    "cityCode": "0692",
+    "adCode": "533100",
+    "name": "德宏傣族景颇族自治州",
+    "parentId": 35,
+    "id": 215
+  },
+  {
+    "cityCode": "0701",
+    "adCode": "360600",
+    "name": "鹰潭市",
+    "parentId": 24,
+    "id": 216
+  },
+  {
+    "cityCode": "0710",
+    "adCode": "420600",
+    "name": "襄阳市",
+    "parentId": 27,
+    "id": 217
+  },
+  {
+    "cityCode": "0711",
+    "adCode": "420700",
+    "name": "鄂州市",
+    "parentId": 27,
+    "id": 218
+  },
+  {
+    "cityCode": "0712",
+    "adCode": "420900",
+    "name": "孝感市",
+    "parentId": 27,
+    "id": 219
+  },
+  {
+    "cityCode": "0713",
+    "adCode": "421100",
+    "name": "黄冈市",
+    "parentId": 27,
+    "id": 220
+  },
+  {
+    "cityCode": "0714",
+    "adCode": "420200",
+    "name": "黄石市",
+    "parentId": 27,
+    "id": 221
+  },
+  {
+    "cityCode": "0715",
+    "adCode": "421200",
+    "name": "咸宁市",
+    "parentId": 27,
+    "id": 222
+  },
+  {
+    "cityCode": "0716",
+    "adCode": "421000",
+    "name": "荆州市",
+    "parentId": 27,
+    "id": 223
+  },
+  {
+    "cityCode": "0717",
+    "adCode": "420500",
+    "name": "宜昌市",
+    "parentId": 27,
+    "id": 224
+  },
+  {
+    "cityCode": "0718",
+    "adCode": "422800",
+    "name": "恩施土家族苗族自治州",
+    "parentId": 27,
+    "id": 225
+  },
+  {
+    "cityCode": "0719",
+    "adCode": "420300",
+    "name": "十堰市",
+    "parentId": 27,
+    "id": 226
+  },
+  {
+    "cityCode": "0722",
+    "adCode": "421300",
+    "name": "随州市",
+    "parentId": 27,
+    "id": 227
+  },
+  {
+    "cityCode": "0724",
+    "adCode": "420800",
+    "name": "荆门市",
+    "parentId": 27,
+    "id": 228
+  },
+  {
+    "cityCode": "0728",
+    "adCode": "429004",
+    "name": "仙桃市",
+    "parentId": 27,
+    "id": 229
+  },
+  {
+    "cityCode": "0730",
+    "adCode": "430600",
+    "name": "岳阳市",
+    "parentId": 28,
+    "id": 230
+  },
+  {
+    "cityCode": "0731",
+    "adCode": "430100",
+    "name": "长沙市",
+    "parentId": 28,
+    "id": 231
+  },
+  {
+    "cityCode": "0732",
+    "adCode": "430300",
+    "name": "湘潭市",
+    "parentId": 28,
+    "id": 232
+  },
+  {
+    "cityCode": "0733",
+    "adCode": "430200",
+    "name": "株洲市",
+    "parentId": 28,
+    "id": 233
+  },
+  {
+    "cityCode": "0734",
+    "adCode": "430400",
+    "name": "衡阳市",
+    "parentId": 28,
+    "id": 234
+  },
+  {
+    "cityCode": "0735",
+    "adCode": "431000",
+    "name": "郴州市",
+    "parentId": 28,
+    "id": 235
+  },
+  {
+    "cityCode": "0736",
+    "adCode": "430700",
+    "name": "常德市",
+    "parentId": 28,
+    "id": 236
+  },
+  {
+    "cityCode": "0737",
+    "adCode": "430900",
+    "name": "益阳市",
+    "parentId": 28,
+    "id": 237
+  },
+  {
+    "cityCode": "0738",
+    "adCode": "431300",
+    "name": "娄底市",
+    "parentId": 28,
+    "id": 238
+  },
+  {
+    "cityCode": "0739",
+    "adCode": "430500",
+    "name": "邵阳市",
+    "parentId": 28,
+    "id": 239
+  },
+  {
+    "cityCode": "0743",
+    "adCode": "433100",
+    "name": "湘西土家族苗族自治州",
+    "parentId": 28,
+    "id": 240
+  },
+  {
+    "cityCode": "0744",
+    "adCode": "430800",
+    "name": "张家界市",
+    "parentId": 28,
+    "id": 241
+  },
+  {
+    "cityCode": "0745",
+    "adCode": "431200",
+    "name": "怀化市",
+    "parentId": 28,
+    "id": 242
+  },
+  {
+    "cityCode": "0746",
+    "adCode": "431100",
+    "name": "永州市",
+    "parentId": 28,
+    "id": 243
+  },
+  {
+    "cityCode": "0750",
+    "adCode": "440700",
+    "name": "江门市",
+    "parentId": 29,
+    "id": 244
+  },
+  {
+    "cityCode": "0751",
+    "adCode": "440200",
+    "name": "韶关市",
+    "parentId": 29,
+    "id": 245
+  },
+  {
+    "cityCode": "0752",
+    "adCode": "441300",
+    "name": "惠州市",
+    "parentId": 29,
+    "id": 246
+  },
+  {
+    "cityCode": "0753",
+    "adCode": "441400",
+    "name": "梅州市",
+    "parentId": 29,
+    "id": 247
+  },
+  {
+    "cityCode": "0754",
+    "adCode": "440500",
+    "name": "汕头市",
+    "parentId": 29,
+    "id": 248
+  },
+  {
+    "cityCode": "0755",
+    "adCode": "440300",
+    "name": "深圳市",
+    "parentId": 29,
+    "id": 249
+  },
+  {
+    "cityCode": "0756",
+    "adCode": "440400",
+    "name": "珠海市",
+    "parentId": 29,
+    "id": 250
+  },
+  {
+    "cityCode": "0757",
+    "adCode": "440600",
+    "name": "佛山市",
+    "parentId": 29,
+    "id": 251
+  },
+  {
+    "cityCode": "0758",
+    "adCode": "441200",
+    "name": "肇庆市",
+    "parentId": 29,
+    "id": 252
+  },
+  {
+    "cityCode": "0759",
+    "adCode": "440800",
+    "name": "湛江市",
+    "parentId": 29,
+    "id": 253
+  },
+  {
+    "cityCode": "0760",
+    "adCode": "442000",
+    "name": "中山市",
+    "parentId": 29,
+    "id": 254
+  },
+  {
+    "cityCode": "0762",
+    "adCode": "441600",
+    "name": "河源市",
+    "parentId": 29,
+    "id": 255
+  },
+  {
+    "cityCode": "0763",
+    "adCode": "441800",
+    "name": "清远市",
+    "parentId": 29,
+    "id": 256
+  },
+  {
+    "cityCode": "0766",
+    "adCode": "445300",
+    "name": "云浮市",
+    "parentId": 29,
+    "id": 257
+  },
+  {
+    "cityCode": "0767",
+    "adCode": "442100",
+    "name": "东沙群岛",
+    "parentId": 29,
+    "id": 258
+  },
+  {
+    "cityCode": "0768",
+    "adCode": "445100",
+    "name": "潮州市",
+    "parentId": 29,
+    "id": 259
+  },
+  {
+    "cityCode": "0769",
+    "adCode": "441900",
+    "name": "东莞市",
+    "parentId": 29,
+    "id": 260
+  },
+  {
+    "cityCode": "0770",
+    "adCode": "450600",
+    "name": "防城港市",
+    "parentId": 30,
+    "id": 261
+  },
+  {
+    "cityCode": "0771",
+    "adCode": "450100",
+    "name": "南宁市",
+    "parentId": 30,
+    "id": 262
+  },
+  {
+    "cityCode": "0772",
+    "adCode": "450200",
+    "name": "柳州市",
+    "parentId": 30,
+    "id": 263
+  },
+  {
+    "cityCode": "0773",
+    "adCode": "450300",
+    "name": "桂林市",
+    "parentId": 30,
+    "id": 264
+  },
+  {
+    "cityCode": "0774",
+    "adCode": "450400",
+    "name": "梧州市",
+    "parentId": 30,
+    "id": 265
+  },
+  {
+    "cityCode": "0775",
+    "adCode": "450900",
+    "name": "玉林市",
+    "parentId": 30,
+    "id": 266
+  },
+  {
+    "cityCode": "0776",
+    "adCode": "451000",
+    "name": "百色市",
+    "parentId": 30,
+    "id": 267
+  },
+  {
+    "cityCode": "0777",
+    "adCode": "450700",
+    "name": "钦州市",
+    "parentId": 30,
+    "id": 268
+  },
+  {
+    "cityCode": "0778",
+    "adCode": "451200",
+    "name": "河池市",
+    "parentId": 30,
+    "id": 269
+  },
+  {
+    "cityCode": "0779",
+    "adCode": "450500",
+    "name": "北海市",
+    "parentId": 30,
+    "id": 270
+  },
+  {
+    "cityCode": "0790",
+    "adCode": "360500",
+    "name": "新余市",
+    "parentId": 24,
+    "id": 271
+  },
+  {
+    "cityCode": "0791",
+    "adCode": "360100",
+    "name": "南昌市",
+    "parentId": 24,
+    "id": 272
+  },
+  {
+    "cityCode": "0792",
+    "adCode": "360400",
+    "name": "九江市",
+    "parentId": 24,
+    "id": 273
+  },
+  {
+    "cityCode": "0793",
+    "adCode": "361100",
+    "name": "上饶市",
+    "parentId": 24,
+    "id": 274
+  },
+  {
+    "cityCode": "0794",
+    "adCode": "361000",
+    "name": "抚州市",
+    "parentId": 24,
+    "id": 275
+  },
+  {
+    "cityCode": "0795",
+    "adCode": "360900",
+    "name": "宜春市",
+    "parentId": 24,
+    "id": 276
+  },
+  {
+    "cityCode": "0796",
+    "adCode": "360800",
+    "name": "吉安市",
+    "parentId": 24,
+    "id": 277
+  },
+  {
+    "cityCode": "0797",
+    "adCode": "360700",
+    "name": "赣州市",
+    "parentId": 24,
+    "id": 278
+  },
+  {
+    "cityCode": "0798",
+    "adCode": "360200",
+    "name": "景德镇市",
+    "parentId": 24,
+    "id": 279
+  },
+  {
+    "cityCode": "0799",
+    "adCode": "360300",
+    "name": "萍乡市",
+    "parentId": 24,
+    "id": 280
+  },
+  {
+    "cityCode": "0801",
+    "adCode": "469029",
+    "name": "保亭黎族苗族自治县",
+    "parentId": 31,
+    "id": 281
+  },
+  {
+    "cityCode": "0802",
+    "adCode": "469025",
+    "name": "白沙黎族自治县",
+    "parentId": 31,
+    "id": 282
+  },
+  {
+    "cityCode": "0803",
+    "adCode": "469026",
+    "name": "昌江黎族自治县",
+    "parentId": 31,
+    "id": 283
+  },
+  {
+    "cityCode": "0804",
+    "adCode": "469023",
+    "name": "澄迈县",
+    "parentId": 31,
+    "id": 284
+  },
+  {
+    "cityCode": "0805",
+    "adCode": "460400",
+    "name": "儋州市",
+    "parentId": 31,
+    "id": 285
+  },
+  {
+    "cityCode": "0806",
+    "adCode": "469021",
+    "name": "定安县",
+    "parentId": 31,
+    "id": 286
+  },
+  {
+    "cityCode": "0807",
+    "adCode": "469007",
+    "name": "东方市",
+    "parentId": 31,
+    "id": 287
+  },
+  {
+    "cityCode": "0809",
+    "adCode": "469028",
+    "name": "陵水黎族自治县",
+    "parentId": 31,
+    "id": 288
+  },
+  {
+    "cityCode": "0812",
+    "adCode": "510400",
+    "name": "攀枝花市",
+    "parentId": 33,
+    "id": 289
+  },
+  {
+    "cityCode": "0813",
+    "adCode": "510300",
+    "name": "自贡市",
+    "parentId": 33,
+    "id": 290
+  },
+  {
+    "cityCode": "0816",
+    "adCode": "510700",
+    "name": "绵阳市",
+    "parentId": 33,
+    "id": 291
+  },
+  {
+    "cityCode": "0817",
+    "adCode": "511300",
+    "name": "南充市",
+    "parentId": 33,
+    "id": 292
+  },
+  {
+    "cityCode": "0818",
+    "adCode": "511700",
+    "name": "达州市",
+    "parentId": 33,
+    "id": 293
+  },
+  {
+    "cityCode": "0825",
+    "adCode": "510900",
+    "name": "遂宁市",
+    "parentId": 33,
+    "id": 294
+  },
+  {
+    "cityCode": "0826",
+    "adCode": "511600",
+    "name": "广安市",
+    "parentId": 33,
+    "id": 295
+  },
+  {
+    "cityCode": "0827",
+    "adCode": "511900",
+    "name": "巴中市",
+    "parentId": 33,
+    "id": 296
+  },
+  {
+    "cityCode": "0830",
+    "adCode": "510500",
+    "name": "泸州市",
+    "parentId": 33,
+    "id": 297
+  },
+  {
+    "cityCode": "0831",
+    "adCode": "511500",
+    "name": "宜宾市",
+    "parentId": 33,
+    "id": 298
+  },
+  {
+    "cityCode": "0832",
+    "adCode": "512000",
+    "name": "资阳市",
+    "parentId": 33,
+    "id": 299
+  },
+  {
+    "cityCode": "0833",
+    "adCode": "511100",
+    "name": "乐山市",
+    "parentId": 33,
+    "id": 300
+  },
+  {
+    "cityCode": "0834",
+    "adCode": "513400",
+    "name": "凉山彝族自治州",
+    "parentId": 33,
+    "id": 301
+  },
+  {
+    "cityCode": "0835",
+    "adCode": "511800",
+    "name": "雅安市",
+    "parentId": 33,
+    "id": 302
+  },
+  {
+    "cityCode": "0836",
+    "adCode": "513300",
+    "name": "甘孜藏族自治州",
+    "parentId": 33,
+    "id": 303
+  },
+  {
+    "cityCode": "0837",
+    "adCode": "513200",
+    "name": "阿坝藏族羌族自治州",
+    "parentId": 33,
+    "id": 304
+  },
+  {
+    "cityCode": "0838",
+    "adCode": "510600",
+    "name": "德阳市",
+    "parentId": 33,
+    "id": 305
+  },
+  {
+    "cityCode": "0839",
+    "adCode": "510800",
+    "name": "广元市",
+    "parentId": 33,
+    "id": 306
+  },
+  {
+    "cityCode": "0851",
+    "adCode": "520100",
+    "name": "贵阳市",
+    "parentId": 34,
+    "id": 307
+  },
+  {
+    "cityCode": "0852",
+    "adCode": "520300",
+    "name": "遵义市",
+    "parentId": 34,
+    "id": 308
+  },
+  {
+    "cityCode": "0853",
+    "adCode": "520400",
+    "name": "安顺市",
+    "parentId": 34,
+    "id": 309
+  },
+  {
+    "cityCode": "0854",
+    "adCode": "522700",
+    "name": "黔南布依族苗族自治州",
+    "parentId": 34,
+    "id": 310
+  },
+  {
+    "cityCode": "0855",
+    "adCode": "522600",
+    "name": "黔东南苗族侗族自治州",
+    "parentId": 34,
+    "id": 311
+  },
+  {
+    "cityCode": "0856",
+    "adCode": "520600",
+    "name": "铜仁市",
+    "parentId": 34,
+    "id": 312
+  },
+  {
+    "cityCode": "0857",
+    "adCode": "520500",
+    "name": "毕节市",
+    "parentId": 34,
+    "id": 313
+  },
+  {
+    "cityCode": "0858",
+    "adCode": "520200",
+    "name": "六盘水市",
+    "parentId": 34,
+    "id": 314
+  },
+  {
+    "cityCode": "0859",
+    "adCode": "522300",
+    "name": "黔西南布依族苗族自治州",
+    "parentId": 34,
+    "id": 315
+  },
+  {
+    "cityCode": "0870",
+    "adCode": "530600",
+    "name": "昭通市",
+    "parentId": 35,
+    "id": 316
+  },
+  {
+    "cityCode": "0871",
+    "adCode": "530100",
+    "name": "昆明市",
+    "parentId": 35,
+    "id": 317
+  },
+  {
+    "cityCode": "0872",
+    "adCode": "532900",
+    "name": "大理白族自治州",
+    "parentId": 35,
+    "id": 318
+  },
+  {
+    "cityCode": "0873",
+    "adCode": "532500",
+    "name": "红河哈尼族彝族自治州",
+    "parentId": 35,
+    "id": 319
+  },
+  {
+    "cityCode": "0874",
+    "adCode": "530300",
+    "name": "曲靖市",
+    "parentId": 35,
+    "id": 320
+  },
+  {
+    "cityCode": "0875",
+    "adCode": "530500",
+    "name": "保山市",
+    "parentId": 35,
+    "id": 321
+  },
+  {
+    "cityCode": "0876",
+    "adCode": "532600",
+    "name": "文山壮族苗族自治州",
+    "parentId": 35,
+    "id": 322
+  },
+  {
+    "cityCode": "0877",
+    "adCode": "530400",
+    "name": "玉溪市",
+    "parentId": 35,
+    "id": 323
+  },
+  {
+    "cityCode": "0878",
+    "adCode": "532300",
+    "name": "楚雄彝族自治州",
+    "parentId": 35,
+    "id": 324
+  },
+  {
+    "cityCode": "0879",
+    "adCode": "530800",
+    "name": "普洱市",
+    "parentId": 35,
+    "id": 325
+  },
+  {
+    "cityCode": "0883",
+    "adCode": "530900",
+    "name": "临沧市",
+    "parentId": 35,
+    "id": 326
+  },
+  {
+    "cityCode": "0886",
+    "adCode": "533300",
+    "name": "怒江傈僳族自治州",
+    "parentId": 35,
+    "id": 327
+  },
+  {
+    "cityCode": "0887",
+    "adCode": "533400",
+    "name": "迪庆藏族自治州",
+    "parentId": 35,
+    "id": 328
+  },
+  {
+    "cityCode": "0888",
+    "adCode": "530700",
+    "name": "丽江市",
+    "parentId": 35,
+    "id": 329
+  },
+  {
+    "cityCode": "0891",
+    "adCode": "540100",
+    "name": "拉萨市",
+    "parentId": 36,
+    "id": 330
+  },
+  {
+    "cityCode": "0892",
+    "adCode": "540200",
+    "name": "日喀则市",
+    "parentId": 36,
+    "id": 331
+  },
+  {
+    "cityCode": "0893",
+    "adCode": "540500",
+    "name": "山南市",
+    "parentId": 36,
+    "id": 332
+  },
+  {
+    "cityCode": "0894",
+    "adCode": "540400",
+    "name": "林芝市",
+    "parentId": 36,
+    "id": 333
+  },
+  {
+    "cityCode": "0895",
+    "adCode": "540300",
+    "name": "昌都市",
+    "parentId": 36,
+    "id": 334
+  },
+  {
+    "cityCode": "0896",
+    "adCode": "540600",
+    "name": "那曲市",
+    "parentId": 36,
+    "id": 335
+  },
+  {
+    "cityCode": "0897",
+    "adCode": "542500",
+    "name": "阿里地区",
+    "parentId": 36,
+    "id": 336
+  },
+  {
+    "cityCode": "0898",
+    "adCode": "460100",
+    "name": "海口市",
+    "parentId": 31,
+    "id": 337
+  },
+  {
+    "cityCode": "0899",
+    "adCode": "460200",
+    "name": "三亚市",
+    "parentId": 31,
+    "id": 338
+  },
+  {
+    "cityCode": "0901",
+    "adCode": "654200",
+    "name": "塔城地区",
+    "parentId": 41,
+    "id": 339
+  },
+  {
+    "cityCode": "0902",
+    "adCode": "650500",
+    "name": "哈密市",
+    "parentId": 41,
+    "id": 340
+  },
+  {
+    "cityCode": "0903",
+    "adCode": "653200",
+    "name": "和田地区",
+    "parentId": 41,
+    "id": 341
+  },
+  {
+    "cityCode": "0906",
+    "adCode": "654300",
+    "name": "阿勒泰地区",
+    "parentId": 41,
+    "id": 342
+  },
+  {
+    "cityCode": "0908",
+    "adCode": "653000",
+    "name": "克孜勒苏柯尔克孜自治州",
+    "parentId": 41,
+    "id": 343
+  },
+  {
+    "cityCode": "0909",
+    "adCode": "652700",
+    "name": "博尔塔拉蒙古自治州",
+    "parentId": 41,
+    "id": 344
+  },
+  {
+    "cityCode": "0910",
+    "adCode": "610400",
+    "name": "咸阳市",
+    "parentId": 37,
+    "id": 345
+  },
+  {
+    "cityCode": "0911",
+    "adCode": "610600",
+    "name": "延安市",
+    "parentId": 37,
+    "id": 346
+  },
+  {
+    "cityCode": "0912",
+    "adCode": "610800",
+    "name": "榆林市",
+    "parentId": 37,
+    "id": 347
+  },
+  {
+    "cityCode": "0913",
+    "adCode": "610500",
+    "name": "渭南市",
+    "parentId": 37,
+    "id": 348
+  },
+  {
+    "cityCode": "0914",
+    "adCode": "611000",
+    "name": "商洛市",
+    "parentId": 37,
+    "id": 349
+  },
+  {
+    "cityCode": "0915",
+    "adCode": "610900",
+    "name": "安康市",
+    "parentId": 37,
+    "id": 350
+  },
+  {
+    "cityCode": "0916",
+    "adCode": "610700",
+    "name": "汉中市",
+    "parentId": 37,
+    "id": 351
+  },
+  {
+    "cityCode": "0917",
+    "adCode": "610300",
+    "name": "宝鸡市",
+    "parentId": 37,
+    "id": 352
+  },
+  {
+    "cityCode": "0919",
+    "adCode": "610200",
+    "name": "铜川市",
+    "parentId": 37,
+    "id": 353
+  },
+  {
+    "cityCode": "0930",
+    "adCode": "622900",
+    "name": "临夏回族自治州",
+    "parentId": 38,
+    "id": 354
+  },
+  {
+    "cityCode": "0931",
+    "adCode": "620100",
+    "name": "兰州市",
+    "parentId": 38,
+    "id": 355
+  },
+  {
+    "cityCode": "0932",
+    "adCode": "621100",
+    "name": "定西市",
+    "parentId": 38,
+    "id": 356
+  },
+  {
+    "cityCode": "0933",
+    "adCode": "620800",
+    "name": "平凉市",
+    "parentId": 38,
+    "id": 357
+  },
+  {
+    "cityCode": "0934",
+    "adCode": "621000",
+    "name": "庆阳市",
+    "parentId": 38,
+    "id": 358
+  },
+  {
+    "cityCode": "0935",
+    "adCode": "620300",
+    "name": "金昌市",
+    "parentId": 38,
+    "id": 359
+  },
+  {
+    "cityCode": "0936",
+    "adCode": "620700",
+    "name": "张掖市",
+    "parentId": 38,
+    "id": 360
+  },
+  {
+    "cityCode": "0937",
+    "adCode": "620900",
+    "name": "酒泉市",
+    "parentId": 38,
+    "id": 361
+  },
+  {
+    "cityCode": "0938",
+    "adCode": "620500",
+    "name": "天水市",
+    "parentId": 38,
+    "id": 362
+  },
+  {
+    "cityCode": "0941",
+    "adCode": "623000",
+    "name": "甘南藏族自治州",
+    "parentId": 38,
+    "id": 363
+  },
+  {
+    "cityCode": "0943",
+    "adCode": "620400",
+    "name": "白银市",
+    "parentId": 38,
+    "id": 364
+  },
+  {
+    "cityCode": "0951",
+    "adCode": "640100",
+    "name": "银川市",
+    "parentId": 40,
+    "id": 365
+  },
+  {
+    "cityCode": "0952",
+    "adCode": "640200",
+    "name": "石嘴山市",
+    "parentId": 40,
+    "id": 366
+  },
+  {
+    "cityCode": "0953",
+    "adCode": "640300",
+    "name": "吴忠市",
+    "parentId": 40,
+    "id": 367
+  },
+  {
+    "cityCode": "0954",
+    "adCode": "640400",
+    "name": "固原市",
+    "parentId": 40,
+    "id": 368
+  },
+  {
+    "cityCode": "0970",
+    "adCode": "632200",
+    "name": "海北藏族自治州",
+    "parentId": 39,
+    "id": 369
+  },
+  {
+    "cityCode": "0971",
+    "adCode": "630100",
+    "name": "西宁市",
+    "parentId": 39,
+    "id": 370
+  },
+  {
+    "cityCode": "0972",
+    "adCode": "630200",
+    "name": "海东市",
+    "parentId": 39,
+    "id": 371
+  },
+  {
+    "cityCode": "0973",
+    "adCode": "632300",
+    "name": "黄南藏族自治州",
+    "parentId": 39,
+    "id": 372
+  },
+  {
+    "cityCode": "0974",
+    "adCode": "632500",
+    "name": "海南藏族自治州",
+    "parentId": 39,
+    "id": 373
+  },
+  {
+    "cityCode": "0975",
+    "adCode": "632600",
+    "name": "果洛藏族自治州",
+    "parentId": 39,
+    "id": 374
+  },
+  {
+    "cityCode": "0976",
+    "adCode": "632700",
+    "name": "玉树藏族自治州",
+    "parentId": 39,
+    "id": 375
+  },
+  {
+    "cityCode": "0977",
+    "adCode": "632800",
+    "name": "海西蒙古族藏族自治州",
+    "parentId": 39,
+    "id": 376
+  },
+  {
+    "cityCode": "0990",
+    "adCode": "650200",
+    "name": "克拉玛依市",
+    "parentId": 41,
+    "id": 377
+  },
+  {
+    "cityCode": "0991",
+    "adCode": "650100",
+    "name": "乌鲁木齐市",
+    "parentId": 41,
+    "id": 378
+  },
+  {
+    "cityCode": "0993",
+    "adCode": "659001",
+    "name": "石河子市",
+    "parentId": 41,
+    "id": 379
+  },
+  {
+    "cityCode": "0994",
+    "adCode": "652300",
+    "name": "昌吉回族自治州",
+    "parentId": 41,
+    "id": 380
+  },
+  {
+    "cityCode": "0995",
+    "adCode": "650400",
+    "name": "吐鲁番市",
+    "parentId": 41,
+    "id": 381
+  },
+  {
+    "cityCode": "0996",
+    "adCode": "652800",
+    "name": "巴音郭楞蒙古自治州",
+    "parentId": 41,
+    "id": 382
+  },
+  {
+    "cityCode": "0997",
+    "adCode": "652900",
+    "name": "阿克苏地区",
+    "parentId": 41,
+    "id": 383
+  },
+  {
+    "cityCode": "0998",
+    "adCode": "653100",
+    "name": "喀什地区",
+    "parentId": 41,
+    "id": 384
+  },
+  {
+    "cityCode": "0999",
+    "adCode": "654000",
+    "name": "伊犁哈萨克自治州",
+    "parentId": 41,
+    "id": 385
+  },
+  {
+    "cityCode": "1391",
+    "adCode": "419001",
+    "name": "济源市",
+    "parentId": 26,
+    "id": 386
+  },
+  {
+    "cityCode": "1433",
+    "adCode": "222400",
+    "name": "延边朝鲜族自治州",
+    "parentId": 17,
+    "id": 387
+  },
+  {
+    "cityCode": "1558",
+    "adCode": "341200",
+    "name": "阜阳市",
+    "parentId": 22,
+    "id": 388
+  },
+  {
+    "cityCode": "1719",
+    "adCode": "429021",
+    "name": "神农架林区",
+    "parentId": 27,
+    "id": 389
+  },
+  {
+    "cityCode": "1728",
+    "adCode": "429006",
+    "name": "天门市",
+    "parentId": 27,
+    "id": 390
+  },
+  {
+    "cityCode": "1755",
+    "adCode": "450800",
+    "name": "贵港市",
+    "parentId": 30,
+    "id": 391
+  },
+  {
+    "cityCode": "1771",
+    "adCode": "451400",
+    "name": "崇左市",
+    "parentId": 30,
+    "id": 392
+  },
+  {
+    "cityCode": "1772",
+    "adCode": "451300",
+    "name": "来宾市",
+    "parentId": 30,
+    "id": 393
+  },
+  {
+    "cityCode": "1774",
+    "adCode": "451100",
+    "name": "贺州市",
+    "parentId": 30,
+    "id": 394
+  },
+  {
+    "cityCode": "1832",
+    "adCode": "511000",
+    "name": "内江市",
+    "parentId": 33,
+    "id": 395
+  },
+  {
+    "cityCode": "1833",
+    "adCode": "511400",
+    "name": "眉山市",
+    "parentId": 33,
+    "id": 396
+  },
+  {
+    "cityCode": "1852",
+    "adCode": "810001",
+    "name": "中西区",
+    "parentId": 43,
+    "id": 397
+  },
+  {
+    "cityCode": "1852",
+    "adCode": "810002",
+    "name": "湾仔区",
+    "parentId": 43,
+    "id": 398
+  },
+  {
+    "cityCode": "1852",
+    "adCode": "810003",
+    "name": "东区",
+    "parentId": 43,
+    "id": 399
+  },
+  {
+    "cityCode": "1852",
+    "adCode": "810004",
+    "name": "南区",
+    "parentId": 43,
+    "id": 400
+  },
+  {
+    "cityCode": "1852",
+    "adCode": "810005",
+    "name": "油尖旺区",
+    "parentId": 43,
+    "id": 401
+  },
+  {
+    "cityCode": "1852",
+    "adCode": "810006",
+    "name": "深水埗区",
+    "parentId": 43,
+    "id": 402
+  },
+  {
+    "cityCode": "1852",
+    "adCode": "810007",
+    "name": "九龙城区",
+    "parentId": 43,
+    "id": 403
+  },
+  {
+    "cityCode": "1852",
+    "adCode": "810008",
+    "name": "黄大仙区",
+    "parentId": 43,
+    "id": 404
+  },
+  {
+    "cityCode": "1852",
+    "adCode": "810009",
+    "name": "观塘区",
+    "parentId": 43,
+    "id": 405
+  },
+  {
+    "cityCode": "1852",
+    "adCode": "810010",
+    "name": "荃湾区",
+    "parentId": 43,
+    "id": 406
+  },
+  {
+    "cityCode": "1852",
+    "adCode": "810011",
+    "name": "屯门区",
+    "parentId": 43,
+    "id": 407
+  },
+  {
+    "cityCode": "1852",
+    "adCode": "810012",
+    "name": "元朗区",
+    "parentId": 43,
+    "id": 408
+  },
+  {
+    "cityCode": "1852",
+    "adCode": "810013",
+    "name": "北区",
+    "parentId": 43,
+    "id": 409
+  },
+  {
+    "cityCode": "1852",
+    "adCode": "810014",
+    "name": "大埔区",
+    "parentId": 43,
+    "id": 410
+  },
+  {
+    "cityCode": "1852",
+    "adCode": "810015",
+    "name": "西贡区",
+    "parentId": 43,
+    "id": 411
+  },
+  {
+    "cityCode": "1852",
+    "adCode": "810016",
+    "name": "沙田区",
+    "parentId": 43,
+    "id": 412
+  },
+  {
+    "cityCode": "1852",
+    "adCode": "810017",
+    "name": "葵青区",
+    "parentId": 43,
+    "id": 413
+  },
+  {
+    "cityCode": "1852",
+    "adCode": "810018",
+    "name": "离岛区",
+    "parentId": 43,
+    "id": 414
+  },
+  {
+    "cityCode": "1853",
+    "adCode": "820001",
+    "name": "花地玛堂区",
+    "parentId": 44,
+    "id": 415
+  },
+  {
+    "cityCode": "1853",
+    "adCode": "820002",
+    "name": "花王堂区",
+    "parentId": 44,
+    "id": 416
+  },
+  {
+    "cityCode": "1853",
+    "adCode": "820003",
+    "name": "望德堂区",
+    "parentId": 44,
+    "id": 417
+  },
+  {
+    "cityCode": "1853",
+    "adCode": "820004",
+    "name": "大堂区",
+    "parentId": 44,
+    "id": 418
+  },
+  {
+    "cityCode": "1853",
+    "adCode": "820005",
+    "name": "风顺堂区",
+    "parentId": 44,
+    "id": 419
+  },
+  {
+    "cityCode": "1853",
+    "adCode": "820006",
+    "name": "嘉模堂区",
+    "parentId": 44,
+    "id": 420
+  },
+  {
+    "cityCode": "1853",
+    "adCode": "820007",
+    "name": "路凼填海区",
+    "parentId": 44,
+    "id": 421
+  },
+  {
+    "cityCode": "1853",
+    "adCode": "820008",
+    "name": "圣方济各堂区",
+    "parentId": 44,
+    "id": 422
+  },
+  {
+    "cityCode": "1892",
+    "adCode": "469022",
+    "name": "屯昌县",
+    "parentId": 31,
+    "id": 423
+  },
+  {
+    "cityCode": "1893",
+    "adCode": "469005",
+    "name": "文昌市",
+    "parentId": 31,
+    "id": 424
+  },
+  {
+    "cityCode": "1894",
+    "adCode": "469002",
+    "name": "琼海市",
+    "parentId": 31,
+    "id": 425
+  },
+  {
+    "cityCode": "1896",
+    "adCode": "469024",
+    "name": "临高县",
+    "parentId": 31,
+    "id": 426
+  },
+  {
+    "cityCode": "1897",
+    "adCode": "469001",
+    "name": "五指山市",
+    "parentId": 31,
+    "id": 427
+  },
+  {
+    "cityCode": "1898",
+    "adCode": "469006",
+    "name": "万宁市",
+    "parentId": 31,
+    "id": 428
+  },
+  {
+    "cityCode": "1899",
+    "adCode": "469030",
+    "name": "琼中黎族苗族自治县",
+    "parentId": 31,
+    "id": 429
+  },
+  {
+    "cityCode": "1903",
+    "adCode": "659009",
+    "name": "昆玉市",
+    "parentId": 41,
+    "id": 430
+  },
+  {
+    "cityCode": "1906",
+    "adCode": "659005",
+    "name": "北屯市",
+    "parentId": 41,
+    "id": 431
+  },
+  {
+    "cityCode": "1909",
+    "adCode": "659007",
+    "name": "双河市",
+    "parentId": 41,
+    "id": 432
+  },
+  {
+    "cityCode": "1935",
+    "adCode": "620600",
+    "name": "武威市",
+    "parentId": 38,
+    "id": 433
+  },
+  {
+    "cityCode": "1937",
+    "adCode": "620200",
+    "name": "嘉峪关市",
+    "parentId": 38,
+    "id": 434
+  },
+  {
+    "cityCode": "1953",
+    "adCode": "640500",
+    "name": "中卫市",
+    "parentId": 40,
+    "id": 435
+  },
+  {
+    "cityCode": "1994",
+    "adCode": "659004",
+    "name": "五家渠市",
+    "parentId": 41,
+    "id": 436
+  },
+  {
+    "cityCode": "1996",
+    "adCode": "659006",
+    "name": "铁门关市",
+    "parentId": 41,
+    "id": 437
+  },
+  {
+    "cityCode": "1997",
+    "adCode": "659002",
+    "name": "阿拉尔市",
+    "parentId": 41,
+    "id": 438
+  },
+  {
+    "cityCode": "1998",
+    "adCode": "659003",
+    "name": "图木舒克市",
+    "parentId": 41,
+    "id": 439
+  },
+  {
+    "cityCode": "1999",
+    "adCode": "659008",
+    "name": "可克达拉市",
+    "parentId": 41,
+    "id": 440
+  },
+  {
+    "cityCode": "2728",
+    "adCode": "429005",
+    "name": "潜江市",
+    "parentId": 27,
+    "id": 441
+  },
+  {
+    "cityCode": "2802",
+    "adCode": "469027",
+    "name": "乐东黎族自治县",
+    "parentId": 31,
+    "id": 442
+  },
+  {
+    "cityCode": "2898",
+    "adCode": "460300",
+    "name": "三沙市",
+    "parentId": 31,
+    "id": 443
+  },
+  {
+    "cityCode": "2935",
+    "adCode": "621200",
+    "name": "陇南市",
+    "parentId": 38,
+    "id": 444
+  }
+]

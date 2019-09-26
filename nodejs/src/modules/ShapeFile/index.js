@@ -1,13 +1,12 @@
 'use strict';
 
-import SHP from 'shapefile';
+import * as SHP from 'shapefile';
 
 
 class ShapeFile {
 
   static async readLine(shpFilename, dbfFilename, lineResolve) {
-    return await SHP
-      .open(shpFilename, dbfFilename, {
+    return SHP.open(shpFilename, dbfFilename, {
         encoding: 'utf8'
       })
       .then(async (source) => {

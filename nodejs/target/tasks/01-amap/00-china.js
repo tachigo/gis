@@ -1,0 +1,17 @@
+'use strict';
+
+var _modules = _interopRequireDefault(require("./../../modules"));
+
+var _Library = _interopRequireDefault(require("./Library"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(async () => {
+  const pg = await _modules.default.PgSQL.pool('localhost');
+  await _modules.default.Utils.call(`加载中国数据`, async () => {
+    await _modules.default.AMap.loadChina(async (index, zhName, level, parentIndex, iso, geoJson) => {
+      await _Library.default.save(pg, index, parentIndex, iso, zhName, geoJson, level);
+    });
+  });
+})();
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy90YXNrcy8wMS1hbWFwLzAwLWNoaW5hLmpzIl0sIm5hbWVzIjpbInBnIiwiJCIsIlBnU1FMIiwicG9vbCIsIlV0aWxzIiwiY2FsbCIsIkFNYXAiLCJsb2FkQ2hpbmEiLCJpbmRleCIsInpoTmFtZSIsImxldmVsIiwicGFyZW50SW5kZXgiLCJpc28iLCJnZW9Kc29uIiwiTGlicmFyeSIsInNhdmUiXSwibWFwcGluZ3MiOiJBQUFBOztBQUVBOztBQUVBOzs7O0FBRUEsQ0FBQyxZQUFZO0FBQ1gsUUFBTUEsRUFBRSxHQUFHLE1BQU1DLGlCQUFFQyxLQUFGLENBQVFDLElBQVIsQ0FBYSxXQUFiLENBQWpCO0FBQ0EsUUFBTUYsaUJBQUVHLEtBQUYsQ0FBUUMsSUFBUixDQUFjLFFBQWQsRUFBdUIsWUFBWTtBQUN2QyxVQUFNSixpQkFBRUssSUFBRixDQUFPQyxTQUFQLENBQWlCLE9BQU9DLEtBQVAsRUFBY0MsTUFBZCxFQUFzQkMsS0FBdEIsRUFBNkJDLFdBQTdCLEVBQTBDQyxHQUExQyxFQUErQ0MsT0FBL0MsS0FBMkQ7QUFDaEYsWUFBTUMsaUJBQVFDLElBQVIsQ0FBYWYsRUFBYixFQUFpQlEsS0FBakIsRUFBd0JHLFdBQXhCLEVBQXFDQyxHQUFyQyxFQUEwQ0gsTUFBMUMsRUFBa0RJLE9BQWxELEVBQTJESCxLQUEzRCxDQUFOO0FBQ0QsS0FGSyxDQUFOO0FBR0QsR0FKSyxDQUFOO0FBS0QsQ0FQRCIsInNvdXJjZXNDb250ZW50IjpbIid1c2Ugc3RyaWN0JztcblxuaW1wb3J0ICQgZnJvbSAnLi8uLi8uLi9tb2R1bGVzJztcblxuaW1wb3J0IExpYnJhcnkgZnJvbSAnLi9MaWJyYXJ5JztcblxuKGFzeW5jICgpID0+IHtcbiAgY29uc3QgcGcgPSBhd2FpdCAkLlBnU1FMLnBvb2woJ2xvY2FsaG9zdCcpO1xuICBhd2FpdCAkLlV0aWxzLmNhbGwoYOWKoOi9veS4reWbveaVsOaNrmAsIGFzeW5jICgpID0+IHtcbiAgICBhd2FpdCAkLkFNYXAubG9hZENoaW5hKGFzeW5jIChpbmRleCwgemhOYW1lLCBsZXZlbCwgcGFyZW50SW5kZXgsIGlzbywgZ2VvSnNvbikgPT4ge1xuICAgICAgYXdhaXQgTGlicmFyeS5zYXZlKHBnLCBpbmRleCwgcGFyZW50SW5kZXgsIGlzbywgemhOYW1lLCBnZW9Kc29uLCBsZXZlbCk7XG4gICAgfSk7XG4gIH0pXG59KSgpOyJdfQ==

@@ -4,6 +4,7 @@ import Moment from 'moment';
 import Fs from 'fs';
 import Path from 'path';
 import Os from 'os';
+import JsonFile from 'jsonfile';
 
 
 class Utils {
@@ -13,6 +14,18 @@ class Utils {
   );
 
   static osHomeDir = Os.homedir();
+
+
+  static async getConfiguration(key) {
+    const configFilename = `${this.rootDir}/config/${key}.json`;
+    let json = {};
+    if (Fs.existsSync(configFilename)) {
+      json = JsonFile.readFileSync(configFilename);
+    } else {
+      throw new Error(`配置文件 ${configFilename} 不存在`);
+    }
+    return json;
+  }
 
   static async call(desc, asyncFunc, args = []) {
     const beginTime = new Date().getTime();

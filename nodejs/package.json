@@ -4,12 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src --out-dir target --source-maps inline --copy-files"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.0",
+    "jsonfile": "^5.0.0",
     "merge": "^1.2.1",
     "moment": "^2.24.0",
     "pg": "^7.12.1",

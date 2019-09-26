@@ -4,6 +4,8 @@ import Axios from 'axios';
 import XmlJs from 'xml-js';
 import Utils from './../Utils';
 
+import CountryTree from './CountryTree';
+
 class OSM {
 
   static api = Axios.create({
@@ -12,6 +14,10 @@ class OSM {
       'User-Agent': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; 360SE)'
     }
   });
+
+  static getCountryTree() {
+    return CountryTree;
+  }
 
   static async relationFull(osmIds) {
     const relations = {};
