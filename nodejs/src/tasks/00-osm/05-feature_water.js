@@ -9,7 +9,7 @@ import LibFeature from './LibFeature';
 (async () => {
   await $.Utils.call(`导入water feature`, async () => {
     const pg = await $.PgSQL.pool('localhost');
-    const dataDir = `${$.Utils.osHomeDir}/Documents/data/osm-data`;
+    const dataDir = `${$.Utils.dataDir}/osm-data`;
     const shpFilename = `${dataDir}/water-polygons-split-4326/water_polygons.shp`;
     const dbfFilename = `${dataDir}/water-polygons-split-4326/water_polygons.dbf`;
     const pgTable = 'osm.feature_water';

@@ -1,0 +1,15 @@
+'use strict';
+
+var _modules = _interopRequireDefault(require("./../../modules"));
+
+var _LibBoundary = _interopRequireDefault(require("./LibBoundary"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(async () => {
+  const pg = await _modules.default.PgSQL.pool('localhost');
+  await pg.query(`set work_mem='64MB'`);
+  await _modules.default.Utils.call(`准备外国水域数据`, _LibBoundary.default.unionForeignWaterFeature.bind(_LibBoundary.default), [pg]);
+  await pg.release();
+})();
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy90YXNrcy8wMy1ib3VuZGFyeS8wMS1wcmVwYXJlLmpzIl0sIm5hbWVzIjpbInBnIiwiJCIsIlBnU1FMIiwicG9vbCIsInF1ZXJ5IiwiVXRpbHMiLCJjYWxsIiwiTGliQm91bmRhcnkiLCJ1bmlvbkZvcmVpZ25XYXRlckZlYXR1cmUiLCJiaW5kIiwicmVsZWFzZSJdLCJtYXBwaW5ncyI6IkFBQUE7O0FBR0E7O0FBRUE7Ozs7QUFHQSxDQUFDLFlBQVk7QUFDWCxRQUFNQSxFQUFFLEdBQUcsTUFBTUMsaUJBQUVDLEtBQUYsQ0FBUUMsSUFBUixDQUFhLFdBQWIsQ0FBakI7QUFDQSxRQUFNSCxFQUFFLENBQUNJLEtBQUgsQ0FBVSxxQkFBVixDQUFOO0FBQ0EsUUFBTUgsaUJBQUVJLEtBQUYsQ0FBUUMsSUFBUixDQUFjLFVBQWQsRUFBeUJDLHFCQUFZQyx3QkFBWixDQUFxQ0MsSUFBckMsQ0FBMENGLG9CQUExQyxDQUF6QixFQUFpRixDQUFDUCxFQUFELENBQWpGLENBQU47QUFDQSxRQUFNQSxFQUFFLENBQUNVLE9BQUgsRUFBTjtBQUNELENBTEQiLCJzb3VyY2VzQ29udGVudCI6WyIndXNlIHN0cmljdCc7XG5cblxuaW1wb3J0ICQgZnJvbSAnLi8uLi8uLi9tb2R1bGVzJztcblxuaW1wb3J0IExpYkJvdW5kYXJ5IGZyb20gJy4vTGliQm91bmRhcnknO1xuXG5cbihhc3luYyAoKSA9PiB7XG4gIGNvbnN0IHBnID0gYXdhaXQgJC5QZ1NRTC5wb29sKCdsb2NhbGhvc3QnKTtcbiAgYXdhaXQgcGcucXVlcnkoYHNldCB3b3JrX21lbT0nNjRNQidgKTtcbiAgYXdhaXQgJC5VdGlscy5jYWxsKGDlh4blpIflpJblm73msLTln5/mlbDmja5gLCBMaWJCb3VuZGFyeS51bmlvbkZvcmVpZ25XYXRlckZlYXR1cmUuYmluZChMaWJCb3VuZGFyeSksIFtwZ10pO1xuICBhd2FpdCBwZy5yZWxlYXNlKCk7XG59KSgpOyJdfQ==

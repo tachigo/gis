@@ -24,7 +24,7 @@ class PgSQL {
       });
       this.pools[key] = pool;
     }
-    return this.pools[key];
+    return await this.pools[key].connect();
   }
 
 

@@ -19,7 +19,7 @@ class LibMfw {
             name = data['cname'];
           }
         }
-        await $.Utils.log(id, name, mddId, regionId);
+        console.log(id, name, mddId, regionId);
         const fromTable = 'gps.world';
         const toTable = 'gps.mfw';
         const sql = `insert into ${toTable} 
@@ -46,7 +46,7 @@ class LibMfw {
     let data = await $.Mfw.getRegionRestFul().getRegionInfo(chinaRegionId);
     let mddId = data['mddid'];
     let name = data['cname'];
-    await $.Utils.log(1, name, mddId, chinaRegionId);
+    console.log(1, name, mddId, chinaRegionId);
     const sql = `insert into ${toTable} 
     (id, parent_id, key, level, iso, zh_name, en_name, geom, region_id, mdd_id) 
     select 
@@ -70,7 +70,7 @@ class LibMfw {
       let data = await $.Mfw.getRegionRestFul().getRegionInfo(regionId);
       let mddId = data['mddid'];
       let name = data['cname'];
-      await $.Utils.log(id, name, mddId, regionId);
+      console.log(id, name, mddId, regionId);
       const sql = `insert into ${toTable} 
       (id, parent_id, key, level, iso, zh_name, en_name, geom, region_id, mdd_id) 
       select 

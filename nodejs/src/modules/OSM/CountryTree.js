@@ -2202,7 +2202,7 @@ const iterate = async (index, parentId, level, fallback, dict) => {
     const v = dict[k];
     const indent = `=`.repeat(level);
     const desc = [indent, index, parentId, v.zhName, v.enName, v.iso];
-    await fallback(...[index, v, level, parentId, desc]);
+    await fallback(...[index, v, v.level, parentId, desc]);
     if (v['subs'] !== undefined) {
       index = await iterate(index, index, level + 1, fallback, v['subs']);
     }

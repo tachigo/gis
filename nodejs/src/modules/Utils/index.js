@@ -13,8 +13,13 @@ class Utils {
     Path.dirname(__dirname)
   );
 
-  static osHomeDir = Os.homedir();
+  static dataDir = Path.dirname(
+    Path.dirname(
+      Path.dirname(__dirname)
+    )
+  ) + '/data';
 
+  static osHomeDir = Os.homedir();
 
   static async getConfiguration(key) {
     const configFilename = `${this.rootDir}/config/${key}.json`;
@@ -27,11 +32,19 @@ class Utils {
     return json;
   }
 
+
+  static depth = -1;
+
   static async call(desc, asyncFunc, args = []) {
+    this.depth += 1;
+    let indents = [''];
+    if (this.depth !== 0) {
+      indents = (new Array(this.depth)).fill('');
+    }
     const beginTime = new Date().getTime();
     const beginDateTime = Moment(beginTime).format('YYYY-MM-DD HH:mm:ss');
     const startLog = `start ${desc} ...`;
-    console.log(`[${beginDateTime}]`, startLog);
+    console.log(`[${beginDateTime}]`, ...indents, startLog);
 
     const ret = await asyncFunc(...args);
 
@@ -39,7 +52,8 @@ class Utils {
     const endDateTime = Moment(endTime).format('YYYY-MM-DD HH:mm:ss');
     const costTime = endTime - beginTime;
     const finishLog = `final ${desc} => cost ${costTime / 1000} s`;
-    console.log(`[${endDateTime}]`, finishLog);
+    console.log(`[${endDateTime}]`, ...indents, finishLog);
+    this.depth -= 1;
     return ret;
   }
 

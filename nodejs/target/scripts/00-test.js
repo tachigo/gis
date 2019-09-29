@@ -1,0 +1,13 @@
+'use strict';
+
+var _modules = _interopRequireDefault(require("./../modules"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(async () => {
+  const pg = await _modules.default.PgSQL.pool('localhost'); // 导出中国
+
+  const shpFilename = `${_modules.default.Utils.dataDir}/tmp/china.shp`;
+  await _modules.default.PgSQL.getPostGis().exportShapeFile(shpFilename, pg, 'select id, geom from gps.mfw where id = 1', 'geom');
+})();
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9zY3JpcHRzLzAwLXRlc3QuanMiXSwibmFtZXMiOlsicGciLCIkIiwiUGdTUUwiLCJwb29sIiwic2hwRmlsZW5hbWUiLCJVdGlscyIsImRhdGFEaXIiLCJnZXRQb3N0R2lzIiwiZXhwb3J0U2hhcGVGaWxlIl0sIm1hcHBpbmdzIjoiQUFBQTs7QUFFQTs7OztBQUVBLENBQUMsWUFBWTtBQUNYLFFBQU1BLEVBQUUsR0FBRyxNQUFNQyxpQkFBRUMsS0FBRixDQUFRQyxJQUFSLENBQWEsV0FBYixDQUFqQixDQURXLENBRVg7O0FBQ0EsUUFBTUMsV0FBVyxHQUFJLEdBQUVILGlCQUFFSSxLQUFGLENBQVFDLE9BQVEsZ0JBQXZDO0FBRUEsUUFBTUwsaUJBQUVDLEtBQUYsQ0FBUUssVUFBUixHQUFxQkMsZUFBckIsQ0FBcUNKLFdBQXJDLEVBQWtESixFQUFsRCxFQUFzRCwyQ0FBdEQsRUFBbUcsTUFBbkcsQ0FBTjtBQUNELENBTkQiLCJzb3VyY2VzQ29udGVudCI6WyIndXNlIHN0cmljdCc7XG5cbmltcG9ydCAkIGZyb20gJy4vLi4vbW9kdWxlcyc7XG5cbihhc3luYyAoKSA9PiB7XG4gIGNvbnN0IHBnID0gYXdhaXQgJC5QZ1NRTC5wb29sKCdsb2NhbGhvc3QnKTtcbiAgLy8g5a+85Ye65Lit5Zu9XG4gIGNvbnN0IHNocEZpbGVuYW1lID0gYCR7JC5VdGlscy5kYXRhRGlyfS90bXAvY2hpbmEuc2hwYDtcblxuICBhd2FpdCAkLlBnU1FMLmdldFBvc3RHaXMoKS5leHBvcnRTaGFwZUZpbGUoc2hwRmlsZW5hbWUsIHBnLCAnc2VsZWN0IGlkLCBnZW9tIGZyb20gZ3BzLm1mdyB3aGVyZSBpZCA9IDEnLCAnZ2VvbScpO1xufSkoKTsiXX0=
