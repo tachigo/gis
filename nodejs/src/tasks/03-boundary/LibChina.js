@@ -93,7 +93,7 @@ class LibChina {
       select 1 as id, geom from ${boundaryTable} where id = $1
     )
     , tc as (
-      select $1::bigint as id, st_intersection(ta.geom, tb.geom) as geom 
+      select $1::bigint as id, st_intersection(st_makevalid(ta.geom), st_makevalid(tb.geom)) as geom 
       from ta left join tb on ta.id = tb.id
     )
     insert into ${boundaryTable} (id, geom) 

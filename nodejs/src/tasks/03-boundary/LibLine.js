@@ -87,7 +87,6 @@ class LibLine {
 
   static async calcCoastline(pg, id, name) {
     // 通过 boundary 和 juncture 做差集来求 coastline
-    const gpsTable = 'gps.mfw';
     const boundaryTable = 'boundary.mfw';
     const lineTable = 'boundary.line';
     const type = 'outer';
@@ -152,6 +151,8 @@ class LibLine {
       await pg.query(sql, [id, type, category, name]);
     }
 
+    await this.lineMerge(pg, id, type, category);
+
     // geom type
     const row = await pg.query(
       `select st_geometrytype(geom) as geom_type from ${lineTable} 
@@ -190,10 +191,10 @@ class LibLine {
       select (dump).path[1] as path, (dump).geom as geom from tb 
     )
     , td as (
-      select 1 as id, st_collect(geom) as geom from tc where path > 0
+      select 1 as id, st_linemerge(st_collect(geom)) as geom from tc where path > 0
     )
     , te as (
-      select 1 as id, st_boundary(geom) as geom from ${gpsTable} where id = $1
+      select 1 as id, st_linemerge(st_boundary(geom)) as geom from ${gpsTable} where id = $1
     )
     , tf as (
       select $1::bigint as id, $2::varchar as type, $3::varchar as category, $4::varchar as name, 
@@ -207,6 +208,8 @@ class LibLine {
     name = excluded.name, geom = excluded.geom`;
 
     await pg.query(sql, [id, type, category, name]);
+
+    await this.lineMerge(pg, id, type, category);
 
     // geom type
     const row = await pg.query(
@@ -239,10 +242,10 @@ class LibLine {
       select (st_dump(geom)).geom as geom from ${boundaryTable} where id = $1
     )
     , tb as (
-      select 1 as id, st_collect(st_exteriorring(geom)) as geom from ta
+      select 1 as id, st_linemerge(st_collect(st_exteriorring(geom))) as geom from ta
     )
     , tc as (
-      select 1 as id, st_boundary(geom) as geom from ${gpsTable} where id = $1
+      select 1 as id, st_linemerge(st_boundary(geom)) as geom from ${gpsTable} where id = $1
     )
     , td as (
       select $1::bigint as id, $2::varchar as type, $3::varchar as name, 
@@ -257,6 +260,7 @@ class LibLine {
 
     await pg.query(sql, [id, type, name, category]);
 
+    await this.lineMerge(pg, id, type, category);
 
     // geom type
     const row = await pg.query(
@@ -272,6 +276,13 @@ class LibLine {
 
 
 
+  static async lineMerge(pg, id, type, category) {
+    const table = 'boundary.line';
+    await pg.query(
+      `update ${table} set geom = st_linemerge(geom) where id = $1 and type = $2 and category = $3`,
+      [id, type, category]
+    );
+  }
 
 
 }
