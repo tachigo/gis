@@ -51,3 +51,21 @@ create table if not exists boundary.water_feature
 create index boundary_water_feature_geom_idx
 on boundary.water_feature using gist
 (geom);
+
+
+
+
+create table if not exists boundary.line
+(
+    id bigint,
+    type varchar,
+    category varchar,
+    name varchar,
+    geom geometry,
+    primary key (id, type, category),
+    constraint enforce_srid_geom check (st_srid(geom) = 4326)
+);
+
+create index boundary_line_geom_idx
+on boundary.line using gist
+(geom);

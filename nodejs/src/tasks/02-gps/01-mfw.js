@@ -11,7 +11,7 @@ import LibMfw from './LibMfw';
   await $.Utils.call(`整理数据`, async () => {
     await $.Utils.call(`映射 mfw 海外数据`, LibMfw.mapForeignData.bind(LibMfw), [pg]);
     await $.Utils.call(`映射 mfw 中国数据`, LibMfw.mapChinaCountryData.bind(LibMfw), [pg]);
-    await $.Utils.call(`映射 mfw 中国各省数据`, LibMfw.mapChinaProvincesData.bind(LibMfw), [pg]);
+    // await $.Utils.call(`映射 mfw 中国各省数据`, LibMfw.mapChinaProvincesData.bind(LibMfw), [pg]);
   });
   await pg.release();
 })();

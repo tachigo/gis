@@ -6,6 +6,7 @@ import OSM from './OSM';
 import AMap from './AMap';
 import ShapeFile from './ShapeFile';
 import Mfw from './Mfw';
+import Gis from './Gis';
 
 export default {
   Utils,
@@ -14,4 +15,5 @@ export default {
   AMap,
   ShapeFile,
   Mfw,
+  Gis,
 }

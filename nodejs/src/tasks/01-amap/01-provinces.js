@@ -12,4 +12,5 @@ import Library from "./Library";
       await Library.save(pg, index, parentIndex, iso, zhName, geoJson, level);
     });
   });
+  await pg.release();
 })();

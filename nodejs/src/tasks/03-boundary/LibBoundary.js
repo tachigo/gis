@@ -21,15 +21,27 @@ class LibBoundary {
   }
 
 
-  static async calcForeignBoundary(pg) {
+  static async calcForeignBoundaries(pg, theId = 0) {
     const list = await this.getForeignList(pg);
+    for await (const item of list) {
+      if (theId > 0) {
+        if (item.id === theId) {
+          await this.calcForeignBoundary(pg, item.id, item.name);
+        }
+      } else {
+        await this.calcForeignBoundary(pg, item.id, item.name);
+      }
+    }
+  }
+
+
+  static async calcForeignBoundary(pg, id, name) {
     const gpsTable = 'gps.mfw';
     const featureTable = 'boundary.water_feature';
     const table = 'boundary.mfw';
 
-    for await (const item of list) {
-      await Utils.call(`${item.name}#${item.id}`, async () => {
-        const sql2 = `with
+    await Utils.call(`${name}#${id}`, async () => {
+      const sql2 = `with
         ta as (
           select 1 as id, geom
           from ${featureTable} where id = $1 and fid = $2
@@ -44,27 +56,24 @@ class LibBoundary {
         insert into ${table} (id, geom)
         select id, geom from tc
         on conflict (id) do update set geom = excluded.geom`;
-        await pg.query(sql2, [id, 'f0']);
-      });
-    }
+      await pg.query(sql2, [id, 'f0']);
+    });
   }
 
 
-  static async unionForeignWaterFeature(pg) {
-    const list = await this.getForeignList(pg);
+  static async unionForeignWaterFeature(pg, id, name) {
     const featureTable = 'boundary.water_feature';
 
-    for await (const item of list) {
-      await Utils.call(`${item.name}#${item.id}`, async () => {
-        const rows = await pg
-          .query(`select fid from ${featureTable} where id = $1 order by fid asc limit 1`, [item.id])
-          .then(res => {
-            return res.rows || [];
-          })
-        ;
-        if (rows.length > 0) {
-          await pg.query(`delete from ${featureTable} where id = $1 and fid = $2`, [item.id, 'f0']);
-          const sql = `with
+    await Utils.call(`${name}#${id}`, async () => {
+      const rows = await pg
+        .query(`select fid from ${featureTable} where id = $1 order by fid asc limit 1`, [id])
+        .then(res => {
+          return res.rows || [];
+        })
+      ;
+      if (rows.length > 0) {
+        await pg.query(`delete from ${featureTable} where id = $1 and fid = $2`, [id, 'f0']);
+        const sql = `with
           ta as (
             select (st_dump(geom)).geom as geom
             from ${featureTable} where id = $1 and fid != $2
@@ -75,22 +84,45 @@ class LibBoundary {
           insert into ${featureTable} (id, fid, geom)
           select $1::bigint as id, $2::varchar as fid, geom from tb
           on conflict (id, fid) do update set geom = excluded.geom`;
-          await pg.query(sql, [item.id, 'f0']);
+        await pg.query(sql, [id, 'f0']);
+      }
+    });
+  }
+
+
+  static async unionForeignWaterFeatures(pg, theId = 0) {
+    const list = await this.getForeignList(pg);
+    for await (const item of list) {
+      if (theId > 0) {
+        if (item.id === theId) {
+          await this.unionForeignWaterFeature(pg, item.id, item.name);
         }
-      });
+      } else {
+        await this.unionForeignWaterFeature(pg, item.id, item.name);
+      }
     }
   }
 
-  static async initForeignBoundary(pg) {
+  static async initForeignBoundaries(pg, theId = 0) {
     const list = await this.getForeignList(pg);
+    for await (const item of list) {
+      if (theId > 0) {
+        if (item.id === theId) {
+          await this.initForeignBoundary(pg, item.id, item.name);
+        }
+      } else {
+        await this.initForeignBoundary(pg, item.id, item.name);
+      }
+    }
+  }
 
+
+  static async initForeignBoundary(pg, id, name) {
     const fromTable = 'gps.mfw';
     const toTable = 'boundary.mfw';
-
     const that = this;
-    for await (const item of list) {
-      await Utils.call(`${item.name}#${item.id}`, async () => {
-        const sql = `insert into ${toTable} 
+    await Utils.call(`${name}#${id}`, async () => {
+      const sql = `insert into ${toTable} 
         (id, parent_id, key, level, iso, zh_name, en_name, geom, region_id, mdd_id) 
         select id, parent_id, key, level, iso, zh_name, en_name, geom, region_id, mdd_id 
         from ${fromTable} where id = $1::bigint 
@@ -98,10 +130,9 @@ class LibBoundary {
         parent_id = excluded.parent_id, key = excluded.key, level = excluded.level, iso = excluded.iso, 
         zh_name = excluded.zh_name, en_name = excluded.en_name, geom = excluded.geom, 
         region_id = excluded.region_id, mdd_id = excluded.mdd_id`;
-        await pg.query(sql, [item.id]);
-        await that.prepareWaterFeatures(pg, item.id);
-      });
-    }
+      await pg.query(sql, [id]);
+      await that.prepareWaterFeatures(pg, id);
+    });
   }
 
 

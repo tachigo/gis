@@ -854,7 +854,8 @@ const countryDistrictTree = {
     enName: 'Marshall Islands',
     iso: 'MHL',
     level: 1,
-    osmRelationIds: [571771]
+    osmRelationIds: [571771],
+    mfwId: 17474
   },
   'Mauritania': {
     zhName: '毛里塔尼亚',
@@ -862,7 +863,7 @@ const countryDistrictTree = {
     iso: 'MRT',
     level: 1,
     osmRelationIds: [192763],
-    mfwId: 17474
+    mfwId: 17475
   },
   'Mauritius': {
     zhName: '毛里求斯',
@@ -1027,7 +1028,8 @@ const countryDistrictTree = {
     enName: 'Pakistan',
     iso: 'PAK',
     level: 1,
-    osmRelationIds: [307573]
+    osmRelationIds: [307573],
+    mfwId: 17499
   },
   'Palau': {
     zhName: '帕劳',

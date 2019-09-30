@@ -7,9 +7,9 @@ import LibFeature from './LibFeature';
 
 // --max_old_space_size=16000
 (async () => {
+  const pg = await $.PgSQL.pool('localhost');
   await $.Utils.call(`导入coastline feature`, async () => {
-    const pg = await $.PgSQL.pool('localhost');
-    const dataDir = `${$.Utils.dataDir}/osm-data`;
+    const dataDir = `${$.Utils.dataDir}/shapefile/osm-data`;
     const shpFilename = `${dataDir}/coastlines-split-4326/lines.shp`;
     const dbfFilename = `${dataDir}/coastlines-split-4326/lines.dbf`;
     const pgTable = 'osm.feature_coastline';
@@ -17,4 +17,5 @@ import LibFeature from './LibFeature';
     await LibFeature.loadFromShapeFile(pg, shpFilename, dbfFilename, pgTable, 0, 0);
 
   });
+  await pg.release();
 })();

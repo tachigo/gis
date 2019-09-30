@@ -6,15 +6,17 @@ import { execSync } from 'child_process';
 
 class PostGis {
 
-  static async exportShapeFile(shpFilename, pg, sql, geomField) {
+  static async exportShapeFile(shpFilename, pgConfigKey, sql, geomField) {
+    const pgConfig = (await Utils.getConfiguration('pgsql'))[pgConfigKey];
     const dir = Path.dirname(shpFilename);
     await Utils.rmDir(dir);
     await Utils.mkDir(dir);
 
-    const { host, user, database, password, port, postGisHomePath} = pg.options;
+    const { host, user, database, password, port, postGisHomePath} = pgConfig;
     const cmd = `${postGisHomePath}/bin/pgsql2shp -f ${shpFilename}`
       + ` -h ${host} -p ${port} -u ${user} -P ${password} -g ${geomField} -k -b -r ${database}`
       + ` "${sql}"`;
+    console.log(cmd);
     execSync(cmd);
   }
 

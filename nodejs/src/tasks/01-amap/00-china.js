@@ -10,5 +10,6 @@ import Library from './Library';
     await $.AMap.loadChina(async (index, zhName, level, parentIndex, iso, geoJson) => {
       await Library.save(pg, index, parentIndex, iso, zhName, geoJson, level);
     });
-  })
+  });
+  await pg.release();
 })();
