@@ -1,4 +1,5 @@
 nodejs/node_modules
-nodejs/data/shapfile/osm-data
+nodejs/data/shapefile/osm-data
+nodejs/data/shapefile/tmp*
 .vscode
 .idea
