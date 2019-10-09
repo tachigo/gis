@@ -1037,7 +1037,7 @@ const countryDistrictTree = {
     iso: 'PLW',
     level: 1,
     osmRelationIds: [571805],
-    mfwId: 17499
+    mfwId: 17501
   },
   'Palestine': {
     zhName: '巴勒斯坦',

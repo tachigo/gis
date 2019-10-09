@@ -1,6 +1,7 @@
 'use strict';
 
 import Utils from './../../modules/Utils';
+import $ from "../../modules";
 
 
 class LibBoundary {
@@ -58,6 +59,7 @@ class LibBoundary {
         on conflict (id) do update set geom = excluded.geom`;
       await pg.query(sql2, [id, 'f0']);
     });
+    await $.PgSQL.getPostGis().validatePolygon(pg, id, table, 'id', 'geom');
   }
 
 

@@ -47,7 +47,7 @@ class PostGis {
     , tc as (
         select ${pkField}, st_multi(st_union(${geomField})) as ${geomField}
         from tb
-        where type in ('ST_Polygon', 'ST_MultiPolygon')
+        where type in ('ST_Polygon', 'ST_MultiPolygon') and area > 1
         group by ${pkField}
     )
     insert into ${table} (${pkField}, ${geomField}) 

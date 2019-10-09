@@ -191,7 +191,7 @@ class LibLine {
       select (dump).path[1] as path, (dump).geom as geom from tb 
     )
     , td as (
-      select 1 as id, st_linemerge(st_collect(geom)) as geom from tc where path > 0
+      select 1 as id, st_linemerge(st_collect(st_boundary(geom))) as geom from tc where path > 0
     )
     , te as (
       select 1 as id, st_linemerge(st_boundary(geom)) as geom from ${gpsTable} where id = $1
