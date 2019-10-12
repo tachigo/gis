@@ -188,7 +188,7 @@ class LibTopology {
         where id = $1 and type = $2 and category = $3
       )
       , tb as (
-        select st_subdivide(geom, 2048) as geom from ta
+        select st_subdivide(geom, 10000) as geom from ta
       )
       , tc as (
         select (row_number() over())::integer as path, geom from tb
@@ -247,7 +247,7 @@ class LibTopology {
         where id = $1 and type = $2 and category = $3
       )
       , tb as (
-        select st_subdivide(geom, 2048) as geom from ta
+        select st_subdivide(geom, 10000) as geom from ta
       )
       , tc as (
         select (row_number() over())::integer as path, geom from tb
