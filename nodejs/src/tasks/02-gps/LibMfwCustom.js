@@ -101,6 +101,7 @@ class LibMfwCustom {
     for await (const item of countryIntersectWithChina) {
       const aId = item.id;
       await $.Utils.call(`${item.zhName}#${aId}`, this.geomADiffB2A.bind(this), [pg, aId, bId]);
+      await $.PgSQL.getPostGis().validatePolygon(pg, aId, 'gps.mfw', 'id', 'geom');
     }
   }
 
@@ -111,6 +112,7 @@ class LibMfwCustom {
     const that = this;
     await $.Utils.call(`乌克兰#900177 - 俄罗斯#900136 => 乌克兰#900177`, async () => {
       await that.geomADiffB2A(pg, 900177, 900136);
+      await $.PgSQL.getPostGis().validatePolygon(pg, 900177, 'gps.mfw', 'id', 'geom');
     });
   }
 
@@ -119,6 +121,7 @@ class LibMfwCustom {
     const that = this;
     await $.Utils.call(`南苏丹#900156 - 苏丹#900159 => 南苏丹#900156`, async () => {
       await that.geomADiffB2A(pg, 900156, 900159);
+      await $.PgSQL.getPostGis().validatePolygon(pg, 900156, 'gps.mfw', 'id', 'geom');
     });
   }
 
@@ -127,6 +130,7 @@ class LibMfwCustom {
     const that = this;
     await $.Utils.call(`摩洛哥#900112 - 西撒哈拉#900185 => 摩洛哥#900112`, async () => {
       await that.geomADiffB2A(pg, 900112, 900185);
+      await $.PgSQL.getPostGis().validatePolygon(pg, 900112, 'gps.mfw', 'id', 'geom');
     });
   }
 
@@ -136,6 +140,7 @@ class LibMfwCustom {
     const that = this;
     await $.Utils.call(`摩洛哥#900112 - 西班牙#900157 => 摩洛哥#900112`, async () => {
       await that.geomADiffB2A(pg, 900112, 900157);
+      await $.PgSQL.getPostGis().validatePolygon(pg, 900112, 'gps.mfw', 'id', 'geom');
     });
   }
 
@@ -150,6 +155,7 @@ class LibMfwCustom {
     for await (const item of countryIntersectWith) {
       const bId = item.id;
       await $.Utils.call(`${item.zhName}#${bId}`, this.geomADiffB2A.bind(this), [pg, id, bId]);
+      await $.PgSQL.getPostGis().validatePolygon(pg, id, 'gps.mfw', 'id', 'geom');
     }
   }
 
@@ -160,6 +166,7 @@ class LibMfwCustom {
     const that = this;
     await $.Utils.call(`塞尔维亚#900146 - 克罗地亚#900040 => 塞尔维亚#900146`, async () => {
       await that.geomADiffB2A(pg, 900146, 900040);
+      await $.PgSQL.getPostGis().validatePolygon(pg, 900146, 'gps.mfw', 'id', 'geom');
     });
     // 将塞尔维亚取凸包后与周围国家取差集
     const id = 900146; // 塞尔维亚
@@ -170,7 +177,18 @@ class LibMfwCustom {
     for await (const item of countryIntersectWith) {
       const bId = item.id;
       await $.Utils.call(`${item.zhName}#${bId}`, this.geomADiffB2A.bind(this), [pg, id, bId]);
+      await $.PgSQL.getPostGis().validatePolygon(pg, id, 'gps.mfw', 'id', 'geom');
     }
+  }
+
+
+  static async fixOthers07(pg) {
+    // 卢森堡#900096 德国#900059
+    const that = this;
+    await $.Utils.call(`卢森堡#900096 - 德国#900059 => 卢森堡#900096`, async () => {
+      await that.geomADiffB2A(pg, 900096, 900059);
+      await $.PgSQL.getPostGis().validatePolygon(pg, 900096, 'gps.mfw', 'id', 'geom');
+    });
   }
 }
 

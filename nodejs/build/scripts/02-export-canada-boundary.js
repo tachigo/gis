@@ -1,0 +1,11 @@
+'use strict';
+
+var _modules = _interopRequireDefault(require("./../modules"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(async () => {
+  const shpFilename = `${_modules.default.Utils.dataDir}/shapefile/tmp-canada-boundary/china.shp`;
+  await _modules.default.PgSQL.getPostGis().exportShapeFile(shpFilename, 'localhost', 'select id, geom from boundary.mfw where id = 900032', 'geom');
+})();
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9zY3JpcHRzLzAyLWV4cG9ydC1jYW5hZGEtYm91bmRhcnkuanMiXSwibmFtZXMiOlsic2hwRmlsZW5hbWUiLCIkIiwiVXRpbHMiLCJkYXRhRGlyIiwiUGdTUUwiLCJnZXRQb3N0R2lzIiwiZXhwb3J0U2hhcGVGaWxlIl0sIm1hcHBpbmdzIjoiQUFBQTs7QUFFQTs7OztBQUVBLENBQUMsWUFBWTtBQUNYLFFBQU1BLFdBQVcsR0FBSSxHQUFFQyxpQkFBRUMsS0FBRixDQUFRQyxPQUFRLDBDQUF2QztBQUNBLFFBQU1GLGlCQUFFRyxLQUFGLENBQVFDLFVBQVIsR0FBcUJDLGVBQXJCLENBQXFDTixXQUFyQyxFQUFrRCxXQUFsRCxFQUErRCxxREFBL0QsRUFBc0gsTUFBdEgsQ0FBTjtBQUNELENBSEQiLCJzb3VyY2VzQ29udGVudCI6WyIndXNlIHN0cmljdCc7XG5cbmltcG9ydCAkIGZyb20gJy4vLi4vbW9kdWxlcyc7XG5cbihhc3luYyAoKSA9PiB7XG4gIGNvbnN0IHNocEZpbGVuYW1lID0gYCR7JC5VdGlscy5kYXRhRGlyfS9zaGFwZWZpbGUvdG1wLWNhbmFkYS1ib3VuZGFyeS9jaGluYS5zaHBgO1xuICBhd2FpdCAkLlBnU1FMLmdldFBvc3RHaXMoKS5leHBvcnRTaGFwZUZpbGUoc2hwRmlsZW5hbWUsICdsb2NhbGhvc3QnLCAnc2VsZWN0IGlkLCBnZW9tIGZyb20gYm91bmRhcnkubWZ3IHdoZXJlIGlkID0gOTAwMDMyJywgJ2dlb20nKTtcbn0pKCk7Il19

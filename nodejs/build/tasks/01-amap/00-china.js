@@ -1,0 +1,18 @@
+'use strict';
+
+var _modules = _interopRequireDefault(require("./../../modules"));
+
+var _Library = _interopRequireDefault(require("./Library"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(async () => {
+  const pg = await _modules.default.PgSQL.pool('localhost');
+  await _modules.default.Utils.call(`加载中国数据`, async () => {
+    await _modules.default.AMap.loadChina(async (index, zhName, level, parentIndex, iso, geoJson) => {
+      await _Library.default.save(pg, index, parentIndex, iso, zhName, geoJson, level);
+    });
+  });
+  await pg.release();
+})();
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy90YXNrcy8wMS1hbWFwLzAwLWNoaW5hLmpzIl0sIm5hbWVzIjpbInBnIiwiJCIsIlBnU1FMIiwicG9vbCIsIlV0aWxzIiwiY2FsbCIsIkFNYXAiLCJsb2FkQ2hpbmEiLCJpbmRleCIsInpoTmFtZSIsImxldmVsIiwicGFyZW50SW5kZXgiLCJpc28iLCJnZW9Kc29uIiwiTGlicmFyeSIsInNhdmUiLCJyZWxlYXNlIl0sIm1hcHBpbmdzIjoiQUFBQTs7QUFFQTs7QUFFQTs7OztBQUVBLENBQUMsWUFBWTtBQUNYLFFBQU1BLEVBQUUsR0FBRyxNQUFNQyxpQkFBRUMsS0FBRixDQUFRQyxJQUFSLENBQWEsV0FBYixDQUFqQjtBQUNBLFFBQU1GLGlCQUFFRyxLQUFGLENBQVFDLElBQVIsQ0FBYyxRQUFkLEVBQXVCLFlBQVk7QUFDdkMsVUFBTUosaUJBQUVLLElBQUYsQ0FBT0MsU0FBUCxDQUFpQixPQUFPQyxLQUFQLEVBQWNDLE1BQWQsRUFBc0JDLEtBQXRCLEVBQTZCQyxXQUE3QixFQUEwQ0MsR0FBMUMsRUFBK0NDLE9BQS9DLEtBQTJEO0FBQ2hGLFlBQU1DLGlCQUFRQyxJQUFSLENBQWFmLEVBQWIsRUFBaUJRLEtBQWpCLEVBQXdCRyxXQUF4QixFQUFxQ0MsR0FBckMsRUFBMENILE1BQTFDLEVBQWtESSxPQUFsRCxFQUEyREgsS0FBM0QsQ0FBTjtBQUNELEtBRkssQ0FBTjtBQUdELEdBSkssQ0FBTjtBQUtBLFFBQU1WLEVBQUUsQ0FBQ2dCLE9BQUgsRUFBTjtBQUNELENBUkQiLCJzb3VyY2VzQ29udGVudCI6WyIndXNlIHN0cmljdCc7XG5cbmltcG9ydCAkIGZyb20gJy4vLi4vLi4vbW9kdWxlcyc7XG5cbmltcG9ydCBMaWJyYXJ5IGZyb20gJy4vTGlicmFyeSc7XG5cbihhc3luYyAoKSA9PiB7XG4gIGNvbnN0IHBnID0gYXdhaXQgJC5QZ1NRTC5wb29sKCdsb2NhbGhvc3QnKTtcbiAgYXdhaXQgJC5VdGlscy5jYWxsKGDliqDovb3kuK3lm73mlbDmja5gLCBhc3luYyAoKSA9PiB7XG4gICAgYXdhaXQgJC5BTWFwLmxvYWRDaGluYShhc3luYyAoaW5kZXgsIHpoTmFtZSwgbGV2ZWwsIHBhcmVudEluZGV4LCBpc28sIGdlb0pzb24pID0+IHtcbiAgICAgIGF3YWl0IExpYnJhcnkuc2F2ZShwZywgaW5kZXgsIHBhcmVudEluZGV4LCBpc28sIHpoTmFtZSwgZ2VvSnNvbiwgbGV2ZWwpO1xuICAgIH0pO1xuICB9KTtcbiAgYXdhaXQgcGcucmVsZWFzZSgpO1xufSkoKTsiXX0=

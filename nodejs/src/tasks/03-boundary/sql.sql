@@ -72,33 +72,3 @@ on boundary.line using gist
 
 
 
-create table if not exists boundary.juncture_topo_dump
-(
-    id bigserial primary key,
-    target_id bigint,
-    path int,
-    type varchar,
-    geom geometry,
-    constraint enforce_srid_geom check (st_srid(geom) = 4326)
-);
-
-
-create index boundary_juncture_topo_dump_geom_idx
-on boundary.juncture_topo_dump using gist
-(geom);
-
-
-create table if not exists boundary.coastline_topo_dump
-(
-    id bigserial primary key,
-    target_id bigint,
-    path int,
-    type varchar,
-    geom geometry,
-    constraint enforce_srid_geom check (st_srid(geom) = 4326)
-);
-
-
-create index boundary_coastline_topo_dump_geom_idx
-on boundary.coastline_topo_dump using gist
-(geom);

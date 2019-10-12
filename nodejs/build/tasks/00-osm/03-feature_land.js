@@ -1,0 +1,21 @@
+'use strict';
+
+var _modules = _interopRequireDefault(require("./../../modules"));
+
+var _LibFeature = _interopRequireDefault(require("./LibFeature"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// --max_old_space_size=16000
+(async () => {
+  const pg = await _modules.default.PgSQL.pool('localhost');
+  await _modules.default.Utils.call(`导入land feature`, async () => {
+    const dataDir = `${_modules.default.Utils.dataDir}/shapefile/osm-data`;
+    const shpFilename = `${dataDir}/land-polygons-split-4326/land_polygons.shp`;
+    const dbfFilename = `${dataDir}/land-polygons-split-4326/land_polygons.dbf`;
+    const pgTable = 'osm.feature_land';
+    await _LibFeature.default.loadFromShapeFile(pg, shpFilename, dbfFilename, pgTable, 0, 0);
+  });
+  await pg.release();
+})();
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy90YXNrcy8wMC1vc20vMDMtZmVhdHVyZV9sYW5kLmpzIl0sIm5hbWVzIjpbInBnIiwiJCIsIlBnU1FMIiwicG9vbCIsIlV0aWxzIiwiY2FsbCIsImRhdGFEaXIiLCJzaHBGaWxlbmFtZSIsImRiZkZpbGVuYW1lIiwicGdUYWJsZSIsIkxpYkZlYXR1cmUiLCJsb2FkRnJvbVNoYXBlRmlsZSIsInJlbGVhc2UiXSwibWFwcGluZ3MiOiJBQUFBOztBQUdBOztBQUVBOzs7O0FBRUE7QUFDQSxDQUFDLFlBQVk7QUFDWCxRQUFNQSxFQUFFLEdBQUcsTUFBTUMsaUJBQUVDLEtBQUYsQ0FBUUMsSUFBUixDQUFhLFdBQWIsQ0FBakI7QUFDQSxRQUFNRixpQkFBRUcsS0FBRixDQUFRQyxJQUFSLENBQWMsZ0JBQWQsRUFBK0IsWUFBWTtBQUMvQyxVQUFNQyxPQUFPLEdBQUksR0FBRUwsaUJBQUVHLEtBQUYsQ0FBUUUsT0FBUSxxQkFBbkM7QUFDQSxVQUFNQyxXQUFXLEdBQUksR0FBRUQsT0FBUSw2Q0FBL0I7QUFDQSxVQUFNRSxXQUFXLEdBQUksR0FBRUYsT0FBUSw2Q0FBL0I7QUFDQSxVQUFNRyxPQUFPLEdBQUcsa0JBQWhCO0FBRUEsVUFBTUMsb0JBQVdDLGlCQUFYLENBQTZCWCxFQUE3QixFQUFpQ08sV0FBakMsRUFBOENDLFdBQTlDLEVBQTJEQyxPQUEzRCxFQUFvRSxDQUFwRSxFQUF1RSxDQUF2RSxDQUFOO0FBRUQsR0FSSyxDQUFOO0FBU0EsUUFBTVQsRUFBRSxDQUFDWSxPQUFILEVBQU47QUFDRCxDQVpEIiwic291cmNlc0NvbnRlbnQiOlsiJ3VzZSBzdHJpY3QnO1xuXG5cbmltcG9ydCAkIGZyb20gJy4vLi4vLi4vbW9kdWxlcyc7XG5cbmltcG9ydCBMaWJGZWF0dXJlIGZyb20gJy4vTGliRmVhdHVyZSc7XG5cbi8vIC0tbWF4X29sZF9zcGFjZV9zaXplPTE2MDAwXG4oYXN5bmMgKCkgPT4ge1xuICBjb25zdCBwZyA9IGF3YWl0ICQuUGdTUUwucG9vbCgnbG9jYWxob3N0Jyk7XG4gIGF3YWl0ICQuVXRpbHMuY2FsbChg5a+85YWlbGFuZCBmZWF0dXJlYCwgYXN5bmMgKCkgPT4ge1xuICAgIGNvbnN0IGRhdGFEaXIgPSBgJHskLlV0aWxzLmRhdGFEaXJ9L3NoYXBlZmlsZS9vc20tZGF0YWA7XG4gICAgY29uc3Qgc2hwRmlsZW5hbWUgPSBgJHtkYXRhRGlyfS9sYW5kLXBvbHlnb25zLXNwbGl0LTQzMjYvbGFuZF9wb2x5Z29ucy5zaHBgO1xuICAgIGNvbnN0IGRiZkZpbGVuYW1lID0gYCR7ZGF0YURpcn0vbGFuZC1wb2x5Z29ucy1zcGxpdC00MzI2L2xhbmRfcG9seWdvbnMuZGJmYDtcbiAgICBjb25zdCBwZ1RhYmxlID0gJ29zbS5mZWF0dXJlX2xhbmQnO1xuXG4gICAgYXdhaXQgTGliRmVhdHVyZS5sb2FkRnJvbVNoYXBlRmlsZShwZywgc2hwRmlsZW5hbWUsIGRiZkZpbGVuYW1lLCBwZ1RhYmxlLCAwLCAwKTtcblxuICB9KTtcbiAgYXdhaXQgcGcucmVsZWFzZSgpO1xufSkoKTsiXX0=

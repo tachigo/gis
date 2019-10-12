@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel src --out-dir target --source-maps inline --copy-files"
+    "build": "babel src --out-dir build --source-maps inline --copy-files"
   },
   "author": "",
   "license": "ISC",

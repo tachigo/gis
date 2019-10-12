@@ -1,0 +1,14 @@
+'use strict';
+
+var _modules = _interopRequireDefault(require("./../../modules"));
+
+var _LibLine = _interopRequireDefault(require("./LibLine"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(async () => {
+  const pg = await _modules.default.PgSQL.pool('localhost');
+  await _modules.default.Utils.call(`计算外国外圈陆地边界线`, _LibLine.default.calcForeignOuterJunctures.bind(_LibLine.default), [pg]);
+  await pg.release();
+})();
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy90YXNrcy8wMy1ib3VuZGFyeS8wMy1qdW5jdHVyZS1vdXRlci5qcyJdLCJuYW1lcyI6WyJwZyIsIiQiLCJQZ1NRTCIsInBvb2wiLCJVdGlscyIsImNhbGwiLCJMaWJMaW5lIiwiY2FsY0ZvcmVpZ25PdXRlckp1bmN0dXJlcyIsImJpbmQiLCJyZWxlYXNlIl0sIm1hcHBpbmdzIjoiQUFBQTs7QUFHQTs7QUFFQTs7OztBQUVBLENBQUMsWUFBWTtBQUNYLFFBQU1BLEVBQUUsR0FBRyxNQUFNQyxpQkFBRUMsS0FBRixDQUFRQyxJQUFSLENBQWEsV0FBYixDQUFqQjtBQUNBLFFBQU1GLGlCQUFFRyxLQUFGLENBQVFDLElBQVIsQ0FBYyxhQUFkLEVBQTRCQyxpQkFBUUMseUJBQVIsQ0FBa0NDLElBQWxDLENBQXVDRixnQkFBdkMsQ0FBNUIsRUFBNkUsQ0FBQ04sRUFBRCxDQUE3RSxDQUFOO0FBQ0EsUUFBTUEsRUFBRSxDQUFDUyxPQUFILEVBQU47QUFDRCxDQUpEIiwic291cmNlc0NvbnRlbnQiOlsiJ3VzZSBzdHJpY3QnO1xuXG5cbmltcG9ydCAkIGZyb20gJy4vLi4vLi4vbW9kdWxlcyc7XG5cbmltcG9ydCBMaWJMaW5lIGZyb20gJy4vTGliTGluZSc7XG5cbihhc3luYyAoKSA9PiB7XG4gIGNvbnN0IHBnID0gYXdhaXQgJC5QZ1NRTC5wb29sKCdsb2NhbGhvc3QnKTtcbiAgYXdhaXQgJC5VdGlscy5jYWxsKGDorqHnrpflpJblm73lpJblnIjpmYblnLDovrnnlYznur9gLCBMaWJMaW5lLmNhbGNGb3JlaWduT3V0ZXJKdW5jdHVyZXMuYmluZChMaWJMaW5lKSwgW3BnXSk7XG4gIGF3YWl0IHBnLnJlbGVhc2UoKTtcbn0pKCk7Il19

@@ -1,0 +1,18 @@
+'use strict';
+
+var _modules = _interopRequireDefault(require("./../../modules"));
+
+var _Library = _interopRequireDefault(require("./Library"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(async () => {
+  const pg = await _modules.default.PgSQL.pool('localhost');
+  await _modules.default.Utils.call(`加载中国各省数据`, async () => {
+    await _modules.default.AMap.loadProvinces(async (index, zhName, level, parentIndex, iso, geoJson) => {
+      await _Library.default.save(pg, index, parentIndex, iso, zhName, geoJson, level);
+    });
+  });
+  await pg.release();
+})();
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy90YXNrcy8wMS1hbWFwLzAxLXByb3ZpbmNlcy5qcyJdLCJuYW1lcyI6WyJwZyIsIiQiLCJQZ1NRTCIsInBvb2wiLCJVdGlscyIsImNhbGwiLCJBTWFwIiwibG9hZFByb3ZpbmNlcyIsImluZGV4IiwiemhOYW1lIiwibGV2ZWwiLCJwYXJlbnRJbmRleCIsImlzbyIsImdlb0pzb24iLCJMaWJyYXJ5Iiwic2F2ZSIsInJlbGVhc2UiXSwibWFwcGluZ3MiOiJBQUFBOztBQUVBOztBQUVBOzs7O0FBR0EsQ0FBQyxZQUFZO0FBQ1gsUUFBTUEsRUFBRSxHQUFHLE1BQU1DLGlCQUFFQyxLQUFGLENBQVFDLElBQVIsQ0FBYSxXQUFiLENBQWpCO0FBQ0EsUUFBTUYsaUJBQUVHLEtBQUYsQ0FBUUMsSUFBUixDQUFjLFVBQWQsRUFBeUIsWUFBWTtBQUN6QyxVQUFNSixpQkFBRUssSUFBRixDQUFPQyxhQUFQLENBQXFCLE9BQU9DLEtBQVAsRUFBY0MsTUFBZCxFQUFzQkMsS0FBdEIsRUFBNkJDLFdBQTdCLEVBQTBDQyxHQUExQyxFQUErQ0MsT0FBL0MsS0FBMkQ7QUFDcEYsWUFBTUMsaUJBQVFDLElBQVIsQ0FBYWYsRUFBYixFQUFpQlEsS0FBakIsRUFBd0JHLFdBQXhCLEVBQXFDQyxHQUFyQyxFQUEwQ0gsTUFBMUMsRUFBa0RJLE9BQWxELEVBQTJESCxLQUEzRCxDQUFOO0FBQ0QsS0FGSyxDQUFOO0FBR0QsR0FKSyxDQUFOO0FBS0EsUUFBTVYsRUFBRSxDQUFDZ0IsT0FBSCxFQUFOO0FBQ0QsQ0FSRCIsInNvdXJjZXNDb250ZW50IjpbIid1c2Ugc3RyaWN0JztcblxuaW1wb3J0ICQgZnJvbSAnLi8uLi8uLi9tb2R1bGVzJztcblxuaW1wb3J0IExpYnJhcnkgZnJvbSBcIi4vTGlicmFyeVwiO1xuXG5cbihhc3luYyAoKSA9PiB7XG4gIGNvbnN0IHBnID0gYXdhaXQgJC5QZ1NRTC5wb29sKCdsb2NhbGhvc3QnKTtcbiAgYXdhaXQgJC5VdGlscy5jYWxsKGDliqDovb3kuK3lm73lkITnnIHmlbDmja5gLCBhc3luYyAoKSA9PiB7XG4gICAgYXdhaXQgJC5BTWFwLmxvYWRQcm92aW5jZXMoYXN5bmMgKGluZGV4LCB6aE5hbWUsIGxldmVsLCBwYXJlbnRJbmRleCwgaXNvLCBnZW9Kc29uKSA9PiB7XG4gICAgICBhd2FpdCBMaWJyYXJ5LnNhdmUocGcsIGluZGV4LCBwYXJlbnRJbmRleCwgaXNvLCB6aE5hbWUsIGdlb0pzb24sIGxldmVsKTtcbiAgICB9KTtcbiAgfSk7XG4gIGF3YWl0IHBnLnJlbGVhc2UoKTtcbn0pKCk7Il19

@@ -1,0 +1,14 @@
+'use strict';
+
+var _modules = _interopRequireDefault(require("./../../modules"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(async () => {
+  const pg = await _modules.default.PgSQL.pool('localhost');
+  const table = 'boundary.mfw';
+  const id = 900096;
+  await _modules.default.PgSQL.getPostGis().validatePolygon(pg, id, table, 'id', 'geom');
+  await pg.release();
+})();
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy90YXNrcy96ei10b29scy8wMi1maXgtYm91bmRhcnkuanMiXSwibmFtZXMiOlsicGciLCIkIiwiUGdTUUwiLCJwb29sIiwidGFibGUiLCJpZCIsImdldFBvc3RHaXMiLCJ2YWxpZGF0ZVBvbHlnb24iLCJyZWxlYXNlIl0sIm1hcHBpbmdzIjoiQUFBQTs7QUFHQTs7OztBQUVBLENBQUMsWUFBWTtBQUNYLFFBQU1BLEVBQUUsR0FBRyxNQUFNQyxpQkFBRUMsS0FBRixDQUFRQyxJQUFSLENBQWEsV0FBYixDQUFqQjtBQUVBLFFBQU1DLEtBQUssR0FBRyxjQUFkO0FBQ0EsUUFBTUMsRUFBRSxHQUFHLE1BQVg7QUFDQSxRQUFNSixpQkFBRUMsS0FBRixDQUFRSSxVQUFSLEdBQXFCQyxlQUFyQixDQUFxQ1AsRUFBckMsRUFBeUNLLEVBQXpDLEVBQTZDRCxLQUE3QyxFQUFvRCxJQUFwRCxFQUEwRCxNQUExRCxDQUFOO0FBRUEsUUFBTUosRUFBRSxDQUFDUSxPQUFILEVBQU47QUFDRCxDQVJEIiwic291cmNlc0NvbnRlbnQiOlsiJ3VzZSBzdHJpY3QnO1xuXG5cbmltcG9ydCAkIGZyb20gJy4vLi4vLi4vbW9kdWxlcyc7XG5cbihhc3luYyAoKSA9PiB7XG4gIGNvbnN0IHBnID0gYXdhaXQgJC5QZ1NRTC5wb29sKCdsb2NhbGhvc3QnKTtcblxuICBjb25zdCB0YWJsZSA9ICdib3VuZGFyeS5tZncnO1xuICBjb25zdCBpZCA9IDkwMDA5NjtcbiAgYXdhaXQgJC5QZ1NRTC5nZXRQb3N0R2lzKCkudmFsaWRhdGVQb2x5Z29uKHBnLCBpZCwgdGFibGUsICdpZCcsICdnZW9tJyk7XG5cbiAgYXdhaXQgcGcucmVsZWFzZSgpO1xufSkoKTsiXX0=

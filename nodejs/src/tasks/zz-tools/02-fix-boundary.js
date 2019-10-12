@@ -7,7 +7,7 @@ import $ from './../../modules';
   const pg = await $.PgSQL.pool('localhost');
 
   const table = 'boundary.mfw';
-  const id = 900114;
+  const id = 900096;
   await $.PgSQL.getPostGis().validatePolygon(pg, id, table, 'id', 'geom');
 
   await pg.release();

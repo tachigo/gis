@@ -18,6 +18,7 @@ import LibMfwCustom from './LibMfwCustom';
       await LibMfwCustom.fixOthers04(pg);
       await LibMfwCustom.fixOthers05(pg);
       await LibMfwCustom.fixOthers06(pg);
+      await LibMfwCustom.fixOthers07(pg);
     });
   });
   await pg.release();

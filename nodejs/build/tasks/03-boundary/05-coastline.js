@@ -1,0 +1,14 @@
+'use strict';
+
+var _modules = _interopRequireDefault(require("./../../modules"));
+
+var _LibLine = _interopRequireDefault(require("./LibLine"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(async () => {
+  const pg = await _modules.default.PgSQL.pool('localhost');
+  await _modules.default.Utils.call(`计算外国海岸边界线`, _LibLine.default.calcForeignCoastlines.bind(_LibLine.default), [pg]);
+  await pg.release();
+})();
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy90YXNrcy8wMy1ib3VuZGFyeS8wNS1jb2FzdGxpbmUuanMiXSwibmFtZXMiOlsicGciLCIkIiwiUGdTUUwiLCJwb29sIiwiVXRpbHMiLCJjYWxsIiwiTGliTGluZSIsImNhbGNGb3JlaWduQ29hc3RsaW5lcyIsImJpbmQiLCJyZWxlYXNlIl0sIm1hcHBpbmdzIjoiQUFBQTs7QUFHQTs7QUFFQTs7OztBQUVBLENBQUMsWUFBWTtBQUNYLFFBQU1BLEVBQUUsR0FBRyxNQUFNQyxpQkFBRUMsS0FBRixDQUFRQyxJQUFSLENBQWEsV0FBYixDQUFqQjtBQUNBLFFBQU1GLGlCQUFFRyxLQUFGLENBQVFDLElBQVIsQ0FBYyxXQUFkLEVBQTBCQyxpQkFBUUMscUJBQVIsQ0FBOEJDLElBQTlCLENBQW1DRixnQkFBbkMsQ0FBMUIsRUFBdUUsQ0FBQ04sRUFBRCxDQUF2RSxDQUFOO0FBQ0EsUUFBTUEsRUFBRSxDQUFDUyxPQUFILEVBQU47QUFDRCxDQUpEIiwic291cmNlc0NvbnRlbnQiOlsiJ3VzZSBzdHJpY3QnO1xuXG5cbmltcG9ydCAkIGZyb20gJy4vLi4vLi4vbW9kdWxlcyc7XG5cbmltcG9ydCBMaWJMaW5lIGZyb20gJy4vTGliTGluZSc7XG5cbihhc3luYyAoKSA9PiB7XG4gIGNvbnN0IHBnID0gYXdhaXQgJC5QZ1NRTC5wb29sKCdsb2NhbGhvc3QnKTtcbiAgYXdhaXQgJC5VdGlscy5jYWxsKGDorqHnrpflpJblm73mtbflsrjovrnnlYznur9gLCBMaWJMaW5lLmNhbGNGb3JlaWduQ29hc3RsaW5lcy5iaW5kKExpYkxpbmUpLCBbcGddKTtcbiAgYXdhaXQgcGcucmVsZWFzZSgpO1xufSkoKTsiXX0=

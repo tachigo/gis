@@ -1,0 +1,17 @@
+'use strict';
+
+var _modules = _interopRequireDefault(require("./../../modules"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(async () => {
+  const pgKey = 'localhost';
+  const pg = await _modules.default.PgSQL.pool(pgKey);
+  await _modules.default.Utils.call(`导出OSM国家树的数据`, async () => {
+    const shpFilename = `${_modules.default.Utils.dataDir}/shapefile/osm-data/osm-country/country.shp`;
+    const sql = 'select * from osm.relation_aggregate';
+    await _modules.default.PgSQL.getPostGis().exportShapeFile(shpFilename, pgKey, sql, 'geom');
+  });
+  await pg.release();
+})();
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy90YXNrcy8wMC1vc20vMDYtZXhwb3J0LmpzIl0sIm5hbWVzIjpbInBnS2V5IiwicGciLCIkIiwiUGdTUUwiLCJwb29sIiwiVXRpbHMiLCJjYWxsIiwic2hwRmlsZW5hbWUiLCJkYXRhRGlyIiwic3FsIiwiZ2V0UG9zdEdpcyIsImV4cG9ydFNoYXBlRmlsZSIsInJlbGVhc2UiXSwibWFwcGluZ3MiOiJBQUFBOztBQUdBOzs7O0FBRUEsQ0FBQyxZQUFZO0FBQ1gsUUFBTUEsS0FBSyxHQUFHLFdBQWQ7QUFDQSxRQUFNQyxFQUFFLEdBQUcsTUFBTUMsaUJBQUVDLEtBQUYsQ0FBUUMsSUFBUixDQUFhSixLQUFiLENBQWpCO0FBQ0EsUUFBTUUsaUJBQUVHLEtBQUYsQ0FBUUMsSUFBUixDQUFjLGFBQWQsRUFBNEIsWUFBWTtBQUM1QyxVQUFNQyxXQUFXLEdBQUksR0FBRUwsaUJBQUVHLEtBQUYsQ0FBUUcsT0FBUSw2Q0FBdkM7QUFDQSxVQUFNQyxHQUFHLEdBQUcsc0NBQVo7QUFDQSxVQUFNUCxpQkFBRUMsS0FBRixDQUFRTyxVQUFSLEdBQXFCQyxlQUFyQixDQUFxQ0osV0FBckMsRUFBa0RQLEtBQWxELEVBQXlEUyxHQUF6RCxFQUE4RCxNQUE5RCxDQUFOO0FBQ0QsR0FKSyxDQUFOO0FBTUEsUUFBTVIsRUFBRSxDQUFDVyxPQUFILEVBQU47QUFDRCxDQVZEIiwic291cmNlc0NvbnRlbnQiOlsiJ3VzZSBzdHJpY3QnO1xuXG5cbmltcG9ydCAkIGZyb20gJy4vLi4vLi4vbW9kdWxlcyc7XG5cbihhc3luYyAoKSA9PiB7XG4gIGNvbnN0IHBnS2V5ID0gJ2xvY2FsaG9zdCc7XG4gIGNvbnN0IHBnID0gYXdhaXQgJC5QZ1NRTC5wb29sKHBnS2V5KTtcbiAgYXdhaXQgJC5VdGlscy5jYWxsKGDlr7zlh7pPU03lm73lrrbmoJHnmoTmlbDmja5gLCBhc3luYyAoKSA9PiB7XG4gICAgY29uc3Qgc2hwRmlsZW5hbWUgPSBgJHskLlV0aWxzLmRhdGFEaXJ9L3NoYXBlZmlsZS9vc20tZGF0YS9vc20tY291bnRyeS9jb3VudHJ5LnNocGA7XG4gICAgY29uc3Qgc3FsID0gJ3NlbGVjdCAqIGZyb20gb3NtLnJlbGF0aW9uX2FnZ3JlZ2F0ZSc7XG4gICAgYXdhaXQgJC5QZ1NRTC5nZXRQb3N0R2lzKCkuZXhwb3J0U2hhcGVGaWxlKHNocEZpbGVuYW1lLCBwZ0tleSwgc3FsLCAnZ2VvbScpO1xuICB9KTtcblxuICBhd2FpdCBwZy5yZWxlYXNlKCk7XG59KSgpOyJdfQ==
