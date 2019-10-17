@@ -4,7 +4,7 @@ import $ from './../../modules';
 import WKT from "terraformer-wkt-parser";
 
 (async () => {
-  const pg = await $.PgSQL.pool('localhost');
+  const pg = await $.PgSQL.client('localhost');
   const shpFilename = `${$.Utils.dataDir}/shapefile/osm-data/osm-country/country.shp`;
   const dbfFilename = `${$.Utils.dataDir}/shapefile/osm-data/osm-country/country.dbf`;
   const pgTableName = 'osm.relation_aggregate';

@@ -7,7 +7,7 @@ import LibLine from './LibLine';
 import LibChina from './LibChina';
 
 (async () => {
-  const pg = await $.PgSQL.pool('localhost');
+  const pg = await $.PgSQL.client('localhost');
   await $.Utils.call(`准备中国数据`, LibChina.prepareChinaBoundary.bind(LibChina), [pg]);
   await $.Utils.call(`导入中国边界数据`, LibChina.importChinaBoundary.bind(LibChina), [pg]);
   await $.Utils.call(`修复中国边界数据`, LibChina.fixChinaBoundary.bind(LibChina), [pg]);

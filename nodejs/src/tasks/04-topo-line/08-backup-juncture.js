@@ -3,16 +3,19 @@
 
 import $ from './../../modules';
 
-import LibTopology from './LibTopology';
+import LibTopoLine from './LibTopoLine';
 
 
 (async () => {
-  const pg = await $.PgSQL.pool('localhost');
+  const pg = await $.PgSQL.client('localhost');
   const topologyName = 'line_topo';
-  const topology = new LibTopology(topologyName);
+  const dumpTable = 'line_dump';
+  const topoTable = 'line_topo';
+  const schema = 'topo';
+  const topology = new LibTopoLine(topologyName, dumpTable, topoTable, schema);
 
   await $.Utils.call(`备份 外国 拓扑数据`, async () => {
-    const list = await LibTopology.getForeignList(pg);
+    const list = await LibTopoLine.getForeignList(pg);
     for await (const item of list) {
       const id = +item['id'];
       const name = item['name'];

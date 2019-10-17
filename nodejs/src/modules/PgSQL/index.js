@@ -9,6 +9,12 @@ class PgSQL {
 
   static pools = {};
 
+  static async client(key, config = {}) {
+    const pool = await PgSQL.pool(key, config);
+    return await pool.connect();
+  }
+
+
   static async pool(key, config = {}) {
     if (!this.pools[key]) {
       const configuration = await Utils.getConfiguration('pgsql');
@@ -24,7 +30,7 @@ class PgSQL {
       });
       this.pools[key] = pool;
     }
-    return await this.pools[key].connect();
+    return await this.pools[key];
   }
 
 

@@ -4,7 +4,7 @@
 import $ from './../../modules';
 
 (async () => {
-  const pg = await $.PgSQL.pool('localhost');
+  const pg = await $.PgSQL.client('localhost');
 
   const table = 'boundary.mfw';
   const id = 900096;

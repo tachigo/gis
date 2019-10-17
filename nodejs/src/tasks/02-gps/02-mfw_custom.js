@@ -6,7 +6,7 @@ import $ from './../../modules';
 import LibMfwCustom from './LibMfwCustom';
 
 (async () => {
-  const pg = await $.PgSQL.pool('localhost');
+  const pg = await $.PgSQL.client('localhost');
   await $.Utils.call(`处理问题`, async () => {
     await $.Utils.call(`导入中国领海数据`, LibMfwCustom.importChinaMaritime.bind(LibMfwCustom), [pg]);
     await $.Utils.call(`修复和中国有交集的国家`, LibMfwCustom.fixCountryIntersectsWithChina.bind(LibMfwCustom), [pg]);

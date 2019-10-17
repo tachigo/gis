@@ -1,0 +1,21 @@
+'use strict';
+
+var _modules = _interopRequireDefault(require("./../../modules"));
+
+var _LibTopoLine = _interopRequireDefault(require("./LibTopoLine"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(async () => {
+  const pg = await _modules.default.PgSQL.client('localhost');
+  const topologyName = 'line_topo';
+  const dumpTable = 'line_dump';
+  const topoTable = 'line_topo';
+  const schema = 'topo';
+  const topology = new _LibTopoLine.default(topologyName, dumpTable, topoTable, schema);
+  await _modules.default.Utils.call(`备份拓扑结构`, async () => {
+    await topology.backupTopology(pg);
+  });
+  await pg.release();
+})();
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy90YXNrcy8wNC10b3BvLWxpbmUvMDYtYmFja3VwLWluaXQuanMiXSwibmFtZXMiOlsicGciLCIkIiwiUGdTUUwiLCJjbGllbnQiLCJ0b3BvbG9neU5hbWUiLCJkdW1wVGFibGUiLCJ0b3BvVGFibGUiLCJzY2hlbWEiLCJ0b3BvbG9neSIsIkxpYlRvcG9MaW5lIiwiVXRpbHMiLCJjYWxsIiwiYmFja3VwVG9wb2xvZ3kiLCJyZWxlYXNlIl0sIm1hcHBpbmdzIjoiQUFBQTs7QUFHQTs7QUFFQTs7OztBQUdBLENBQUMsWUFBWTtBQUNYLFFBQU1BLEVBQUUsR0FBRyxNQUFNQyxpQkFBRUMsS0FBRixDQUFRQyxNQUFSLENBQWUsV0FBZixDQUFqQjtBQUNBLFFBQU1DLFlBQVksR0FBRyxXQUFyQjtBQUNBLFFBQU1DLFNBQVMsR0FBRyxXQUFsQjtBQUNBLFFBQU1DLFNBQVMsR0FBRyxXQUFsQjtBQUNBLFFBQU1DLE1BQU0sR0FBRyxNQUFmO0FBQ0EsUUFBTUMsUUFBUSxHQUFHLElBQUlDLG9CQUFKLENBQWdCTCxZQUFoQixFQUE4QkMsU0FBOUIsRUFBeUNDLFNBQXpDLEVBQW9EQyxNQUFwRCxDQUFqQjtBQUVBLFFBQU1OLGlCQUFFUyxLQUFGLENBQVFDLElBQVIsQ0FBYyxRQUFkLEVBQXVCLFlBQVk7QUFDdkMsVUFBTUgsUUFBUSxDQUFDSSxjQUFULENBQXdCWixFQUF4QixDQUFOO0FBQ0QsR0FGSyxDQUFOO0FBSUEsUUFBTUEsRUFBRSxDQUFDYSxPQUFILEVBQU47QUFDRCxDQWJEIiwic291cmNlc0NvbnRlbnQiOlsiJ3VzZSBzdHJpY3QnO1xuXG5cbmltcG9ydCAkIGZyb20gJy4vLi4vLi4vbW9kdWxlcyc7XG5cbmltcG9ydCBMaWJUb3BvTGluZSBmcm9tICcuL0xpYlRvcG9MaW5lJztcblxuXG4oYXN5bmMgKCkgPT4ge1xuICBjb25zdCBwZyA9IGF3YWl0ICQuUGdTUUwuY2xpZW50KCdsb2NhbGhvc3QnKTtcbiAgY29uc3QgdG9wb2xvZ3lOYW1lID0gJ2xpbmVfdG9wbyc7XG4gIGNvbnN0IGR1bXBUYWJsZSA9ICdsaW5lX2R1bXAnO1xuICBjb25zdCB0b3BvVGFibGUgPSAnbGluZV90b3BvJztcbiAgY29uc3Qgc2NoZW1hID0gJ3RvcG8nO1xuICBjb25zdCB0b3BvbG9neSA9IG5ldyBMaWJUb3BvTGluZSh0b3BvbG9neU5hbWUsIGR1bXBUYWJsZSwgdG9wb1RhYmxlLCBzY2hlbWEpO1xuXG4gIGF3YWl0ICQuVXRpbHMuY2FsbChg5aSH5Lu95ouT5omR57uT5p6EYCwgYXN5bmMgKCkgPT4ge1xuICAgIGF3YWl0IHRvcG9sb2d5LmJhY2t1cFRvcG9sb2d5KHBnKTtcbiAgfSk7XG5cbiAgYXdhaXQgcGcucmVsZWFzZSgpO1xufSkoKTsiXX0=

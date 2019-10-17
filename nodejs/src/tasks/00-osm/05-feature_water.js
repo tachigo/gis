@@ -7,7 +7,7 @@ import LibFeature from './LibFeature';
 
 // --max_old_space_size=16000
 (async () => {
-  const pg = await $.PgSQL.pool('localhost');
+  const pg = await $.PgSQL.client('localhost');
   await $.Utils.call(`导入water feature`, async () => {
     const dataDir = `${$.Utils.dataDir}/shapefile/osm-data`;
     const shpFilename = `${dataDir}/water-polygons-split-4326/water_polygons.shp`;

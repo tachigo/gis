@@ -7,7 +7,7 @@ import LibPrepare from './LibPrepare';
 
 
 (async () => {
-  const pg = await $.PgSQL.pool('localhost');
+  const pg = await $.PgSQL.client('localhost');
   await $.Utils.call(`准备数据`, async () => {
     // osm -> world
     // amap -> world
