@@ -1,0 +1,11 @@
+'use strict';
+
+var _modules = _interopRequireDefault(require("./../modules"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(async () => {
+  const shpFilename = `${_modules.default.Utils.dataDir}/shapefile/tmp-topo-line/topo-line.shp`;
+  await _modules.default.PgSQL.getPostGis().exportShapeFile(shpFilename, 'localhost', 'select * from topo.line_topo', 'geom');
+})();
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9zY3JpcHRzLzA1LWV4cG9ydC10b3BvLWxpbmUuanMiXSwibmFtZXMiOlsic2hwRmlsZW5hbWUiLCIkIiwiVXRpbHMiLCJkYXRhRGlyIiwiUGdTUUwiLCJnZXRQb3N0R2lzIiwiZXhwb3J0U2hhcGVGaWxlIl0sIm1hcHBpbmdzIjoiQUFBQTs7QUFFQTs7OztBQUVBLENBQUMsWUFBWTtBQUNYLFFBQU1BLFdBQVcsR0FBSSxHQUFFQyxpQkFBRUMsS0FBRixDQUFRQyxPQUFRLHdDQUF2QztBQUNBLFFBQU1GLGlCQUFFRyxLQUFGLENBQVFDLFVBQVIsR0FBcUJDLGVBQXJCLENBQXFDTixXQUFyQyxFQUFrRCxXQUFsRCxFQUErRCw4QkFBL0QsRUFBK0YsTUFBL0YsQ0FBTjtBQUNELENBSEQiLCJzb3VyY2VzQ29udGVudCI6WyIndXNlIHN0cmljdCc7XG5cbmltcG9ydCAkIGZyb20gJy4vLi4vbW9kdWxlcyc7XG5cbihhc3luYyAoKSA9PiB7XG4gIGNvbnN0IHNocEZpbGVuYW1lID0gYCR7JC5VdGlscy5kYXRhRGlyfS9zaGFwZWZpbGUvdG1wLXRvcG8tbGluZS90b3BvLWxpbmUuc2hwYDtcbiAgYXdhaXQgJC5QZ1NRTC5nZXRQb3N0R2lzKCkuZXhwb3J0U2hhcGVGaWxlKHNocEZpbGVuYW1lLCAnbG9jYWxob3N0JywgJ3NlbGVjdCAqIGZyb20gdG9wby5saW5lX3RvcG8nLCAnZ2VvbScpO1xufSkoKTsiXX0=

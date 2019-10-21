@@ -325,6 +325,7 @@ class LibTopology {
     // 删除原有的
     await pg.query(`delete from ${this.#lineTopo} where id in (${intersectIds.join(', ')})`);
   }
+
 }
 
 

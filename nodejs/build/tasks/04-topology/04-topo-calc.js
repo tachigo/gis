@@ -1,0 +1,21 @@
+'use strict';
+
+var _modules = _interopRequireDefault(require("./../../modules"));
+
+var _LibTopology = _interopRequireDefault(require("./LibTopology"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(async () => {
+  const pg = await _modules.default.PgSQL.client('localhost');
+  const lineDumpSchema = 'topo';
+  const lineDumpTable = 'line_dump';
+  const lineTopoSchema = 'topo';
+  const lineTopoTable = 'line_topo';
+  const topology = new _LibTopology.default(lineDumpSchema, lineDumpTable, lineTopoSchema, lineTopoTable);
+  await _modules.default.Utils.call(`计算边`, async () => {
+    await topology.calcEdges(pg);
+  });
+  await pg.release();
+})();
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy90YXNrcy8wNC10b3BvbG9neS8wNC10b3BvLWNhbGMuanMiXSwibmFtZXMiOlsicGciLCIkIiwiUGdTUUwiLCJjbGllbnQiLCJsaW5lRHVtcFNjaGVtYSIsImxpbmVEdW1wVGFibGUiLCJsaW5lVG9wb1NjaGVtYSIsImxpbmVUb3BvVGFibGUiLCJ0b3BvbG9neSIsIkxpYlRvcG9sb2d5IiwiVXRpbHMiLCJjYWxsIiwiY2FsY0VkZ2VzIiwicmVsZWFzZSJdLCJtYXBwaW5ncyI6IkFBQUE7O0FBRUE7O0FBRUE7Ozs7QUFHQSxDQUFDLFlBQVk7QUFDWCxRQUFNQSxFQUFFLEdBQUcsTUFBTUMsaUJBQUVDLEtBQUYsQ0FBUUMsTUFBUixDQUFlLFdBQWYsQ0FBakI7QUFFQSxRQUFNQyxjQUFjLEdBQUcsTUFBdkI7QUFDQSxRQUFNQyxhQUFhLEdBQUcsV0FBdEI7QUFDQSxRQUFNQyxjQUFjLEdBQUcsTUFBdkI7QUFDQSxRQUFNQyxhQUFhLEdBQUcsV0FBdEI7QUFDQSxRQUFNQyxRQUFRLEdBQUcsSUFBSUMsb0JBQUosQ0FBZ0JMLGNBQWhCLEVBQWdDQyxhQUFoQyxFQUErQ0MsY0FBL0MsRUFBK0RDLGFBQS9ELENBQWpCO0FBRUEsUUFBTU4saUJBQUVTLEtBQUYsQ0FBUUMsSUFBUixDQUFjLEtBQWQsRUFBb0IsWUFBWTtBQUNwQyxVQUFNSCxRQUFRLENBQUNJLFNBQVQsQ0FBbUJaLEVBQW5CLENBQU47QUFDRCxHQUZLLENBQU47QUFJQSxRQUFNQSxFQUFFLENBQUNhLE9BQUgsRUFBTjtBQUNELENBZEQiLCJzb3VyY2VzQ29udGVudCI6WyIndXNlIHN0cmljdCc7XG5cbmltcG9ydCAkIGZyb20gJy4vLi4vLi4vbW9kdWxlcyc7XG5cbmltcG9ydCBMaWJUb3BvbG9neSBmcm9tICcuL0xpYlRvcG9sb2d5JztcblxuXG4oYXN5bmMgKCkgPT4ge1xuICBjb25zdCBwZyA9IGF3YWl0ICQuUGdTUUwuY2xpZW50KCdsb2NhbGhvc3QnKTtcblxuICBjb25zdCBsaW5lRHVtcFNjaGVtYSA9ICd0b3BvJztcbiAgY29uc3QgbGluZUR1bXBUYWJsZSA9ICdsaW5lX2R1bXAnO1xuICBjb25zdCBsaW5lVG9wb1NjaGVtYSA9ICd0b3BvJztcbiAgY29uc3QgbGluZVRvcG9UYWJsZSA9ICdsaW5lX3RvcG8nO1xuICBjb25zdCB0b3BvbG9neSA9IG5ldyBMaWJUb3BvbG9neShsaW5lRHVtcFNjaGVtYSwgbGluZUR1bXBUYWJsZSwgbGluZVRvcG9TY2hlbWEsIGxpbmVUb3BvVGFibGUpO1xuXG4gIGF3YWl0ICQuVXRpbHMuY2FsbChg6K6h566X6L65YCwgYXN5bmMgKCkgPT4ge1xuICAgIGF3YWl0IHRvcG9sb2d5LmNhbGNFZGdlcyhwZyk7XG4gIH0pO1xuXG4gIGF3YWl0IHBnLnJlbGVhc2UoKTtcbn0pKCk7Il19
