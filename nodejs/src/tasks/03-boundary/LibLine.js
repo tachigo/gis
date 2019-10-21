@@ -5,7 +5,7 @@ import Utils from './../../modules/Utils';
 class LibLine {
 
   static async getForeignList(pg) {
-    const table = 'gps.mfw';
+    const table = 'boundary.mfw';
     const sql = `select id, zh_name from ${table} where id > 900000 order by id asc`;
     const res = await pg.query(sql);
     const list = [];

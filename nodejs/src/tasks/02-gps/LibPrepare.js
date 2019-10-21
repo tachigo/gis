@@ -25,7 +25,7 @@ class LibPrepare {
     const toTable = 'gps.world';
     const sql = `insert into ${toTable} (id, parent_id, level, iso, zh_name, en_name, geom) 
     select id, parent_id, level, iso, zh_name, en_name, st_multi(geom) as geom 
-    from ${fromTable} 
+    from ${fromTable} where id = 1
     on conflict (id) do update set 
     parent_id = excluded.parent_id, level = excluded.level, iso = excluded.iso,
     zh_name = excluded.zh_name, en_name = excluded.en_name, geom = excluded.geom`;

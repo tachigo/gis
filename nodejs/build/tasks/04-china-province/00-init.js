@@ -1,0 +1,17 @@
+'use strict';
+
+var _modules = _interopRequireDefault(require("./../../modules"));
+
+var _LibChinaProvince = _interopRequireDefault(require("./LibChinaProvince"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(async () => {
+  const pg = await _modules.default.PgSQL.client('localhost');
+  await _modules.default.Utils.call(`初始化中国省`, async () => {
+    await _LibChinaProvince.default.initGps(pg);
+    await _LibChinaProvince.default.initProvinceGpsWorld(pg);
+  });
+  await pg.release();
+})();
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy90YXNrcy8wNC1jaGluYS1wcm92aW5jZS8wMC1pbml0LmpzIl0sIm5hbWVzIjpbInBnIiwiJCIsIlBnU1FMIiwiY2xpZW50IiwiVXRpbHMiLCJjYWxsIiwiTGliQ2hpbmFQcm92aW5jZSIsImluaXRHcHMiLCJpbml0UHJvdmluY2VHcHNXb3JsZCIsInJlbGVhc2UiXSwibWFwcGluZ3MiOiJBQUFBOztBQUVBOztBQUVBOzs7O0FBR0EsQ0FBQyxZQUFZO0FBQ1gsUUFBTUEsRUFBRSxHQUFHLE1BQU1DLGlCQUFFQyxLQUFGLENBQVFDLE1BQVIsQ0FBZSxXQUFmLENBQWpCO0FBQ0EsUUFBTUYsaUJBQUVHLEtBQUYsQ0FBUUMsSUFBUixDQUFjLFFBQWQsRUFBdUIsWUFBWTtBQUN2QyxVQUFNQywwQkFBaUJDLE9BQWpCLENBQXlCUCxFQUF6QixDQUFOO0FBQ0EsVUFBTU0sMEJBQWlCRSxvQkFBakIsQ0FBc0NSLEVBQXRDLENBQU47QUFDRCxHQUhLLENBQU47QUFJQSxRQUFNQSxFQUFFLENBQUNTLE9BQUgsRUFBTjtBQUNELENBUEQiLCJzb3VyY2VzQ29udGVudCI6WyIndXNlIHN0cmljdCc7XG5cbmltcG9ydCAkIGZyb20gJy4vLi4vLi4vbW9kdWxlcyc7XG5cbmltcG9ydCBMaWJDaGluYVByb3ZpbmNlIGZyb20gJy4vTGliQ2hpbmFQcm92aW5jZSc7XG5cblxuKGFzeW5jICgpID0+IHtcbiAgY29uc3QgcGcgPSBhd2FpdCAkLlBnU1FMLmNsaWVudCgnbG9jYWxob3N0Jyk7XG4gIGF3YWl0ICQuVXRpbHMuY2FsbChg5Yid5aeL5YyW5Lit5Zu955yBYCwgYXN5bmMgKCkgPT4ge1xuICAgIGF3YWl0IExpYkNoaW5hUHJvdmluY2UuaW5pdEdwcyhwZyk7XG4gICAgYXdhaXQgTGliQ2hpbmFQcm92aW5jZS5pbml0UHJvdmluY2VHcHNXb3JsZChwZyk7XG4gIH0pO1xuICBhd2FpdCBwZy5yZWxlYXNlKCk7XG59KSgpOyJdfQ==

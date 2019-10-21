@@ -71,10 +71,13 @@ class AMap {
   }
 
 
-  static async getProvinces(fallback) {
+  static async getProvinces(filterFallback, fallback) {
     const list = await JsonFile.readFileSync(`${__dirname}/provinces.json`);
     for await (const item of list) {
-      await Utils.call(`获取 [${item.name}] 数据`, this.getProvince.bind(this), [item, fallback]);
+      const filter = await filterFallback(item);
+      if (filter) {
+        await Utils.call(`获取 [${item.name}] 数据`, this.getProvince.bind(this), [item, fallback]);
+      }
     }
   }
 

@@ -1,0 +1,14 @@
+'use strict';
+
+var _modules = _interopRequireDefault(require("./../../modules"));
+
+var _LibChinaProvince = _interopRequireDefault(require("./LibChinaProvince"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(async () => {
+  const pg = await _modules.default.PgSQL.client('localhost');
+  await _modules.default.Utils.call(`计算中国各省内圈陆地边界线`, _LibChinaProvince.default.calcInnerJunctures.bind(_LibChinaProvince.default), [pg]);
+  await pg.release();
+})();
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy90YXNrcy8wNC1jaGluYS1wcm92aW5jZS8wOC1qdW5jdHVyZS1pbm5lci5qcyJdLCJuYW1lcyI6WyJwZyIsIiQiLCJQZ1NRTCIsImNsaWVudCIsIlV0aWxzIiwiY2FsbCIsIkxpYkNoaW5hUHJvdmluY2UiLCJjYWxjSW5uZXJKdW5jdHVyZXMiLCJiaW5kIiwicmVsZWFzZSJdLCJtYXBwaW5ncyI6IkFBQUE7O0FBR0E7O0FBRUE7Ozs7QUFFQSxDQUFDLFlBQVk7QUFDWCxRQUFNQSxFQUFFLEdBQUcsTUFBTUMsaUJBQUVDLEtBQUYsQ0FBUUMsTUFBUixDQUFlLFdBQWYsQ0FBakI7QUFDQSxRQUFNRixpQkFBRUcsS0FBRixDQUFRQyxJQUFSLENBQWMsZUFBZCxFQUE4QkMsMEJBQWlCQyxrQkFBakIsQ0FBb0NDLElBQXBDLENBQXlDRix5QkFBekMsQ0FBOUIsRUFBMEYsQ0FBQ04sRUFBRCxDQUExRixDQUFOO0FBQ0EsUUFBTUEsRUFBRSxDQUFDUyxPQUFILEVBQU47QUFDRCxDQUpEIiwic291cmNlc0NvbnRlbnQiOlsiJ3VzZSBzdHJpY3QnO1xuXG5cbmltcG9ydCAkIGZyb20gJy4vLi4vLi4vbW9kdWxlcyc7XG5cbmltcG9ydCBMaWJDaGluYVByb3ZpbmNlIGZyb20gJy4vTGliQ2hpbmFQcm92aW5jZSc7XG5cbihhc3luYyAoKSA9PiB7XG4gIGNvbnN0IHBnID0gYXdhaXQgJC5QZ1NRTC5jbGllbnQoJ2xvY2FsaG9zdCcpO1xuICBhd2FpdCAkLlV0aWxzLmNhbGwoYOiuoeeul+S4reWbveWQhOecgeWGheWciOmZhuWcsOi+ueeVjOe6v2AsIExpYkNoaW5hUHJvdmluY2UuY2FsY0lubmVySnVuY3R1cmVzLmJpbmQoTGliQ2hpbmFQcm92aW5jZSksIFtwZ10pO1xuICBhd2FpdCBwZy5yZWxlYXNlKCk7XG59KSgpOyJdfQ==
