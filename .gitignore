@@ -1,6 +1,7 @@
 nodejs/node_modules
 nodejs/data/shapefile/osm-data
 nodejs/data/shapefile/tmp*
+nodejs/data/shapefile/topo-line-country
 nodejs/target
 nodejs/tools
 .vscode
