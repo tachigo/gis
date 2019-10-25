@@ -12,8 +12,10 @@
   "dependencies": {
     "axios": "^0.19.0",
     "jsonfile": "^5.0.0",
+    "lodash": "^4.17.15",
     "merge": "^1.2.1",
     "moment": "^2.24.0",
+    "pad": "^3.2.0",
     "pg": "^7.12.1",
     "shapefile": "^0.6.6",
     "terraformer-wkt-parser": "^1.2.0",
