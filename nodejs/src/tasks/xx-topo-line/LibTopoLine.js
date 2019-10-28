@@ -26,7 +26,7 @@ class LibTopoLine {
   }
 
 
-  async initRelationColumn(pg) {
+  async initDump2TopoRelation(pg) {
     try {
       await pg.query(`drop index if exists ${this.#lineDumpSchema}_${this.#lineDumpTable}_topo_ids_idx cascade`);
     } catch (e) {
@@ -41,8 +41,10 @@ class LibTopoLine {
 
     await pg.query(`alter table ${this.#lineDump} add column topo_ids bigint[]`);
     await pg.query(`create index ${this.#lineDumpSchema}_${this.#lineDumpTable}_topo_ids_idx on ${this.#lineDump} using gin (topo_ids)`);
+  }
 
 
+  async initTopo2DumpRelation(pg) {
     try {
       await pg.query(`drop index if exists ${this.#lineTopoSchema}_${this.#lineTopoTable}_dump_ids_index cascade`);
     } catch (e) {
@@ -307,6 +309,8 @@ class LibTopoLine {
         nextId = id;
         i += 1;
         await Utils.call(`关联 ${this.#lineTopo} 边 ${i}#${id} 的 dump 关系`, async () => {
+          let ids;
+          let dumpIds;
           const sql1 = `with 
           ta as (
             select geom from ${that.#lineTopo} where id = $1
@@ -320,7 +324,8 @@ class LibTopoLine {
             and ST_Intersects(t.geom, ta.geom)
           )
           , tc as (
-            select id from tb where ST_GeometryType(geom) not in ('ST_Point', 'ST_MultiPoint')
+            select id from tb 
+            where ST_GeometryType(geom) not in ('ST_Point', 'ST_MultiPoint')
           )
           select distinct id from tc`;
           const rows1 = await pg
@@ -329,8 +334,34 @@ class LibTopoLine {
               return res.rows || [];
             })
           ;
-          const ids = rows1.map(item => +item['id']);
-          const dumpIds = Lodash.uniq(ids);
+          ids = rows1.map(item => +item['id']);
+          dumpIds = Lodash.uniq(ids);
+          if (dumpIds === 0) {
+            const sql2 = `with 
+            ta as (
+              select geom from ${that.#lineTopo} where id = $1
+            )
+            , tb as (
+              select t.id as id, ST_Intersection(
+                t.geom, 
+                ta.geom
+              ) as geom from ${that.#lineDump} as t, ta 
+              where (t.geom && ta.geom) 
+              and ST_Intersects(t.geom, ta.geom)
+            )
+            , tc as (
+              select id from tb 
+            )
+            select distinct id from tc`;
+            const rows2 = await pg
+              .query(sql2, [id])
+              .then(res => {
+                return res.rows || [];
+              })
+            ;
+            ids = rows2.map(item => +item['id']);
+            dumpIds = Lodash.uniq(ids);
+          }
           console.log(dumpIds);
           if (dumpIds.length > 0) {
             const sql2 = `insert into ${that.#lineTopo} (id, dump_ids) 
@@ -338,7 +369,8 @@ class LibTopoLine {
             on conflict (id) do update set dump_ids = excluded.dump_ids`;
             await pg.query(sql2, [id, `{${dumpIds.join(',')}}`]);
           } else {
-            throw new Error(`topo edge#${id} dose not math any dump lines`);
+            // throw new Error(`topo edge#${id} dose not math any dump lines`);
+            console.log(`topo edge#${id} dose not math any dump lines`);
           }
         });
       }
@@ -369,6 +401,8 @@ class LibTopoLine {
         nextId = id;
         i += 1;
         await Utils.call(`关联 ${this.#lineDump} 边 ${i}#${id}|${row['target_id']}|${row['path']} [${row['type']}|${row['category']}] 的拓扑关系`, async () => {
+          let ids;
+          let topoIds;
           const sql1 = `with 
           ta as (
             select geom from ${that.#lineDump} where id = $1
@@ -381,7 +415,8 @@ class LibTopoLine {
             where (t.geom && ta.geom) and ST_Intersects(t.geom, ta.geom)
           )
           , tc as (
-            select id from tb where ST_GeometryType(geom) not in ('ST_Point', 'ST_MultiPoint')
+            select id from tb 
+            where ST_GeometryType(geom) not in ('ST_Point', 'ST_MultiPoint')
           )
           select distinct id from tc`;
           const rows1 = await pg
@@ -390,137 +425,41 @@ class LibTopoLine {
               return res.rows || [];
             })
           ;
-          const ids = rows1.map(item => +item['id']);
-          const topoIds = Lodash.uniq(ids);
+          ids = rows1.map(item => +item['id']);
+          topoIds = Lodash.uniq(ids);
+          if (topoIds.length === 0) {
+            const sql2 = `with 
+            ta as (
+              select geom from ${that.#lineDump} where id = $1
+            )
+            , tb as (
+              select t.id as id, ST_Intersection(
+                t.geom,
+                ta.geom
+              ) as geom from ${that.#lineTopo} as t, ta 
+              where (t.geom && ta.geom) and ST_Intersects(t.geom, ta.geom)
+            )
+            , tc as (
+              select id from tb 
+            )
+            select distinct id from tc`;
+            const rows2 = await pg
+              .query(sql2, [id])
+              .then(res => {
+                return res.rows || [];
+              })
+            ;
+            ids = rows2.map(item => +item['id']);
+            topoIds = Lodash.uniq(ids);
+          }
           console.log(topoIds);
           if (topoIds.length > 0) {
             const sql2 = `insert into ${that.#lineDump} (id, topo_ids) 
             values ($1::bigint, $2::bigint[]) 
             on conflict (id) do update set topo_ids = excluded.topo_ids`;
             await pg.query(sql2, [id, `{${topoIds.join(',')}}`]);
-            // for await (const topoId of topoIds) {
-            //   const sql3 = `select unnest(dump_ids) as dump_id from ${that.#lineTopo} where id = $1`;
-            //   const rows2 = await pg
-            //     .query(sql3, [topoId])
-            //     .then(res => {
-            //       return res.rows || [];
-            //     })
-            //   ;
-            //   const oldDumpIds = rows2.map(item => +item['dump_id']);
-            //   oldDumpIds.push(id);
-            //   const newDumpIds = Lodash.uniq(oldDumpIds);
-            //   const sql4 = `insert into ${that.#lineTopo} (id, dump_ids)
-            //   values ($1::bigint, $2::bigint[])
-            //   on conflict (id) do update set dump_ids = excluded.dump_ids`;
-            //   await pg.query(sql4, [topoId, `{${newDumpIds.join(',')}}`]);
-            // }
           } else {
             console.log(`${this.#lineDump} 边 ${i}#${id}|${row['target_id']}|${row['path']} [${row['type']}|${row['category']}] 无拓扑关系`);
-          }
-        });
-      }
-      console.log(`#${startId} - #${nextId}`);
-      startId = nextId;
-    } while (count > 0);
-  }
-
-
-  async fixDump2Topos(pg) {
-    let count;
-    let snapToGrid = 10;
-    do {
-      const rows = await pg
-        .query(`select count(*) as count from ${this.#lineDump} where topo_ids is null`)
-        .then(res => {
-          return res.rows || [];
-        })
-      ;
-      count = rows[0]['count'];
-      if (count > 0) {
-        console.log(`snap to grid 1e-${snapToGrid} in ${count}`);
-        await this.fixDump2Topo(pg, snapToGrid);
-        snapToGrid -= 1;
-      }
-    } while (count > 0 && snapToGrid > 5); // 不大于1e-5 1e-6还拟合不到 误差就太大了 就要找问题了
-
-    const rows = await pg
-      .query(`select count(*) as count from ${this.#lineDump} where topo_ids is null`)
-      .then(res => {
-        return res.rows || [];
-      })
-    ;
-    count = rows[0]['count'];
-    console.log(`final non-related ${count}`);
-  }
-
-
-  async fixDump2Topo(pg, snapToGrid) {
-    let startId = 0;
-    let count;
-    const limit  = 100;
-    let i = 0;
-
-    do {
-      const rows = await pg
-        .query(`select id, target_id, path, type, category from ${this.#lineDump} where id > $1 and topo_ids is null order by id asc limit $2`, [startId, limit])
-        .then(res => {
-          return res.rows || [];
-        })
-      ;
-      count = rows.length;
-      let nextId = 0;
-      const that = this;
-      for await (const row of rows) {
-        const id = +row['id'];
-        nextId = id;
-        i += 1;
-        await Utils.call(`关联 ${this.#lineDump} 边 ${i}#${id}|${row['target_id']}|${row['path']} [${row['type']}|${row['category']}] 的拓扑关系`, async () => {
-          const sql1 = `with 
-          ta as (
-            select geom from ${that.#lineDump} where id = $1
-          )
-          , tb as (
-            select t.id as id, ST_Intersection(
-              ST_SnapToGrid(t.geom, 1e-${snapToGrid}), 
-              ST_SnapToGrid(ta.geom, 1e-${snapToGrid})
-            ) as geom from ${that.#lineTopo} as t, ta 
-            where (t.geom && ta.geom) and ST_Intersects(t.geom, ta.geom)
-          )
-          , tc as (
-            select id from tb where ST_GeometryType(geom) not in ('ST_Point', 'ST_MultiPoint')
-          )
-          select distinct id from tc`;
-          const rows1 = await pg
-            .query(sql1, [id])
-            .then(res => {
-              return res.rows || [];
-            })
-          ;
-          const ids = rows1.map(item => +item['id']);
-          const topoIds = Lodash.uniq(ids);
-          console.log(topoIds);
-          if (topoIds.length > 0) {
-            const sql2 = `insert into ${that.#lineDump} (id, topo_ids) 
-            values ($1::bigint, $2::bigint[]) 
-            on conflict (id) do update set topo_ids = excluded.topo_ids`;
-            await pg.query(sql2, [id, `{${topoIds.join(',')}}`]);
-
-            // for await (const topoId of topoIds) {
-            //   const sql3 = `select unnest(dump_ids) as dump_id from ${that.#lineTopo} where id = $1`;
-            //   const rows2 = await pg
-            //     .query(sql3, [topoId])
-            //     .then(res => {
-            //       return res.rows || [];
-            //     })
-            //   ;
-            //   const oldDumpIds = rows2.map(item => +item['dump_id']);
-            //   oldDumpIds.push(id);
-            //   const newDumpIds = Lodash.uniq(oldDumpIds);
-            //   const sql4 = `insert into ${that.#lineTopo} (id, dump_ids)
-            //   values ($1::bigint, $2::bigint[])
-            //   on conflict (id) do update set dump_ids = excluded.dump_ids`;
-            //   await pg.query(sql4, [topoId, `{${newDumpIds.join(',')}}`]);
-            // }
           }
         });
       }

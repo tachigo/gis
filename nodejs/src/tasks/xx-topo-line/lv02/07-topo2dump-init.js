@@ -12,7 +12,7 @@ import Strategy from './../Strategy';
   const strategy = await new Strategy(2, pg);
 
   await $.Utils.call(`初始化关系`, async () => {
-    await strategy.initRelation();
+    await strategy.initTopo2DumpRelation();
   });
 
   await pg.release();

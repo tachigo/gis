@@ -110,8 +110,13 @@ class Strategy {
   }
 
 
-  async initRelation() {
-    await this.#topology.initRelationColumn(this.#pg);
+  async initDump2TopoRelation() {
+    await this.#topology.initDump2TopoRelation(this.#pg);
+  }
+
+
+  async initTopo2DumpRelation() {
+    await this.#topology.initTopo2DumpRelation(this.#pg);
   }
 
 
@@ -119,13 +124,8 @@ class Strategy {
     await this.#topology.calcTopo2Dump(this.#pg);
   }
 
-
   async calcDump2TopoRelation() {
     await this.#topology.calcDump2Topo(this.#pg);
-  }
-
-  async fixCalcDump2TopoRelation() {
-    await this.#topology.fixDump2Topos(this.#pg);
   }
 }
 
