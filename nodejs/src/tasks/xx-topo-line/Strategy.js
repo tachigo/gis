@@ -31,7 +31,9 @@ class Strategy {
     const lineDumpTable = `lv${levelNumber}_line_dump`;
     const lineTopoSchema = 'topo';
     const lineTopoTable = `lv${levelNumber}_line_topo`;
-    return new LibTopoLine(lineDumpSchema, lineDumpTable, lineTopoSchema, lineTopoTable);
+    const nodeTopoSchema = 'topo';
+    const nodeTopoTable = `lv${levelNumber}_node_topo`;
+    return new LibTopoLine(lineDumpSchema, lineDumpTable, lineTopoSchema, lineTopoTable, nodeTopoSchema, nodeTopoTable);
   }
 
 
@@ -101,14 +103,18 @@ class Strategy {
   }
 
 
-  async calcEdges(maxVerticesNum) {
-    await this.#topology.calcEdges(this.#pg, maxVerticesNum);
+  async calcEdges() {
+    await this.#topology.calcEdges(this.#pg);
   }
 
-  async checkEdges(maxVerticesNum) {
-    await this.#topology.checkEdges(this.#pg, maxVerticesNum);
+
+  async checkDuplicateEdges() {
+    await this.#topology.checkDuplicateEdges(this.#pg);
   }
 
+  async checkCollapseEdges() {
+    await this.#topology.checkCollapseEdges(this.#pg);
+  }
 
   async initDump2TopoRelation() {
     await this.#topology.initDump2TopoRelation(this.#pg);
@@ -124,8 +130,12 @@ class Strategy {
     await this.#topology.calcTopo2Dump(this.#pg);
   }
 
-  async calcDump2TopoRelation() {
-    await this.#topology.calcDump2Topo(this.#pg);
+  async calcDump2TopoRelation(tolerance) {
+    await this.#topology.calcDump2TopoEdges(this.#pg, tolerance);
+  }
+
+  async topoSnapEdges(tolerance) {
+    await this.#topology.topoSnapEdges(this.#pg, tolerance);
   }
 }
 

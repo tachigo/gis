@@ -12,7 +12,7 @@ import Strategy from './../Strategy';
   const strategy = await new Strategy(2, pg);
 
   await $.Utils.call(`计算拓扑边`, async () => {
-    await strategy.calcEdges(4096);
+    await strategy.calcEdges();
   });
 
   await pg.release();

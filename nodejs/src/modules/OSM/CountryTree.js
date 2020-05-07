@@ -497,6 +497,7 @@ const countryDistrictTree = {
     zhName: '加纳',
     enName: 'Ghana',
     iso: 'GHA',
+    level: 1,
     osmRelationIds: [192781],
     mfwId: 17422
   },

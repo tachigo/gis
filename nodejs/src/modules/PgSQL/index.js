@@ -25,8 +25,8 @@ class PgSQL {
       }
       const pool = new Pool(config);
       pool.on('error', (err, client) => {
-        client.release();
         console.error(err.stack);
+        client.release();
       });
       this.pools[key] = pool;
     }

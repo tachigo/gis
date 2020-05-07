@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<title>{{ title }}</title>
+<head>
+    <meta charset="utf-8">
+    <script src="/node_modules/cesium/Build/Cesium/Cesium.js"></script>
+    <link href="/node_modules/cesium/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+</head>
+<body style="padding: 0; margin: 0;">
+<main id="cesium-container" style="width: 100%; height: 100%;">
+</main>
+<div id="credit-container" style="display: none;"></div>
+<script type="text/javascript">
+    'use strict';
+    const viewer = new Cesium.Viewer('cesium-container', {
+      animation: false,
+      baseLayerPicker: false,
+      homeButton: false,
+      fullscreenButton: false,
+      infoBox: false,
+      timeline: false,
+      navigationHelpButton: false,
+      sceneModePicker: false,
+      selectionIndicator: false,
+      geocoder: false,
+      automaticallyTrackDataSourceClocks: false,
+      shadows: false,
+      creditContainer: 'credit-container',
+      imageryProvider: new Cesium.UrlTemplateImageryProvider({
+        // url: 'https://webst0{s}.is.autonavi.com/appmaptile?style=6&x={x}&y={y}&z={z}',
+        // subdomains: [1,2,3,4],
+        // maximumLevel: 18,
+        url: 'https://mapgwc.mafengwo.cn/tms/1.0.0/fpv3:bg0903@EPSG:4326@png/{z}/{x}/{reverseY}.png',
+        minimumLevel: 0,
+        maximumLevel: 8,
+        tilingScheme: new Cesium.GeographicTilingScheme()
+      }),
+    });
+    viewer.scene.globe.baseColor = new Cesium.Color(1.0,1.0,1.0,1.0);
+</script>
+</body>
+</html>

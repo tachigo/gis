@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<title>{{ title }}</title>
+<head>
+    <meta charset="utf-8">
+    <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
+    <script src="/node_modules/cesium/Build/Cesium/Cesium.js"></script>
+    <link href="/node_modules/cesium/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+    <link href="/node_modules/ol/ol.css" rel="stylesheet">
+</head>
+<body style="padding: 0; margin: 0; background-color: blue;">
+<main id="cesium-container" style="background-color: white;">
+</main>
+<div id="credit-container" style="display: none;"></div>
+</body>
+<script type="text/javascript" src="/public/javascripts/cesium-3d-tiles.js">
+</script>
+</html>

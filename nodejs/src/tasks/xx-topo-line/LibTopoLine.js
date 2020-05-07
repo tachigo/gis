@@ -1,7 +1,7 @@
 'use strict';
 
 import Utils from './../../modules/Utils';
-
+import LibLWGeom from './LibLWGeom';
 import Lodash from 'lodash';
 
 class LibTopoLine {
@@ -15,7 +15,12 @@ class LibTopoLine {
   #lineTopo;
 
 
-  constructor(lineDumpSchema, lineDumpTable, lineTopoSchema, lineTopoTable) {
+  #nodeTopoSchema;
+  #nodeTopoTable;
+  #nodeTopo;
+
+
+  constructor(lineDumpSchema, lineDumpTable, lineTopoSchema, lineTopoTable, nodeTopoSchema, nodeTopoTable) {
     this.#lineDumpSchema = lineDumpSchema;
     this.#lineDumpTable = lineDumpTable;
     this.#lineDump = `${lineDumpSchema}.${lineDumpTable}`;
@@ -23,6 +28,10 @@ class LibTopoLine {
     this.#lineTopoSchema = lineTopoSchema;
     this.#lineTopoTable = lineTopoTable;
     this.#lineTopo = `${lineTopoSchema}.${lineTopoTable}`;
+
+    this.#nodeTopoSchema = nodeTopoSchema;
+    this.#nodeTopoTable = nodeTopoTable;
+    this.#nodeTopo = `${this.#nodeTopoSchema}.${this.#nodeTopoTable}`;
   }
 
 
@@ -232,7 +241,6 @@ class LibTopoLine {
     );
   }
 
-
   async initTopoTable(pg) {
     try {
       await pg.query(`drop table ${this.#lineTopo} cascade`);
@@ -246,23 +254,10 @@ class LibTopoLine {
         constraint enforce_srid_geom check (st_srid(geom) = 4326)
     )`);
     await pg.query(`create index ${this.#lineTopoSchema}_${this.#lineTopoTable}_geom_idx on ${this.#lineTopo} using gist (geom)`);
-
-    try {
-      await pg.query(`drop table ${this.#lineTopo}_tmp cascade`);
-    } catch (e) {
-      console.error(e.message);
-    }
-    await pg.query(`create table if not exists ${this.#lineTopo}_tmp
-    (
-        id bigserial primary key,
-        geom geometry,
-        constraint enforce_srid_geom check (st_srid(geom) = 4326)
-    )`);
-    await pg.query(`create index ${this.#lineTopoSchema}_${this.#lineTopoTable}_tmp_geom_idx on ${this.#lineTopo}_tmp using gist (geom)`);
   }
 
 
-  async calcEdges(pg, maxVerticesNum) {
+  async calcEdges(pg) {
     let startId = 0;
     let count;
     const limit  = 100;
@@ -280,7 +275,7 @@ class LibTopoLine {
         const id = +row['id'];
         nextId = id;
         await Utils.call(`计算边 ${id}|${row['target_id']}|${row['path']} [${row['type']}|${row['category']}]`, async () => {
-          await that.calcEdge(pg, id, maxVerticesNum);
+          await that.calcEdge(pg, id);
         });
       }
       console.log(`#${startId} - #${nextId}`);
@@ -290,6 +285,7 @@ class LibTopoLine {
 
 
   async calcTopo2Dump(pg) {
+    let sql;
     let startId = 0;
     let count;
     const limit  = 100;
@@ -303,76 +299,70 @@ class LibTopoLine {
       ;
       count = rows.length;
       let nextId = 0;
-      const that = this;
       for await (const row of rows) {
         const id = +row['id'];
         nextId = id;
         i += 1;
-        await Utils.call(`关联 ${this.#lineTopo} 边 ${i}#${id} 的 dump 关系`, async () => {
-          let ids;
-          let dumpIds;
-          const sql1 = `with 
-          ta as (
-            select geom from ${that.#lineTopo} where id = $1
-          )
-          , tb as (
-            select t.id as id, ST_Intersection(
-              t.geom, 
-              ta.geom
-            ) as geom from ${that.#lineDump} as t, ta 
-            where (t.geom && ta.geom) 
-            and ST_Intersects(t.geom, ta.geom)
-          )
-          , tc as (
-            select id from tb 
-            where ST_GeometryType(geom) not in ('ST_Point', 'ST_MultiPoint')
-          )
-          select distinct id from tc`;
-          const rows1 = await pg
-            .query(sql1, [id])
-            .then(res => {
-              return res.rows || [];
-            })
-          ;
-          ids = rows1.map(item => +item['id']);
-          dumpIds = Lodash.uniq(ids);
-          if (dumpIds === 0) {
-            const sql2 = `with 
-            ta as (
-              select geom from ${that.#lineTopo} where id = $1
-            )
-            , tb as (
-              select t.id as id, ST_Intersection(
-                t.geom, 
-                ta.geom
-              ) as geom from ${that.#lineDump} as t, ta 
-              where (t.geom && ta.geom) 
-              and ST_Intersects(t.geom, ta.geom)
-            )
-            , tc as (
-              select id from tb 
-            )
-            select distinct id from tc`;
-            const rows2 = await pg
-              .query(sql2, [id])
-              .then(res => {
-                return res.rows || [];
-              })
-            ;
-            ids = rows2.map(item => +item['id']);
-            dumpIds = Lodash.uniq(ids);
-          }
-          console.log(dumpIds);
-          if (dumpIds.length > 0) {
-            const sql2 = `insert into ${that.#lineTopo} (id, dump_ids) 
-            values ($1::bigint, $2::bigint[]) 
-            on conflict (id) do update set dump_ids = excluded.dump_ids`;
-            await pg.query(sql2, [id, `{${dumpIds.join(',')}}`]);
-          } else {
-            // throw new Error(`topo edge#${id} dose not math any dump lines`);
-            console.log(`topo edge#${id} dose not math any dump lines`);
-          }
-        });
+        let ids, dumpIds;
+        sql = `with 
+        ta as (
+          select geom from ${this.#lineTopo} where id = $1
+        )
+        , tb as (
+          select t.id as id, ST_Intersection(
+            t.geom, 
+            ta.geom
+          ) as geom from ${this.#lineDump} as t, ta 
+          where (t.geom && ta.geom) 
+          and ST_Intersects(t.geom, ta.geom)
+        )
+        , tc as (
+          select id from tb 
+          where ST_GeometryType(geom) not in ('ST_Point', 'ST_MultiPoint')
+        )
+        select distinct id from tc`;
+        ids = await pg
+          .query(sql, [id])
+          .then(res => {
+            return res.rows.map(row => +row['id']);
+          })
+        ;
+        dumpIds = Lodash.uniq(ids);
+        // if (dumpIds.length === 0) {
+        //   sql = `with
+        //   ta as (
+        //     select geom from ${this.#lineTopo} where id = $1
+        //   )
+        //   , tb as (
+        //     select t.id as id, ST_Intersection(
+        //       t.geom,
+        //       ta.geom
+        //     ) as geom from ${this.#lineDump} as t, ta
+        //     where (t.geom && ta.geom)
+        //     and ST_Intersects(t.geom, ta.geom)
+        //   )
+        //   , tc as (
+        //     select id from tb
+        //   )
+        //   select distinct id from tc`;
+        //   ids = await pg
+        //     .query(sql, [id])
+        //     .then(res => {
+        //       return res.rows.map(row => +row['id']);
+        //     })
+        //   ;
+        //   dumpIds = Lodash.uniq(ids);
+        // }
+        console.log(dumpIds);
+        if (dumpIds.length > 0) {
+          sql = `insert into ${this.#lineTopo} (id, dump_ids) 
+          values ($1::bigint, $2::bigint[]) 
+          on conflict (id) do update set dump_ids = excluded.dump_ids`;
+          await pg.query(sql, [id, `{${dumpIds.join(',')}}`]);
+        } else {
+          // throw new Error(`topo edge#${id} dose not math any dump lines`);
+          console.log(`====================================> topo edge#${id} dose not math any dump lines`);
+        }
       }
       console.log(`#${startId} - #${nextId}`);
       startId = nextId;
@@ -380,7 +370,60 @@ class LibTopoLine {
   }
 
 
-  async calcDump2Topo(pg) {
+  async calcDump2TopoEdge(pg, dumpId, tol) {
+    let sql;
+    sql = `with 
+    ta as (
+      select geom from ${this.#lineDump} where id = $1
+    )
+    , tb as (
+      select t.id as id from ${this.#lineTopo} as t, ta 
+      where (t.geom && ta.geom) and ST_Distance(t.geom, ta.geom) < $2
+    )
+    select distinct id from tb`;
+    const topoIds = await pg.query(sql, [dumpId, tol])
+      .then(res => {
+        return res.rows.map(row => +row['id']);
+      })
+    ;
+    sql = `select ST_AsHEXEWKB(geom) as geom from ${this.#lineDump} where id = $1`;
+    const geomDump = await pg.query(sql, [dumpId])
+      .then(res => {
+        return res.rows[0]['geom'];
+      })
+    ;
+    const ids = [];
+    for await (const topoId of topoIds) {
+      sql = `select ST_AsHEXEWKB(geom) as geom from ${this.#lineTopo} where id = $1`;
+      const geomTopo = await pg.query(sql, [topoId])
+        .then(res => {
+          return res.rows[0]['geom'];
+        })
+      ;
+      // 比较距离
+      sql = `with 
+      ta as (
+        select (ST_DumpPoints($1::geometry)).geom as geom
+      )
+      , tb as (
+        select ST_Distance($2::geometry, geom) as distance from ta
+      )
+      select max(distance) as max_distance from tb`;
+      const maxDistance = await pg.query(sql, [geomTopo, geomDump])
+        .then(res => {
+          return +res.rows[0]['max_distance']
+        })
+      ;
+      if (maxDistance < tol) {
+        ids.push(topoId);
+      }
+    }
+    return ids;
+  }
+
+
+  async calcDump2TopoEdges(pg, tol) {
+    let sql;
     let startId = 0;
     let count;
     const limit  = 100;
@@ -400,66 +443,16 @@ class LibTopoLine {
         const id = +row['id'];
         nextId = id;
         i += 1;
-        await Utils.call(`关联 ${this.#lineDump} 边 ${i}#${id}|${row['target_id']}|${row['path']} [${row['type']}|${row['category']}] 的拓扑关系`, async () => {
-          let ids;
-          let topoIds;
-          const sql1 = `with 
-          ta as (
-            select geom from ${that.#lineDump} where id = $1
-          )
-          , tb as (
-            select t.id as id, ST_Intersection(
-              t.geom,
-              ta.geom
-            ) as geom from ${that.#lineTopo} as t, ta 
-            where (t.geom && ta.geom) and ST_Intersects(t.geom, ta.geom)
-          )
-          , tc as (
-            select id from tb 
-            where ST_GeometryType(geom) not in ('ST_Point', 'ST_MultiPoint')
-          )
-          select distinct id from tc`;
-          const rows1 = await pg
-            .query(sql1, [id])
-            .then(res => {
-              return res.rows || [];
-            })
-          ;
-          ids = rows1.map(item => +item['id']);
-          topoIds = Lodash.uniq(ids);
-          if (topoIds.length === 0) {
-            const sql2 = `with 
-            ta as (
-              select geom from ${that.#lineDump} where id = $1
-            )
-            , tb as (
-              select t.id as id, ST_Intersection(
-                t.geom,
-                ta.geom
-              ) as geom from ${that.#lineTopo} as t, ta 
-              where (t.geom && ta.geom) and ST_Intersects(t.geom, ta.geom)
-            )
-            , tc as (
-              select id from tb 
-            )
-            select distinct id from tc`;
-            const rows2 = await pg
-              .query(sql2, [id])
-              .then(res => {
-                return res.rows || [];
-              })
-            ;
-            ids = rows2.map(item => +item['id']);
-            topoIds = Lodash.uniq(ids);
-          }
-          console.log(topoIds);
+        await Utils.call(`${this.#lineDump} 边 ${i}#${id}|${row['target_id']}|${row['path']} [${row['type']}|${row['category']}]`, async () => {
+          const topoIds = await that.calcDump2TopoEdge(pg, id, tol);
           if (topoIds.length > 0) {
-            const sql2 = `insert into ${that.#lineDump} (id, topo_ids) 
+            console.log(topoIds);
+            sql = `insert into ${that.#lineDump} (id, topo_ids) 
             values ($1::bigint, $2::bigint[]) 
             on conflict (id) do update set topo_ids = excluded.topo_ids`;
-            await pg.query(sql2, [id, `{${topoIds.join(',')}}`]);
+            await pg.query(sql, [id, `{${topoIds.join(',')}}`]);
           } else {
-            console.log(`${this.#lineDump} 边 ${i}#${id}|${row['target_id']}|${row['path']} [${row['type']}|${row['category']}] 无拓扑关系`);
+            console.log(`====================================> 无拓扑关系`);
           }
         });
       }
@@ -469,11 +462,56 @@ class LibTopoLine {
   }
 
 
-  async checkEdges(pg, maxVerticesNum) {
+  async checkDuplicateEdge(pg, id) {
+    let sql;
+    sql = `with 
+    ta as (
+      select geom from ${this.#lineTopo} where id = $1
+    )
+    select t.id as id from ${this.#lineTopo} as t, ta  
+    where t.id > $1 and (t.geom && ta.geom and ST_Intersects(t.geom, ta.geom)) 
+    and (ST_Equals(t.geom, ta.geom) or ST_Equals(ST_Reverse(t.geom), ta.geom))`;
+    const theIds = await pg.query(sql, [id])
+      .then(res => {
+        return res.rows.map(row => +row['id']);
+      })
+    ;
+    for await (const theId of theIds) {
+      // 相等的 可以删除
+      sql = `delete from ${this.#lineTopo} where id = $1`;
+      await pg.query(sql, [theId]);
+      console.log(`====================================> delete #${id} reverse duplicate edge#${theId}`);
+    }
+  }
+
+
+  async checkCollapseEdge(pg, id) {
+    let sql;
+    sql = `with 
+    ta as (
+      select geom from ${this.#lineTopo} where id = $1
+    )
+    , tb as (
+      select t.id as id, ST_Intersection(t.geom, ta.geom) as geom from ${this.#lineTopo} as t, ta 
+      where t.id > $1 and (t.geom && ta.geom and ST_Intersects(t.geom, ta.geom))
+    )
+    select id from tb where ST_GeometryType(geom) not in ('ST_Point', 'ST_MultiPoint') and ST_NPoints(geom) > 0`;
+    const theIds = await pg.query(sql, [id])
+      .then(res => {
+        return res.rows.map(row => +row['id']);
+      })
+    ;
+    if (theIds.length > 0) {
+      console.log(`====================================> edge #${id} collapsed with edges:`, theIds);
+      await this.fixCollapseEdge(pg, id, theIds);
+    }
+  }
+
+
+  async checkDuplicateEdges(pg) {
     let startId = 1 - 1;
     let count;
-    const limit  = 100;
-    let i = 0;
+    const limit  = 2000;
     do {
       const rows = await pg
         .query(`select id from ${this.#lineTopo} where id > $1 order by id asc limit $2`, [startId, limit])
@@ -483,274 +521,253 @@ class LibTopoLine {
       ;
       count = rows.length;
       let nextId = 0;
-      const that = this;
-      for await (const row of rows) {
-        const id = +row['id'];
-        nextId = id;
-        i += 1;
-        await Utils.call(`检查 ${this.#lineTopo} 边 ${i}#${id}`, async () => {
-          const sql = `with 
-          ta as (
-            select geom from ${that.#lineTopo} where id = $1
-          )
-          , tb as (
-            select t.id as id, ST_Intersection(t.geom, ta.geom) as geom from ${that.#lineTopo} as t, ta 
-            where t.id > $1 and (t.geom && ta.geom and ST_Intersects(t.geom, ta.geom))
-          )
-          select id from tb where ST_GeometryType(geom) not in ('ST_Point', 'ST_MultiPoint') and ST_NPoints(geom) > 0`;
-          const res = await pg.query(sql, [id])
-            .then(res => {
-              return res.rows || [];
-            })
-          ;
-          const items = res.map(item => +item['id']);
-          if (items.length > 0) {
-            console.log(`edge #${id} intersects with edges`, items);
-            // throw new Error(`edge #${id} intersects with edges: [${items.join(',')}]`);
-            const notEquals = [];
-            for await (const theId of items) {
-              // 检查是否是相等的，如果是相等的，就可以删掉
-              const sql = `with
-              ta as (
-                select geom from ${that.#lineTopo} where id = $1
-              )
-              , tb as (
-                select id, geom from ${that.#lineTopo} where id = $2
-              )
-              select tb.id as id from ta, tb where ST_Equals(ta.geom, tb.geom)`;
-              const rows = await pg
-                .query(sql, [id, theId])
-                .then(res => {
-                  return res.rows || [];
-                })
-              ;
-              if (rows.length > 0) {
-                // 相等的 可以删除
-                await pg.query(`====================================> delete from ${that.#lineTopo} where id = $1`, [theId]);
-                console.log(`delete duplicate edge#${theId}`);
-              } else {
-                notEquals.push(theId);
-              }
-            }
-            if (notEquals.length > 0) {
-              console.log(`====================================> edge #${id} intersects with not equal edges:`, notEquals);
-              await that.fixEdgeCalc(pg, id, notEquals, maxVerticesNum);
-            }
+      if (count > 0) {
+        nextId = rows[count - 1]['id'];
+        const that = this;
+        await Utils.call(`#${startId} - #${nextId}`, async () => {
+          for await (const row of rows) {
+            const id = +row['id'];
+            await that.checkDuplicateEdge(pg, id);
           }
         });
       }
-      console.log(`#${startId} - #${nextId}`);
       startId = nextId;
     } while (count > 0);
   }
 
 
-  async fixEdgeCalc(pg, id, theIds, maxVerticesNum) {
-    // 清空tmp表
-    await pg.query(`delete from ${this.#lineTopo}_tmp`);
-    // 从topo取出来写入topo
-    const sql = `with 
-    ta as (
-      select geom from ${this.#lineTopo} where id = $1
-    )
-    , tb as (
-      select ST_Union(geom) as geom from ${this.#lineTopo} where id in (${theIds.join(',')})
-    )
-    , tc as (
-      select ST_Intersection(ta.geom, tb.geom) as geom from ta, tb
-    )
-    , td as (
-      select ST_Union(ta.geom, tb.geom) as geom from ta, tb
-    )
-    , te as (
-	    select ST_SymDifference(td.geom, tc.geom) as geom from td, tc
-    )
-    , tf as (
-      select (ST_Dump(geom)).geom as geom from tc 
-      where geom is not null and ST_IsEmpty(geom) = false
-      union all 
-      select (ST_Dump(geom)).geom as geom from te 
-      where geom is not null and ST_IsEmpty(geom) = false 
-    )
-    , tg as (
-      select 
-      ST_MakeValid(
-        ST_Node(
-          ST_LineMerge(
-            ST_RemoveRepeatedPoints(
-              ST_Union(geom)
-            )
-          )
-        )
-      ) 
-      as geom from tf 
-      where ST_GeometryType(geom) not in ('ST_Point', 'ST_MultiPoint')
-    )
-    , th as (
-      select (ST_Dump(geom)).geom as geom from tg
-    )
-    insert into ${this.#lineTopo}_tmp (geom) 
-    select geom from th`;
-    await pg.query(sql, [id]);
+  async topoSnapEdges(pg, tol) {
+    let startId = 1 - 1;
+    let count;
+    const limit  = 2000;
+    do {
+      const rows = await pg
+        .query(`select id from ${this.#lineTopo} where id > $1 order by id asc limit $2`, [startId, limit])
+        .then(res => {
+          return res.rows || [];
+        })
+      ;
+      count = rows.length;
+      let nextId = 0;
+      if (count > 0) {
+        nextId = rows[count - 1]['id'];
+        const that = this;
+        await Utils.call(`#${startId} - #${nextId}`, async () => {
+          for await (const row of rows) {
+            const id = +row['id'];
+            await that.topoSnapEdge(pg, id, tol);
+          }
+        });
+      }
+      startId = nextId;
+    } while (count > 0);
+  }
 
-    const realVerticesNum = maxVerticesNum - 1;
-    const rows2 = await pg
-      .query(`select id from ${this.#lineTopo}_tmp`)
+
+  async topoSnapEdge(pg, id, tol) {
+    let geom;
+    geom = await pg
+      .query(`select ST_AsHEXEWKB(geom) as geom from ${this.#lineTopo} where id = $1`, [id])
       .then(res => {
-        return res.rows || [];
+        return res.rows[0]['geom'];
       })
     ;
-    for await (const row of rows2) {
-      const sql = `with 
-      ta as (
-        select geom from ${this.#lineTopo}_tmp where id = $1
-      )
-      , tb as (
-        select ST_PointN(geom, 
-          ((generate_series(1, ST_NPoints(geom) / ${realVerticesNum} + 1) - 1) * ${realVerticesNum} + 1)) as geom 
-        from ta
-      )
-      , tc as (
-        select ST_Collect(geom) as geom from tb
-      )
-      , td as (
-        select ST_Split(ta.geom, tc.geom) as geom from ta, tc
-      )
-      , te as (
-        select (ST_Dump(geom)).geom as geom from td
-      )
-      insert into ${this.#lineTopo} (geom) 
-      select geom from te`;
-      await pg.query(sql, [+row['id']]);
-    }
+
+    geom = await Utils.call(`topo#${id} ====> Repeated-point removed`, async () => {
+      return await LibLWGeom.removeRepeatedPoints(pg, geom, tol);
+    });
+    geom = await Utils.call(`topo#${id} ====> Self-node`, async () => {
+      return await LibLWGeom.node(pg, geom);
+    });
+
+
+  }
+
+
+  async checkCollapseEdges(pg) {
+    let startId = 1 - 1;
+    let count;
+    const limit  = 2000;
+    do {
+      const rows = await pg
+        .query(`select id from ${this.#lineTopo} where id > $1 order by id asc limit $2`, [startId, limit])
+        .then(res => {
+          return res.rows || [];
+        })
+      ;
+      count = rows.length;
+      let nextId = 0;
+      if (count > 0) {
+        nextId = rows[count - 1]['id'];
+        const that = this;
+        await Utils.call(`#${startId} - #${nextId}`, async () => {
+          for await (const row of rows) {
+            const id = +row['id'];
+            await that.checkCollapseEdge(pg, id);
+          }
+        });
+      }
+      startId = nextId;
+    } while (count > 0);
+  }
+
+  async fixCollapseEdge(pg, id, theIds) {
+    // 清空tmp表
+    let sql;
+    // 从topo取出来写入topo
+    sql = `with 
+    ta as (
+      select geom from ${this.#lineDump} where id = $1
+      union all 
+      select geom from ${this.#lineTopo} where id in (${theIds.join(', ')})
+    )
+    , tb as (
+      select ST_Union(geom) as geom from ta
+    )
+    , tc as (
+      select (ST_Dump(geom)).geom as geom from tb
+    )
+    insert into ${this.#lineTopo} (geom) 
+    select geom from tc`;
+    await pg.query(sql, [id]);
+
     // 删除原有的
     await pg.query(`delete from ${this.#lineTopo} where id in (${[id, ...theIds].join(', ')})`);
     console.log(`====================================> re-calc intersects edges:`, [id, ...theIds]);
   }
 
-  async calcEdge(pg, id, maxVerticesNum) {
-    const realVerticesNum = maxVerticesNum - 1;
+
+
+  async calcEdge(pg, id) {
+    let sql;
     // 从dump取出来写入topo
-    const sql1 = `with 
+    sql = `with 
     ta as (
       select geom from ${this.#lineDump} where id = $1
     )
     select t.id as id from ${this.#lineTopo} as t, ta 
     where (t.geom && ta.geom) and ST_Intersects(t.geom, ta.geom) 
     and ST_NPoints(ST_Intersection(t.geom, ta.geom)) > 0`;
-    const rows1 = await pg
-      .query(sql1, [id])
+    const theIds = await pg
+      .query(sql, [id])
       .then(res => {
-        return res.rows || [];
+        return res.rows.map(row => +row['id']);
       })
     ;
-    const intersectIds = rows1.map(row => +row['id']);
-    console.log(intersectIds);
-    if (intersectIds.length === 0) {
+    console.log(theIds);
+    if (theIds.length === 0) {
       console.log(`无交集，直接插入`);
-      return await pg
-        .query(`with 
-        ta as (
-          select geom from ${this.#lineDump} where id = $1
-        )
-        insert into ${this.#lineTopo} (geom) 
-        select 
-          ST_MakeValid(
-            ST_Node(
-              ST_LineMerge(
-                ST_RemoveRepeatedPoints(
-                  geom
-                )
-              )
-            )
-          ) as geom from ta 
-        on conflict (id) do update set geom = excluded.geom`, [id])
-      ;
-    }
-
-    // 清空tmp表
-    await pg.query(`delete from ${this.#lineTopo}_tmp`);
-
-    const sql2 = `with 
-    ta as (
-      select geom from ${this.#lineDump} where id = $1
-    )
-    , tb as (
-      select ST_Union(geom) as geom from ${this.#lineTopo} where id in (${intersectIds.join(', ')})
-    ) 
-    , tc as (
-      select ST_Intersection(ta.geom, tb.geom) as geom from ta, tb
-    )
-    , td as (
-      select ST_Union(ta.geom, tb.geom) as geom from ta, tb
-    )
-    , te as (
-	    select ST_SymDifference(td.geom, tc.geom) as geom from td, tc
-    )
-    , tf as (
-      select (ST_Dump(geom)).geom as geom from tc 
-      where geom is not null and ST_IsEmpty(geom) = false
-      union all 
-      select (ST_Dump(geom)).geom as geom from te 
-      where geom is not null and ST_IsEmpty(geom) = false 
-    )
-    , tg as (
-      select 
-      ST_MakeValid(
-        ST_Node(
-          ST_LineMerge(
-            ST_RemoveRepeatedPoints(
-              ST_Union(geom)
-            )
-          )
-        )
-      ) 
-      as geom from tf 
-      where ST_GeometryType(geom) not in ('ST_Point', 'ST_MultiPoint')
-    )
-    , th as (
-      select (ST_Dump(geom)).geom as geom from tg
-    )
-    insert into ${this.#lineTopo}_tmp (geom) 
-    select geom from th`;
-    await pg.query(sql2, [id]);
-
-    const rows2 = await pg
-      .query(`select id from ${this.#lineTopo}_tmp`)
-      .then(res => {
-        return res.rows || [];
-      })
-    ;
-    for await (const row of rows2) {
-      const sql = `with 
+      sql = `with 
       ta as (
-        select geom from ${this.#lineTopo}_tmp where id = $1
-      )
-      , tb as (
-        select ST_PointN(geom, 
-          ((generate_series(1, ST_NPoints(geom) / ${realVerticesNum} + 1) - 1) * ${realVerticesNum} + 1)) as geom 
-        from ta
-      )
-      , tc as (
-        select ST_Collect(geom) as geom from tb
-      )
-      , td as (
-        select ST_Split(ta.geom, tc.geom) as geom from ta, tc
-      )
-      , te as (
-        select (ST_Dump(geom)).geom as geom from td
+        select geom from ${this.#lineDump} where id = $1
       )
       insert into ${this.#lineTopo} (geom) 
-      select geom from te`;
-      await pg.query(sql, [+row['id']]);
+      select geom from ta 
+      on conflict (id) do update set geom = excluded.geom`;
+      return await pg.query(sql, [id]);
+    }
+    sql = `select ST_AsHEXEWKB(geom) as geom from ${this.#lineDump} where id = $1`;
+    const geomDump = await pg.query(sql, [id]).then(res => res.rows[0]['geom']);
+    let geomDumpTmp = geomDump;
+    const geomPoints = [];
+    for await (const theId of theIds) {
+      sql = `select ST_AsHEXEWKB(geom) as geom from ${this.#lineTopo} where id = $1`;
+      const geomTopo = await pg.query(sql, [theId]).then(res => res.rows[0]['geom']);
+      // 交集的起始点和结束点
+      sql = `with 
+      ta as (
+        select ST_Intersection($1::geometry, $2::geometry) as geom
+      )
+      , tb as (
+        select geom from ta 
+        where ST_GeometryType(geom) in ('ST_Point', 'ST_MultiPoint') 
+        union all 
+        select ST_LineMerge(geom) as geom from ta 
+        where ST_GeometryType(geom) not in ('ST_Point', 'ST_MultiPoint') 
+      )
+      , tc as (
+        select (ST_Dump(geom)).geom as geom from tb where geom is not null
+      )
+      , td as (
+        select ST_AsHEXEWKB(geom) as geom from tc 
+        where ST_GeometryType(geom) in ('ST_Point', 'ST_MultiPoint') 
+        union all 
+        select ST_AsHEXEWKB(ST_StartPoint(geom)) as geom from tc 
+        where ST_GeometryType(geom) not in ('ST_Point', 'ST_MultiPoint') 
+        union all 
+        select ST_AsHEXEWKB(ST_EndPoint(geom)) as geom from tc
+        where ST_GeometryType(geom) not in ('ST_Point', 'ST_MultiPoint') 
+      )
+      select geom from td where geom is not null`;
+      const rows = await pg.query(sql, [geomDump, geomTopo])
+        .then(res => res.rows);
+      for await (const row of rows) {
+        geomPoints.push(row['geom']);
+      }
+      if (rows.length > 0) {
+        sql = `with 
+        ta as (
+          select ST_Intersection($1::geometry, $2::geometry) as geom
+        )
+        , tb as (
+          select geom from ta 
+          where ST_GeometryType(geom) in ('ST_Point', 'ST_MultiPoint') 
+          union all 
+          select ST_LineMerge(geom) as geom from ta 
+          where ST_GeometryType(geom) not in ('ST_Point', 'ST_MultiPoint') 
+        )
+        , tc as (
+          select (ST_Dump(geom)).geom as geom from tb where geom is not null
+        )
+        , td as (
+          select geom from tc 
+          where ST_GeometryType(geom) in ('ST_Point', 'ST_MultiPoint') 
+          union all 
+          select ST_StartPoint(geom) as geom from tc 
+          where ST_GeometryType(geom) not in ('ST_Point', 'ST_MultiPoint') 
+          union all 
+          select ST_EndPoint(geom) as geom from tc
+          where ST_GeometryType(geom) not in ('ST_Point', 'ST_MultiPoint') 
+        )
+        , te as (
+          select ST_RemoveRepeatedPoints(ST_Collect(geom)) as geom from td
+        )
+        , tf as (
+          select ST_Split($2::geometry, geom) as geom from te
+        )
+        , tg as (
+          select (ST_Dump(geom)).geom as geom from tf
+        )
+        insert into ${this.#lineTopo} (geom) 
+        select geom from tg`;
+        await pg.query(sql, [geomDump, geomTopo]);
+      }
+      sql = `select ST_AsHEXEWKB(ST_Difference($1::geometry, $2::geometry)) as geom`;
+      geomDumpTmp = await pg.query(sql, [geomDumpTmp, geomTopo])
+        .then(res => res.rows[0]['geom']);
+    }
+    const geomNodes = Lodash.uniq(geomPoints);
+    if (geomNodes.length === 0) {
+      console.log(`交集是起始点或结束点, 直接插入`);
+      sql = `with 
+      ta as (
+        select geom from ${this.#lineDump} where id = $1
+      )
+      insert into ${this.#lineTopo} (geom) 
+      select geom from ta 
+      on conflict (id) do update set geom = excluded.geom`;
+      return await pg.query(sql, [id]);
+    }
+    // 最后插入剩下的
+    if (geomDumpTmp !== null) {
+      sql = `insert into ${this.#lineTopo} (geom) 
+      values ($1::geometry)`;
+      await pg.query(sql, [geomDumpTmp]);
     }
 
     // 删除原有的
-    await pg.query(`delete from ${this.#lineTopo} where id in (${intersectIds.join(', ')})`);
+    await pg.query(`delete from ${this.#lineTopo} where id in (${theIds.join(', ')})`);
   }
-
-
-
 
 
 }

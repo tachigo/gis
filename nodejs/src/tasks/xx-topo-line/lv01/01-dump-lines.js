@@ -13,7 +13,7 @@ import Strategy from './../Strategy';
 
   await $.Utils.call(`导出线`, strategy.loadBoundaryList.bind(strategy), [async (id, name) => {
     await $.Utils.call(`导出线 ${name}#${id}`, strategy.loadLineList.bind(strategy), [id, async (id, type, category) => {
-      await $.Utils.call(`导出线 ${name}#${id} [${type}|${category}]`, strategy.dumpLines.bind(strategy), [id, type, category]);
+      await $.Utils.call(`导出线 ${name}#${id} [${type}|${category}]`, strategy.dumpLines.bind(strategy), [id, type, category, 4096]);
     }]);
   }]);
 
